@@ -10,15 +10,15 @@ import { Account } from './types';
 
 export const ChartOfAccounts: React.FC = () => {
   const { accounts, loading, createAccount } = useCOA();
-  
+
   // UI State
   const [expandedIds, setExpandedIds] = useState<Set<string>>(new Set());
   const [addingToId, setAddingToId] = useState<string | null>(null);
   const [formData, setFormData] = useState({ code: '', name: '', type: 'Asset' as AccountType, is_group: false });
 
   // Memoized Tree Rows
-  const rows = useMemo(() => 
-    buildTreeRows(accounts, expandedIds, addingToId), 
+  const rows = useMemo(() =>
+    buildTreeRows(accounts, expandedIds, addingToId),
     [accounts, expandedIds, addingToId]
   );
 
@@ -30,9 +30,9 @@ export const ChartOfAccounts: React.FC = () => {
   };
 
   const handleSave = async () => {
-    const res = await createAccount({ 
-      ...formData, 
-      parent_id: addingToId === 'root' ? null : addingToId 
+    const res = await createAccount({
+      ...formData,
+      parent_id: addingToId === 'root' ? null : addingToId
     });
     if (res.success) setAddingToId(null);
     else alert(res.error);
@@ -64,29 +64,29 @@ export const ChartOfAccounts: React.FC = () => {
         </THead>
         <TBody>
           {rows.map(({ item, level, parentId }) => (
-            <TR 
-              key={item === 'new' ? `new-${parentId}` : item.id} 
+            <TR
+              key={item === 'new' ? `new-${parentId}` : item.id}
               onClick={item !== 'new' && item.is_group ? () => toggleExpand(item.id) : undefined}
               style={{ borderBottom: '1px solid var(--ui-gray-50)' }}
             >
               {item === 'new' ? (
-                <NewAccountRow 
-                  level={level} 
-                  formData={formData} 
-                  setFormData={setFormData} 
-                  onSave={handleSave} 
-                  onCancel={() => setAddingToId(null)} 
+                <NewAccountRow
+                  level={level}
+                  formData={formData}
+                  setFormData={setFormData}
+                  onSave={handleSave}
+                  onCancel={() => setAddingToId(null)}
                 />
               ) : (
-                <AccountDataRow 
-                  item={item} 
-                  level={level} 
-                  isExpanded={expandedIds.has(item.id)} 
+                <AccountDataRow
+                  item={item}
+                  level={level}
+                  isExpanded={expandedIds.has(item.id)}
                   onAdd={() => {
                     setAddingToId(item.id);
                     setFormData({ ...formData, type: item.type, is_group: false });
                     setExpandedIds(new Set([...expandedIds, item.id]));
-                  }} 
+                  }}
                 />
               )}
             </TR>
