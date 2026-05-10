@@ -1,0 +1,53 @@
+.tableContainer {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--ui-gray-200);
+  border-radius: var(--ui-radius-md);
+}
+
+.table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--ui-font-sans);
+  font-size: var(--ui-text-sm);
+  text-align: left;
+}
+
+.thead {
+  border-bottom: 1px solid var(--ui-gray-200);
+}
+
+.th {
+  padding: var(--ui-spacing-sm) var(--ui-spacing-md);
+  font-weight: var(--ui-weight-bold);
+  color: var(--ui-gray-600);
+  text-transform: uppercase;
+  font-size: var(--ui-text-3xs);
+  letter-spacing: 0.05em;
+  white-space: nowrap;
+}
+
+.tr {
+  border-bottom: 1px solid var(--ui-gray-100);
+  transition: background-color var(--ui-transition-fast);
+}
+
+.tr.clickable {
+  cursor: pointer;
+}
+
+.tr:hover {
+  background-color: var(--ui-gray-50);
+}
+
+.td {
+  padding: var(--ui-spacing-xs) var(--ui-spacing-md);
+  color: var(--ui-gray-800);
+  height: var(--ui-height-row);
+  vertical-align: middle;
+}
+
+/* For hierarchy alignment in tables */
+.indent {
+  display: inline-block;
+}

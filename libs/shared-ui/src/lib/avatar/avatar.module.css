@@ -1,0 +1,33 @@
+.avatar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--ui-radius-full);
+  color: var(--ui-white);
+  font-weight: 600;
+  user-select: none;
+  cursor: pointer;
+  transition: transform var(--ui-transition-fast);
+}
+
+.avatar:hover {
+  transform: scale(1.05);
+}
+
+.sm {
+  width: 28px;
+  height: 28px;
+  font-size: var(--ui-text-xs);
+}
+
+.md {
+  width: 36px;
+  height: 36px;
+  font-size: var(--ui-text-sm);
+}
+
+.lg {
+  width: 48px;
+  height: 48px;
+  font-size: var(--ui-text-base);
+}

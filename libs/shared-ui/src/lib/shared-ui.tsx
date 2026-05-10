@@ -8,4 +8,6 @@ export function SharedUi() {
   );
 }
 
+export * from './rbac';
+export * from './layout/layout';
 export default SharedUi;

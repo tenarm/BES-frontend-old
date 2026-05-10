@@ -1,0 +1,38 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--ui-surface-main);
+}
+
+.header {
+  height: 64px;
+  background-color: var(--ui-surface-header);
+  border-bottom: 1px solid var(--ui-border);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 0 var(--ui-spacing-lg);
+  z-index: 10;
+}
+
+.body {
+  display: flex;
+  flex: 1;
+  overflow: hidden;
+}
+
+.sidebar {
+  background-color: var(--ui-surface-sidebar);
+  border-right: 1px solid var(--ui-border);
+  display: flex;
+  flex-direction: column;
+  transition: width var(--ui-transition-normal);
+}
+
+.main {
+  flex: 1;
+  overflow-y: auto;
+  padding: var(--ui-spacing-lg) var(--ui-spacing-xl);
+}

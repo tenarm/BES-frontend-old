@@ -1,0 +1,29 @@
+.header {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.left, .center, .right {
+  display: flex;
+  align-items: center;
+}
+
+.left {
+  gap: var(--ui-spacing-md);
+  min-width: 200px;
+}
+
+.center {
+  flex: 1;
+  max-width: 600px;
+  justify-content: center;
+}
+
+.right {
+  gap: var(--ui-spacing-sm);
+  min-width: 200px;
+  justify-content: flex-end;
+}

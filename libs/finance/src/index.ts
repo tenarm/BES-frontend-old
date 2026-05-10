@@ -6,6 +6,7 @@ import { ComponentRegistry } from '@erp/shared-ui';
 // 2. Import your actual React component
 import { FinanceWidget } from './lib/finance-widget';
 import { FinanceRoutes } from './lib/finance-routes';
+import { ChartOfAccounts } from './lib/coa/coa-tree';
 
 // 3. Create an initialization function for the Finance Module
 export function initFinanceModule() {
@@ -14,4 +15,6 @@ export function initFinanceModule() {
   // Publish the components to the global phonebook
   ComponentRegistry.register('Widget_FinanceSummary', FinanceWidget);
   ComponentRegistry.register('Route_FinanceMain', FinanceRoutes);
+  ComponentRegistry.register('Route_COAMain', ChartOfAccounts);
+  ComponentRegistry.register('View_ChartOfAccounts', ChartOfAccounts);
 }

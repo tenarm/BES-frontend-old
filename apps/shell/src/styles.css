@@ -1,1 +1,69 @@
-/* You can add global styles to this file, and also import other style files */
+@import "../../../libs/shared-ui/src/lib/styles/design-tokens.css";
+
+body {
+  margin: 0;
+  font-family: var(--ui-font-sans);
+  background-color: var(--ui-surface-main);
+  color: var(--ui-gray-900);
+  overflow: hidden;
+}
+
+/* --- Shell Specific Components --- */
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: var(--ui-spacing-sm);
+  font-weight: 700;
+  font-size: var(--ui-text-lg);
+  color: var(--ui-primary);
+  letter-spacing: -0.01em;
+}
+
+.logo-icon {
+  filter: drop-shadow(0 2px 4px rgba(22, 40, 103, 0.1));
+}
+
+.search-input {
+  max-width: 400px;
+}
+
+.main-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-spacing-lg);
+}
+
+.content-header h2 {
+  font-size: var(--ui-text-2xl);
+  font-weight: 600;
+  color: var(--ui-gray-900);
+  margin: 0;
+}
+
+/* Custom dashboard styles if needed */
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--ui-spacing-lg);
+}
+
+.role-selector {
+  margin-right: var(--ui-spacing-md);
+  padding: 6px 12px;
+  border-radius: var(--ui-radius-md);
+  border: 1px solid var(--ui-gray-200);
+  background-color: var(--ui-surface-main);
+  color: var(--ui-gray-800);
+  font-family: inherit;
+  font-size: var(--ui-text-sm);
+  font-weight: 500;
+  cursor: pointer;
+  outline: none;
+  transition: all var(--ui-transition-fast);
+}
+
+.role-selector:hover {
+  border-color: var(--ui-primary);
+  background-color: var(--ui-gray-50);
+}
