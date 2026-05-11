@@ -17,3 +17,6 @@ export * from './lib/table/table';
 export * from './lib/layout/layout';
 export * from './lib/layout/sidebar';
 export * from './lib/layout/header';
+
+// Process Transparency (Timeline, ProcessPipeline, PendingAction)
+export * from './lib/process';

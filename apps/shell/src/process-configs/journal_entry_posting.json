@@ -1,0 +1,36 @@
+{
+  "processId": "journal_entry_posting",
+  "label": "Journal Entry Posting",
+  "entity": "finance.journal_entry",
+  "steps": [
+    {
+      "id": "draft",
+      "label": "Draft Created",
+      "type": "direct",
+      "icon": "📝",
+      "description": "Journal entry lines defined and balanced.",
+      "statusEvent": "FINANCE_JE_DRAFTED",
+      "allowRollback": false
+    },
+    {
+      "id": "posted",
+      "label": "Entry Posted",
+      "type": "direct",
+      "icon": "✅",
+      "description": "User confirmed and posted the journal entry to the ledger.",
+      "statusEvent": "FINANCE_JE_POSTED",
+      "dependsOn": ["draft"],
+      "allowRollback": true
+    },
+    {
+      "id": "coa_update",
+      "label": "COA Balances Updated",
+      "type": "sequence",
+      "icon": "📊",
+      "description": "System automatically recalculates and updates the Chart of Accounts balances.",
+      "statusEvent": "FINANCE_COA_BALANCES_UPDATED",
+      "dependsOn": ["posted"],
+      "allowRollback": true
+    }
+  ]
+}

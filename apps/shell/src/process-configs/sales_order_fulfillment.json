@@ -1,0 +1,82 @@
+{
+  "processId": "sales_order_fulfillment",
+  "label": "Sales Order Fulfillment",
+  "entity": "sales.order",
+  "steps": [
+    {
+      "id": "draft",
+      "label": "Draft",
+      "type": "direct",
+      "icon": "📝",
+      "description": "Sales order created and saved as draft.",
+      "statusEvent": "SALES_ORDER_CREATED",
+      "allowRollback": false
+    },
+    {
+      "id": "confirmed",
+      "label": "Confirmed",
+      "type": "direct",
+      "icon": "✅",
+      "description": "Sales rep confirms the order and commits it to the system.",
+      "statusEvent": "SALES_ORDER_CONFIRMED",
+      "dependsOn": ["draft"],
+      "allowRollback": true
+    },
+    {
+      "id": "inventory_allocated",
+      "label": "Stock Reserved",
+      "type": "sequence",
+      "icon": "📦",
+      "description": "System automatically reserves required stock in the warehouse.",
+      "statusEvent": "INVENTORY_STOCK_ALLOCATED",
+      "dependsOn": ["confirmed"],
+      "allowRollback": true
+    },
+    {
+      "id": "credit_approval",
+      "label": "Credit Approved",
+      "type": "approval",
+      "icon": "💳",
+      "description": "Finance verifies customer credit limit before allowing shipment.",
+      "statusEvent": "FINANCE_CREDIT_APPROVED",
+      "dependsOn": ["inventory_allocated"],
+      "requiredRole": "finance_manager",
+      "allowRollback": false,
+      "action": {
+        "label": "Approve Credit",
+        "apiEndpoint": "/api/finance/credit-approvals",
+        "method": "POST"
+      }
+    },
+    {
+      "id": "delivery_note",
+      "label": "Delivery Note",
+      "type": "sequence",
+      "icon": "🚚",
+      "description": "System generates a draft delivery note for the warehouse team.",
+      "statusEvent": "LOGISTICS_DELIVERY_NOTE_CREATED",
+      "dependsOn": ["credit_approval"],
+      "allowRollback": false
+    },
+    {
+      "id": "dispatched",
+      "label": "Dispatched",
+      "type": "direct",
+      "icon": "✈️",
+      "description": "Warehouse team marks the order as physically dispatched.",
+      "statusEvent": "LOGISTICS_ORDER_DISPATCHED",
+      "dependsOn": ["delivery_note"],
+      "allowRollback": false
+    },
+    {
+      "id": "invoiced",
+      "label": "Invoiced",
+      "type": "sequence",
+      "icon": "🧾",
+      "description": "Finance module auto-generates the customer invoice.",
+      "statusEvent": "FINANCE_INVOICE_CREATED",
+      "dependsOn": ["dispatched"],
+      "allowRollback": false
+    }
+  ]
+}

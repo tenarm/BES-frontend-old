@@ -7,6 +7,7 @@ import { ComponentRegistry } from '@erp/shared-ui';
 import { FinanceWidget } from './lib/finance-widget';
 import { FinanceRoutes } from './lib/finance-routes';
 import { ChartOfAccounts } from './lib/coa/coa-tree';
+import { GLDashboard } from './lib/gl/gl-dashboard';
 
 // 3. Create an initialization function for the Finance Module
 export function initFinanceModule() {
@@ -16,5 +17,6 @@ export function initFinanceModule() {
   ComponentRegistry.register('Widget_FinanceSummary', FinanceWidget);
   ComponentRegistry.register('Route_FinanceMain', FinanceRoutes);
   ComponentRegistry.register('Route_COAMain', ChartOfAccounts);
+  ComponentRegistry.register('Route_General Ledger (GL)Main', GLDashboard);
   ComponentRegistry.register('View_ChartOfAccounts', ChartOfAccounts);
 }
