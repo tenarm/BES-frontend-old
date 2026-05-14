@@ -13,10 +13,5 @@ export * from './lib/drawer/drawer';
 export * from './lib/avatar/avatar';
 export * from './lib/skeleton/skeleton';
 export * from './lib/table/table';
-// Layout
-export * from './lib/layout/layout';
-export * from './lib/layout/sidebar';
-export * from './lib/layout/header';
-
 // Process Transparency (Timeline, ProcessPipeline, PendingAction)
 export * from './lib/process';

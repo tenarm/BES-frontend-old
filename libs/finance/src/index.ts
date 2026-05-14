@@ -12,11 +12,11 @@ import { GLDashboard } from './lib/gl/gl-dashboard';
 // 3. Create an initialization function for the Finance Module
 export function initFinanceModule() {
   console.log('Initializing Finance Module...');
-  
+
   // Publish the components to the global phonebook
   ComponentRegistry.register('Widget_FinanceSummary', FinanceWidget);
   ComponentRegistry.register('Route_FinanceMain', FinanceRoutes);
   ComponentRegistry.register('Route_COAMain', ChartOfAccounts);
   ComponentRegistry.register('Route_General Ledger (GL)Main', GLDashboard);
-  ComponentRegistry.register('View_ChartOfAccounts', ChartOfAccounts);
+  ComponentRegistry.register('Route_ChartOfAccounts', ChartOfAccounts);
 }

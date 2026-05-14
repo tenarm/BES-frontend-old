@@ -1,11 +1,12 @@
 import React from 'react';
 import { Hexagon } from 'lucide-react';
 import {
-  ShellLayout,
-  Sidebar,
   Button,
   ComponentRegistry
 } from '@erp/shared-ui';
+
+import { ShellLayout } from './layout/layout';
+import { Sidebar } from './layout/sidebar';
 
 import { useAuthStore } from '../store/auth-store';
 import { Dashboard } from './dashboard';
@@ -28,6 +29,8 @@ export function App() {
 
   const ActiveComponent = React.useMemo(() => {
     if (activeItem === 'Home') return <Dashboard />;
+
+    console.log("Active Component: ", ComponentRegistry, activeItem);
 
     const registryKey = `Route_${activeItem}Main`;
     const Component = ComponentRegistry.get(registryKey);
@@ -53,10 +56,10 @@ export function App() {
   return (
     <ShellLayout
       header={
-        <AppHeader 
-          toggleSidebar={toggleSidebar} 
-          currentUser={currentUser} 
-          logout={logout} 
+        <AppHeader
+          toggleSidebar={toggleSidebar}
+          currentUser={currentUser}
+          logout={logout}
         />
       }
       sidebar={

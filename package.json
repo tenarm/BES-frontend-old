@@ -4,7 +4,8 @@
   "license": "MIT",
   "scripts": {
     "start": "nx serve shell",
-    "dev": "nx serve shell"
+    "dev": "nx serve shell",
+    "showcase": "nx serve showcase"
   },
   "private": true,
   "devDependencies": {
@@ -49,6 +50,7 @@
     "lucide-react": "^1.14.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-router-dom": "6.30.3",
     "zustand": "^5.0.13"
   }
 }
