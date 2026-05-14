@@ -5,12 +5,20 @@ import React from 'react';
 class Registry {
   private components = new Map<string, React.ComponentType<any>>();
 
-  // Modules use this to add their components
+  // Modules use this to add their components (Static Loading)
   register(name: string, component: React.ComponentType<any>) {
     if (this.components.has(name)) {
       console.warn(`Component ${name} is already registered. Overwriting.`);
     }
     this.components.set(name, component);
+  }
+
+  // Modules use this for on-demand loading (Scaling for 1000+ screens)
+  registerLazy(name: string, loader: () => Promise<{ default: React.ComponentType<any> }>) {
+    if (this.components.has(name)) {
+      console.warn(`Component ${name} is already registered. Overwriting.`);
+    }
+    this.components.set(name, React.lazy(loader));
   }
 
   // The Shell uses this to get a specific component

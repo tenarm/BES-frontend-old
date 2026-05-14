@@ -15,3 +15,6 @@ export * from './lib/skeleton/skeleton';
 export * from './lib/table/table';
 // Process Transparency (Timeline, ProcessPipeline, PendingAction)
 export * from './lib/process';
+
+// Utilities
+export * from './lib/error-boundary';

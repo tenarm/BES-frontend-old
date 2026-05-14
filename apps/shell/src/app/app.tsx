@@ -2,7 +2,8 @@ import React from 'react';
 import { Hexagon } from 'lucide-react';
 import {
   Button,
-  ComponentRegistry
+  ComponentRegistry,
+  ErrorBoundary
 } from '@erp/shared-ui';
 
 import { ShellLayout } from './layout/layout';
@@ -73,13 +74,17 @@ export function App() {
       }
     >
       <div className="main-content">
-        {ActiveComponent}
+        <ErrorBoundary>
+          <React.Suspense fallback={<ModuleLoadingView />}>
+            {ActiveComponent}
+          </React.Suspense>
+        </ErrorBoundary>
       </div>
     </ShellLayout>
   );
 }
 
-// --- Loading State ---
+// --- Full Screen Loading State ---
 const LoadingView = () => (
   <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', height: '100vh', flexDirection: 'column', gap: 16 }}>
     <div className="loading-spinner" style={{ width: 40, height: 40, border: '3px solid var(--ui-gray-100)', borderTopColor: 'var(--ui-primary)', borderRadius: '50%', animation: 'spin 1s linear infinite' }} />
@@ -88,6 +93,14 @@ const LoadingView = () => (
   </div>
 );
 
+// --- Module Loading State (Subtle) ---
+const ModuleLoadingView = () => (
+  <div style={{ padding: '40px', display: 'flex', flexDirection: 'column', gap: '20px' }}>
+    <div style={{ height: '32px', width: '200px', background: 'var(--ui-gray-100)', borderRadius: '6px', animation: 'pulse 1.5s infinite ease-in-out' }} />
+    <div style={{ height: '200px', width: '100%', background: 'var(--ui-gray-50)', borderRadius: '12px', animation: 'pulse 1.5s infinite ease-in-out' }} />
+    <style>{`@keyframes pulse { 0% { opacity: 0.6; } 50% { opacity: 1; } 100% { opacity: 0.6; } }`}</style>
+  </div>
+);
 // --- Login Form ---
 const LoginView = () => {
   const [username, setUsername] = React.useState('');

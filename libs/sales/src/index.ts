@@ -2,12 +2,18 @@ export * from './lib/sales';
 export * from './lib/quotation-form';
 
 import { ComponentRegistry } from '@erp/shared-ui';
-import { SalesWidget } from './lib/sales-widget';
-import { QuotationForm } from './lib/quotation-form';
 
 export function initSalesModule() {
   console.log('Initializing Sales Module...');
-  ComponentRegistry.register('Widget_SalesSummary', SalesWidget);
-  ComponentRegistry.register('Form_SalesQuotation', QuotationForm);
+  
+  // Using registerLazy ensures these components are only loaded when needed.
+  // We map the named export to 'default' as required by React.lazy.
+  ComponentRegistry.registerLazy('Widget_SalesSummary', () => 
+    import('./lib/sales-widget').then(m => ({ default: m.SalesWidget }))
+  );
+  
+  ComponentRegistry.registerLazy('Form_SalesQuotation', () => 
+    import('./lib/quotation-form').then(m => ({ default: m.QuotationForm }))
+  );
 }
 
