@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar } from '@erp/shared-ui';
+import { Avatar } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable } from './ShowcaseSection';
 
 export const AvatarShowcase = () => {

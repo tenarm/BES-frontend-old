@@ -1,6 +1,6 @@
 import React from 'react';
-import { Timeline, ProcessPipeline, PendingAction } from '@erp/shared-ui';
-import type { ProcessDefinition, ProcessEvent, AuditEntry } from '@erp/shared-ui';
+import { Timeline, ProcessPipeline, PendingAction } from '@bes/shared-ui';
+import type { ProcessDefinition, ProcessEvent, AuditEntry } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable } from './ShowcaseSection';
 
 const dummyDefinition: ProcessDefinition = {

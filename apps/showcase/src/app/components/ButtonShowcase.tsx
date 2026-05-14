@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button } from '@erp/shared-ui';
+import { Button } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable } from './ShowcaseSection';
 
 export const ButtonShowcase = () => {

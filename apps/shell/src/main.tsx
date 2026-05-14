@@ -1,8 +1,8 @@
 import { StrictMode } from 'react';
 import * as ReactDOM from 'react-dom/client';
 import App from './app/app';
-import { initFinanceModule } from '@erp/finance';
-import { initSalesModule } from '@erp/sales';
+import { initFinanceModule } from '@bes/finance';
+import { initSalesModule } from '@bes/sales';
 
 // Initialize modules
 initFinanceModule();

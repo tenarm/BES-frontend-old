@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuthStore } from '../store/auth-store';
-import { MODULE_ICONS, MODULE_NAMES, capitalize } from './app-config';
+import { MODULE_ICONS } from './app-config';
+import { MODULE_NAMES, capitalize } from '@bes/shared-ui';
 import { Package } from 'lucide-react';
 
 export function useShell() {

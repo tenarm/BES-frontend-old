@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { X, Plus, Trash2, Save, Send } from 'lucide-react';
-import { Button, Input, Table, THead, TBody, TR, TH, TD } from '@erp/shared-ui';
+import { Button, Input, Table, THead, TBody, TR, TH, TD } from '@bes/shared-ui';
 import { useCOA } from '../coa/use-coa';
 
 const API_BASE = import.meta.env.VITE_API_URL || '';

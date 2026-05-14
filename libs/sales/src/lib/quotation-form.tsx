@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Card, Button, Input, Badge } from '@erp/shared-ui';
+import { Card, Button, Input, Badge } from '@bes/shared-ui';
 import { CustomerDrawer } from './customer-drawer';
 import styles from './quotation-form.module.css';
 

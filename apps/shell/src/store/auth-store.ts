@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { checkPermission, NestedPermissions } from '@erp/shared-ui';
+import { checkPermission, NestedPermissions } from '@bes/shared-ui';
 
 export interface User {
   id: string;
@@ -24,8 +24,8 @@ const API_BASE = '/api/v1';
 
 export const useAuthStore = create<AuthState>((set, get) => ({
   currentUser: null,
-  token: localStorage.getItem('erp_token'),
-  isAuthenticated: !!localStorage.getItem('erp_token'),
+  token: localStorage.getItem('bes_token'),
+  isAuthenticated: !!localStorage.getItem('bes_token'),
   isLoading: false,
   
   login: async (username, password) => {
@@ -50,7 +50,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       if (!userRes.ok) throw new Error('Failed to fetch user info');
       const userData = await userRes.json();
 
-      localStorage.setItem('erp_token', access_token);
+      localStorage.setItem('bes_token', access_token);
       set({ 
         token: access_token, 
         currentUser: userData, 
@@ -64,7 +64,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   },
 
   logout: () => {
-    localStorage.removeItem('erp_token');
+    localStorage.removeItem('bes_token');
     set({ token: null, currentUser: null, isAuthenticated: false });
   },
 

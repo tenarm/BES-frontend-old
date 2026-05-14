@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Drawer, Button, Input } from '@erp/shared-ui';
+import { Drawer, Button, Input } from '@bes/shared-ui';
 
 interface CustomerDrawerProps {
   isOpen: boolean;

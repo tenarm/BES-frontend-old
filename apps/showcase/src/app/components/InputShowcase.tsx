@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input } from '@erp/shared-ui';
+import { Input } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable } from './ShowcaseSection';
 import { Search } from 'lucide-react';
 

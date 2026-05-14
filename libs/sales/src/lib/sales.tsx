@@ -1,6 +1,6 @@
 import styles from './sales.module.css';
-import { Finance } from '@erp/finance';
-import { SharedUi } from '@erp/shared-ui';
+import { Finance } from '@bes/finance';
+import { SharedUi } from '@bes/shared-ui';
 
 
 

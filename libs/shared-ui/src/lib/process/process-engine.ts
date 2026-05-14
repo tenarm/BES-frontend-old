@@ -1,5 +1,5 @@
 /**
- * ERP Process Transparency — State Resolution Engine (v2)
+ * BES Process Transparency — State Resolution Engine (v2)
  *
  * Pure-function utilities for:
  * - Resolving workflow step states from event data

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert } from '@erp/shared-ui';
+import { Alert } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable } from './ShowcaseSection';
 
 export const AlertShowcase = () => {

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, Search, Settings, Hexagon } from 'lucide-react';
-import { Button, Input, Avatar } from '@erp/shared-ui';
+import { Button, Input, Avatar } from '@bes/shared-ui';
 import { Header } from './layout/header';
 
 interface AppHeaderProps {
@@ -19,13 +19,13 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ toggleSidebar, currentUser
           </Button>
           <div className="logo">
             <Hexagon className="logo-icon" size={24} color="var(--ui-primary)" fill="var(--ui-primary)" fillOpacity={0.2} />
-            <span className="logo-text">ERP Factory</span>
+            <span className="logo-text">BES Factory</span>
           </div>
         </>
       }
       center={
         <Input
-          placeholder="Search ERP modules..."
+          placeholder="Search BES modules..."
           icon={<Search size={18} />}
           className="search-input"
         />

@@ -4,7 +4,7 @@ import {
   Button,
   ComponentRegistry,
   ErrorBoundary
-} from '@erp/shared-ui';
+} from '@bes/shared-ui';
 
 import { ShellLayout } from './layout/layout';
 import { Sidebar } from './layout/sidebar';
@@ -33,7 +33,8 @@ export function App() {
 
     console.log("Active Component: ", ComponentRegistry, activeItem);
 
-    const registryKey = `Route_${activeItem}Main`;
+    const registryKey = `Route_${activeItem}`;
+    console.log("Registry Key: ", registryKey);
     const Component = ComponentRegistry.get(registryKey);
 
     if (Component) return <Component />;
@@ -149,7 +150,7 @@ const LoginView = () => {
         <div style={{ marginBottom: 32 }}>
           <Hexagon size={48} color="var(--ui-primary)" fill="var(--ui-primary)" fillOpacity={0.15} />
           <h2 style={{ margin: '12px 0 4px', fontSize: '1.5rem', color: 'var(--ui-gray-900)' }}>
-            ERP Factory
+            BES Factory
           </h2>
           <p style={{ color: 'var(--ui-gray-500)', margin: 0, fontSize: '0.875rem' }}>
             Sign in to your workspace

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Layers, Component, Type, LayoutTemplate, ShieldAlert, BadgeInfo, PanelLeftClose, SquarePlay, ListTree, Table2 } from 'lucide-react';
-import { ShellLayout, Sidebar } from '@erp/shared-ui';
+import { ShellLayout, Sidebar } from '@bes/shared-ui';
 
 // Showcases
 import { ButtonShowcase } from './components/ButtonShowcase';

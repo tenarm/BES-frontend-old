@@ -1,5 +1,5 @@
 /**
- * ERP Process Transparency — Public API
+ * BES Process Transparency — Public API
  *
  * All components and utilities for the "golden feature" process transparency system.
  */

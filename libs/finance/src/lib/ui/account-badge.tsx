@@ -1,5 +1,5 @@
 import React from 'react';
-import { Badge } from '@erp/shared-ui';
+import { Badge } from '@bes/shared-ui';
 
 export type AccountType = 'Asset' | 'Liability' | 'Equity' | 'Income' | 'Expense';
 

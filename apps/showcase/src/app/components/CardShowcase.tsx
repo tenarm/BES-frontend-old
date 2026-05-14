@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardBody, CardFooter, Button } from '@erp/shared-ui';
+import { Card, CardHeader, CardTitle, CardDescription, CardBody, CardFooter, Button } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable } from './ShowcaseSection';
 
 export const CardShowcase = () => {

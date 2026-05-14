@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentRegistry } from '@erp/shared-ui';
+import { ComponentRegistry } from '@bes/shared-ui';
 
 export function Dashboard() {
   // 1. Get ALL registered widgets from the phonebook
@@ -11,7 +11,7 @@ export function Dashboard() {
 
   return (
     <div className="dashboard-grid">
-      <h1>ERP Dashboard</h1>
+      <h1>BES Dashboard</h1>
 
       {widgetNames.length === 0 && <p>No modules are currently active.</p>}
 

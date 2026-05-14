@@ -1,5 +1,5 @@
 /**
- * ERP Process Transparency — Type Definitions (v2)
+ * BES Process Transparency — Type Definitions (v2)
  *
  * Enhanced type system supporting:
  * - Rich audit trail entries with field-level diffs

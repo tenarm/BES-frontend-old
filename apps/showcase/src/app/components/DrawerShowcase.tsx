@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Drawer, Button } from '@erp/shared-ui';
+import { Drawer, Button } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable } from './ShowcaseSection';
 
 export const DrawerShowcase = () => {

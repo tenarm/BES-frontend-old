@@ -14,9 +14,9 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "paths": {
-      "@erp/finance": ["./libs/finance/src/index.ts"],
-      "@erp/shared-ui": ["./libs/shared-ui/src/index.ts"],
-      "@erp/sales": ["./libs/sales/src/index.ts"]
+      "@bes/finance": ["./libs/finance/src/index.ts"],
+      "@bes/shared-ui": ["./libs/shared-ui/src/index.ts"],
+      "@bes/sales": ["./libs/sales/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

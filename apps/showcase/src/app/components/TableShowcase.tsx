@@ -1,5 +1,5 @@
 import React from 'react';
-import { Table, THead, TBody, TR, TH, TD, Badge } from '@erp/shared-ui';
+import { Table, THead, TBody, TR, TH, TD, Badge } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable } from './ShowcaseSection';
 
 export const TableShowcase = () => {

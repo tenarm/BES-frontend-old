@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Plus, FileText } from 'lucide-react';
-import { Button, Table, THead, TBody, TR, TH, TD, Skeleton } from '@erp/shared-ui';
+import { Button, Table, THead, TBody, TR, TH, TD, Skeleton } from '@bes/shared-ui';
 import { GLActivityDrawer } from './gl-entry-drawer';
 
 const API_BASE = import.meta.env.VITE_API_URL || '';

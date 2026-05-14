@@ -39,7 +39,7 @@ export function useActivityStream({
   const connect = useCallback(() => {
     if (!enabled) return;
 
-    const token = localStorage.getItem('erp_token');
+    const token = localStorage.getItem('bes_token');
     if (!token) return;
 
     // Build URL with filters

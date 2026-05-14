@@ -1,6 +1,6 @@
 import React, { useState, useMemo } from 'react';
 import { Plus, ChevronRight, ChevronDown, Check, X, Folder, FileText } from 'lucide-react';
-import { Button, Input, Table, THead, TBody, TR, TH, TD, Skeleton } from '@erp/shared-ui';
+import { Button, Input, Table, THead, TBody, TR, TH, TD, Skeleton } from '@bes/shared-ui';
 import { AccountBadge, AccountType } from '../ui/account-badge';
 import { CurrencyText } from '../ui/currency-text';
 
