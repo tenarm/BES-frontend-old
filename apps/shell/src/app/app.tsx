@@ -3,11 +3,10 @@ import { Hexagon } from 'lucide-react';
 import {
   Button,
   ComponentRegistry,
-  ErrorBoundary
+  ErrorBoundary,
+  ShellLayout,
+  Sidebar
 } from '@bes/shared-ui';
-
-import { ShellLayout } from './layout/layout';
-import { Sidebar } from './layout/sidebar';
 
 import { useAuthStore } from '../store/auth-store';
 import { Dashboard } from './dashboard';

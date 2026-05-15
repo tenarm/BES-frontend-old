@@ -16,6 +16,11 @@ export * from './lib/table/table';
 // Process Transparency (Timeline, ProcessPipeline, PendingAction)
 export * from './lib/process';
 
+// Layout
+export * from './lib/layout/shell-layout';
+export * from './lib/layout/sidebar';
+export * from './lib/layout/header';
+
 // Utilities
 export * from './lib/error-boundary';
 export * from './lib/constants';

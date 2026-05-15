@@ -1,7 +1,6 @@
 import React from 'react';
 import { Menu, Search, Settings, Hexagon } from 'lucide-react';
-import { Button, Input, Avatar } from '@bes/shared-ui';
-import { Header } from './layout/header';
+import { Button, Input, Avatar, Header } from '@bes/shared-ui';
 
 interface AppHeaderProps {
   toggleSidebar: () => void;
