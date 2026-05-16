@@ -14,9 +14,13 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "paths": {
-      "@bes/finance": ["./libs/finance/src/index.ts"],
       "@bes/shared-ui": ["./libs/shared-ui/src/index.ts"],
-      "@bes/sales": ["./libs/sales/src/index.ts"]
+      "@bes/sales": ["./libs/sales/src/index.ts"],
+      "@bes/inventory": ["./libs/inventory/src/index.ts"],
+      "@bes/hr": ["./libs/hr/src/index.ts"],
+      "@bes/supply-chain": ["./libs/supply-chain/src/index.ts"],
+      "@bes/settings": ["./libs/settings/src/index.ts"],
+      "@bes/finance": ["./libs/finance/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

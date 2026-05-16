@@ -21,16 +21,16 @@ export const MODULE_NAMES: Record<string, string> = {
 
 export const RESOURCE_NAMES: Record<string, string> = {
   // Finance
-  coa: 'Chart of Accounts (CoA)',
-  gl: 'General Ledger (GL)',
-  ap: 'Accounts Payable (AP)',
-  vendors: 'Vendors',
-  purchase_invoices: 'Purchase Invoices',
-  ar: 'Accounts Receivable (AR)',
-  bank_cash: 'Bank & Cash Management',
-  tax: 'Tax Management',
+  coa: 'Chart of Accounts (CoA)', // needed created
+  gl: 'General Ledger (GL)', // needed created
+  ap: 'Accounts Payable (AP)', // needed created
+  vendors: 'Vendors', // needed created
+  purchase_invoices: 'Purchase Invoices', // needed created
+  ar: 'Accounts Receivable (AR)', //needed created
+  bank_cash: 'Bank & Cash Management', // needed created
+  tax: 'Tax Management',//created
   fixed_asset: 'Fixed Asset Management',
-  budgeting: 'Budgeting & Forecasting',
+  budgeting: 'Budgeting & Forecasting',//created
   cost_center: 'Cost Center & Profit Center Accounting',
   multi_currency: 'Multi-Currency Management',
   period_end_close: 'Financial Period-End Close',
@@ -41,12 +41,12 @@ export const RESOURCE_NAMES: Record<string, string> = {
   audit_trail: 'Audit Trail & Compliance',
 
   // Sales
-  customer_master: 'Customer Master Management',
-  quotation: 'Quotation / Proposal Management',
-  sales_order: 'Sales Order Processing',
+  customer_master: 'Customer Master Management', // needed
+  quotation: 'Quotation / Proposal Management', // needed
+  sales_order: 'Sales Order Processing', // needed
   pricing_discount: 'Pricing & Discount Management',
   delivery_dispatch: 'Delivery / Dispatch Management',
-  sales_invoice: 'Sales Invoice & Billing',
+  sales_invoice: 'Sales Invoice & Billing', // needed
   sales_returns: 'Sales Returns & Credit Notes',
   sales_commission: 'Sales Commission & Incentives',
   territory_channel: 'Territory & Channel Management',
@@ -55,10 +55,11 @@ export const RESOURCE_NAMES: Record<string, string> = {
   sales_contracts: 'Contract & Agreement Management',
 
   // Inventory
-  item_master: 'Item / Material Master',
-  warehouse_location: 'Warehouse & Location Management',
-  goods_receipt: 'Goods Receipt (Inbound)',
-  goods_issue: 'Goods Issue (Outbound)',
+  item_master: 'Item / Material Master', // needed
+  warehouse_location: 'Warehouse & Location Management', // needed
+  stock_ledger: 'Stock Ledger (Basic)',
+  goods_receipt: 'Goods Receipt (Inbound)', // needed
+  goods_issue: 'Goods Issue (Outbound)', // needed
   stock_transfer: 'Stock Transfer (Inter-warehouse)',
   inventory_valuation: 'Inventory Valuation',
   physical_inventory: 'Cycle Count & Physical Inventory',
@@ -69,11 +70,11 @@ export const RESOURCE_NAMES: Record<string, string> = {
   inventory_reports: 'Inventory Reports & Dashboards',
 
   // HR
-  employee_master: 'Employee Master & Onboarding',
+  employee_master: 'Employee Master & Onboarding', // needed
   org_structure: 'Organization Structure',
-  attendance: 'Attendance & Time Tracking',
+  attendance: 'Attendance & Time Tracking', // needed
   leave_management: 'Leave Management',
-  payroll_processing: 'Payroll Processing & Salary Computation',
+  payroll_processing: 'Payroll Processing & Salary Computation', // needed
   statutory_compliance: 'Statutory Compliance',
   loan_advance: 'Loan & Advance Management',
   performance_appraisal: 'Performance Appraisal & KRA/KPI',
@@ -85,9 +86,8 @@ export const RESOURCE_NAMES: Record<string, string> = {
   shift_roster: 'Shift & Roster Management',
 
   // CRM
-  lead_management: 'Lead Capture & Management',
-  deal_pipeline: 'Opportunity / Deal Pipeline',
-  contact_account: 'Contact & Account Management',
+  lead_opportunity_pipeline: 'Lead Capture & Opportunity Pipeline', // needed
+  contact_account: 'Contact & Account Management', // needed
   activity_tracking: 'Activity Tracking',
   quote_to_order: 'Quotation to Order Conversion',
   campaign_management: 'Campaign Management',
@@ -136,9 +136,7 @@ export const RESOURCE_NAMES: Record<string, string> = {
 
   // Quality Management
   quality_inspection_plan: 'Quality Inspection Plan',
-  incoming_qc: 'Incoming Quality Check (Goods Receipt)',
-  in_process_qc: 'In-Process Quality Check',
-  outgoing_qc: 'Outgoing / Final Quality Check',
+  comprehensive_qc: 'Incoming / In-Process / Final Quality Check',
   ncr: 'Non-Conformance Report (NCR)',
   capa: 'Corrective & Preventive Action (CAPA)',
   quality_audit: 'Quality Audit & Certification Tracking',
@@ -211,14 +209,14 @@ export const RESOURCE_NAMES: Record<string, string> = {
   academic_reports: 'Academic Reports & Transcripts',
 
   // Settings
-  company_setup: 'Company / Entity Setup',
-  user_management: 'User Management & RBAC',
-  module_toggle: 'Module Enable / Disable',
+  company_setup: 'Company / Entity Setup', // needed
+  user_management: 'User Management & RBAC', // needed
+  module_toggle: 'Module Enable / Disable', // needed
   workflow_config: 'Approval Workflow Configuration',
   notification_rules: 'Notification & Alert Rules',
   number_series: 'Number Series / Sequence Management',
   email_templates: 'Email & Communication Templates',
-  audit_log: 'System Audit Log & Activity Trail'
+  audit_log: 'System Audit Log & Activity Trail' // needed
 };
 
 export const capitalize = (s: string) => RESOURCE_NAMES[s] || (s.charAt(0).toUpperCase() + s.slice(1));
