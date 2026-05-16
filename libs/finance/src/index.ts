@@ -21,5 +21,17 @@ export function initFinanceModule() {
   ComponentRegistry.registerLazy(`Route_${RESOURCE_NAMES.gl}`, () =>
     import('./lib/gl/gl-dashboard').then(m => ({ default: m.GLDashboard }))
   );
+  
+  ComponentRegistry.registerLazy(`Route_${RESOURCE_NAMES.ap}`, () =>
+    import('./lib/ap/ap-dashboard').then(m => ({ default: m.APDashboard }))
+  );
+
+  ComponentRegistry.registerLazy(`Route_vendors`, () =>
+    import('./lib/ap/vendor-list').then(m => ({ default: m.VendorList }))
+  );
+
+  ComponentRegistry.registerLazy(`Route_purchase_invoices`, () =>
+    import('./lib/ap/purchase-invoice-list').then(m => ({ default: m.PurchaseInvoiceList }))
+  );
 
 }

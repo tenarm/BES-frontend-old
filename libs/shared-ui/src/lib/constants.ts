@@ -24,6 +24,8 @@ export const RESOURCE_NAMES: Record<string, string> = {
   coa: 'Chart of Accounts (CoA)',
   gl: 'General Ledger (GL)',
   ap: 'Accounts Payable (AP)',
+  vendors: 'Vendors',
+  purchase_invoices: 'Purchase Invoices',
   ar: 'Accounts Receivable (AR)',
   bank_cash: 'Bank & Cash Management',
   tax: 'Tax Management',
