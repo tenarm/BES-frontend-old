@@ -1,0 +1,258 @@
+/* Notification Bell Container */
+.bellContainer {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.bellButton {
+  position: relative;
+  background: transparent;
+  border: none;
+  color: var(--ui-gray-600);
+  cursor: pointer;
+  padding: var(--ui-spacing-sm);
+  border-radius: var(--ui-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all var(--ui-transition-fast) ease-in-out;
+  outline: none;
+}
+
+.bellButton:hover {
+  background: var(--ui-gray-100);
+  color: var(--ui-primary);
+}
+
+.bellButtonActive {
+  background: var(--ui-primary-light);
+  color: var(--ui-primary);
+}
+
+/* Unread Badge Counter */
+.badge {
+  position: absolute;
+  top: 2px;
+  right: 2px;
+  background: var(--ui-error);
+  color: var(--ui-white);
+  font-size: var(--ui-text-3xs);
+  font-weight: var(--ui-weight-bold);
+  min-width: 16px;
+  height: 16px;
+  border-radius: var(--ui-radius-full);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0 4px;
+  border: 2px solid var(--ui-white);
+  box-sizing: border-box;
+  animation: pulseBadge 2s infinite;
+}
+
+@keyframes pulseBadge {
+  0% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 6px rgba(239, 68, 68, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(239, 68, 68, 0);
+  }
+}
+
+/* Micro-animation for bell shake on new notification */
+.shake {
+  animation: shake 0.5s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+}
+
+@keyframes shake {
+  10%, 90% { transform: translate3d(-1px, 0, 0) rotate(-1deg); }
+  20%, 80% { transform: translate3d(2px, 0, 0) rotate(2deg); }
+  30%, 50%, 70% { transform: translate3d(-2px, 0, 0) rotate(-3deg); }
+  40%, 60% { transform: translate3d(2px, 0, 0) rotate(3deg); }
+}
+
+/* Dropdown Card Container */
+.dropdown {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  margin-top: var(--ui-spacing-sm);
+  width: 360px;
+  max-height: 480px;
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(12px) saturate(180%);
+  -webkit-backdrop-filter: blur(12px) saturate(180%);
+  border: 1px solid rgba(226, 232, 240, 0.8);
+  border-radius: var(--ui-radius-lg);
+  box-shadow: var(--ui-shadow-premium);
+  z-index: 50; /* Beneath top modals, above main layout elements */
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideInDown 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  transform-origin: top right;
+}
+
+@keyframes slideInDown {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+/* Dropdown Header */
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: var(--ui-spacing-md) var(--ui-spacing-lg);
+  border-bottom: 1px solid var(--ui-gray-200);
+  background: rgba(255, 255, 255, 0.5);
+}
+
+.header h4 {
+  margin: 0;
+  font-size: var(--ui-text-base);
+  font-weight: var(--ui-weight-bold);
+  color: var(--ui-gray-900);
+}
+
+.markAllBtn {
+  background: transparent;
+  border: none;
+  color: var(--ui-primary);
+  font-size: var(--ui-text-xs);
+  font-weight: var(--ui-weight-semibold);
+  cursor: pointer;
+  padding: 2px 6px;
+  border-radius: var(--ui-radius-sm);
+  transition: background var(--ui-transition-fast) ease;
+}
+
+.markAllBtn:hover {
+  background: var(--ui-primary-light);
+}
+
+/* Notification List Content */
+.list {
+  flex: 1;
+  overflow-y: auto;
+  max-height: 380px;
+  display: flex;
+  flex-direction: column;
+}
+
+.emptyState {
+  padding: var(--ui-spacing-3xl) var(--ui-spacing-lg);
+  text-align: center;
+  color: var(--ui-gray-400);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--ui-spacing-sm);
+}
+
+.emptyState p {
+  margin: 0;
+  font-size: var(--ui-text-sm);
+}
+
+/* Notification Item */
+.item {
+  display: flex;
+  gap: var(--ui-spacing-md);
+  padding: var(--ui-spacing-md) var(--ui-spacing-lg);
+  border-bottom: 1px solid var(--ui-gray-100);
+  cursor: pointer;
+  transition: all var(--ui-transition-fast) ease;
+  position: relative;
+  background: transparent;
+}
+
+.item:hover {
+  background: rgba(248, 250, 252, 0.8);
+}
+
+.unreadItem {
+  background: rgba(22, 40, 103, 0.03);
+}
+
+.unreadItem:hover {
+  background: rgba(22, 40, 103, 0.05);
+}
+
+/* Unread Line Accent Indicator */
+.unreadDot {
+  position: absolute;
+  left: 6px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 6px;
+  height: 6px;
+  border-radius: var(--ui-radius-full);
+  background: var(--ui-primary);
+}
+
+.iconWrapper {
+  display: flex;
+  align-items: flex-start;
+  color: var(--ui-primary);
+  margin-top: 2px;
+}
+
+.itemContent {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.itemTitle {
+  font-size: var(--ui-text-sm);
+  font-weight: var(--ui-weight-semibold);
+  color: var(--ui-gray-900);
+  margin: 0;
+  line-height: var(--ui-leading-tight);
+}
+
+.itemBody {
+  font-size: var(--ui-text-xs);
+  color: var(--ui-gray-500);
+  margin: 0;
+  line-height: var(--ui-leading-normal);
+}
+
+.itemTime {
+  font-size: var(--ui-text-3xs);
+  color: var(--ui-gray-400);
+  margin-top: 4px;
+}
+
+/* Footer Link */
+.footer {
+  padding: var(--ui-spacing-sm) var(--ui-spacing-lg);
+  border-top: 1px solid var(--ui-gray-200);
+  background: rgba(255, 255, 255, 0.5);
+  text-align: center;
+}
+
+.footerLink {
+  font-size: var(--ui-text-xs);
+  font-weight: var(--ui-weight-semibold);
+  color: var(--ui-primary);
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.footerLink:hover {
+  text-decoration: underline;
+}

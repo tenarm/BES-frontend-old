@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, Search, Settings, Hexagon } from 'lucide-react';
-import { Button, Input, Avatar, Header } from '@bes/shared-ui';
+import { Button, Input, Avatar, Header, NotificationBell } from '@bes/shared-ui';
 
 interface AppHeaderProps {
   toggleSidebar: () => void;
@@ -31,7 +31,8 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ toggleSidebar, currentUser
       }
       right={
         <>
-          <div style={{ textAlign: 'right', marginRight: 12 }}>
+          <NotificationBell />
+          <div style={{ textAlign: 'right', marginRight: 12, marginLeft: 12 }}>
             <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--ui-gray-900)' }}>{currentUser?.full_name}</div>
             <div style={{ fontSize: '0.75rem', color: 'var(--ui-gray-500)' }}>@{currentUser?.username}</div>
           </div>

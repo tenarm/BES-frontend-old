@@ -20,13 +20,14 @@ export const TBody: React.FC<{ children: React.ReactNode }> = ({ children }) => 
   <tbody className={styles.tbody}>{children}</tbody>
 );
 
-export const TR: React.FC<{ children: React.ReactNode; onClick?: () => void; className?: string }> = ({ 
+export const TR: React.FC<{ children: React.ReactNode; onClick?: () => void; className?: string; style?: React.CSSProperties }> = ({ 
   children, 
   onClick, 
-  className 
+  className,
+  style
 }) => {
   const rowClass = `${styles.tr} ${onClick ? styles.clickable : ''} ${className || ''}`;
-  return <tr className={rowClass} onClick={onClick}>{children}</tr>;
+  return <tr className={rowClass} onClick={onClick} style={style}>{children}</tr>;
 };
 
 export const TH: React.FC<{ children: React.ReactNode; style?: React.CSSProperties }> = ({ children, style }) => (

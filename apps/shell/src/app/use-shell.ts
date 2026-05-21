@@ -39,7 +39,12 @@ export function useShell() {
   const modules = React.useMemo(() => {
     if (!isAuthenticated || !currentUser) return [];
 
-    const items = [
+    const items: Array<{
+      name: string;
+      icon: React.ReactNode;
+      subItems: string[];
+      isLocked: boolean;
+    }> = [
       {
         name: 'Home',
         icon: MODULE_ICONS['home'],

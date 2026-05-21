@@ -22,6 +22,9 @@ export * from './lib/layout/shell-layout';
 export * from './lib/layout/sidebar';
 export * from './lib/layout/header';
 
+// Notifications
+export * from './lib/notifications/NotificationBell';
+
 // Utilities
 export * from './lib/error-boundary';
 export * from './lib/constants';

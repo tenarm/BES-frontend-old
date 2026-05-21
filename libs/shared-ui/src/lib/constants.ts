@@ -16,7 +16,7 @@ export const MODULE_NAMES: Record<string, string> = {
   marketing: 'Marketing & Campaigns',
   service_desk: 'Service & Help Desk',
   education: 'Education Management',
-  settings: 'Settings & Administration'
+  settings: 'Settings'
 };
 
 export const RESOURCE_NAMES: Record<string, string> = {
