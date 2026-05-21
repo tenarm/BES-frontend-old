@@ -28,7 +28,15 @@ export default [
                 'scope:sales',
                 'scope:medical',
                 'scope:shared-ui',
+                'scope:inventory',
+                'scope:hr',
+                'scope:supply-chain',
+                'scope:settings',
               ],
+            },
+            {
+              sourceTag: 'scope:showcase',
+              onlyDependOnLibsWithTags: ['scope:shared-ui'],
             },
             {
               sourceTag: 'scope:finance',
@@ -36,6 +44,22 @@ export default [
             },
             {
               sourceTag: 'scope:sales',
+              onlyDependOnLibsWithTags: ['scope:shared-ui'],
+            },
+            {
+              sourceTag: 'scope:inventory',
+              onlyDependOnLibsWithTags: ['scope:shared-ui'],
+            },
+            {
+              sourceTag: 'scope:hr',
+              onlyDependOnLibsWithTags: ['scope:shared-ui'],
+            },
+            {
+              sourceTag: 'scope:supply-chain',
+              onlyDependOnLibsWithTags: ['scope:shared-ui'],
+            },
+            {
+              sourceTag: 'scope:settings',
               onlyDependOnLibsWithTags: ['scope:shared-ui'],
             },
             {

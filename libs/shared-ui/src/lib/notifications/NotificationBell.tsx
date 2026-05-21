@@ -69,7 +69,7 @@ export const NotificationBell: React.FC = () => {
     // Let's write an async function that reads using fetch/ReadableStream.
     
     let isMounted = true;
-    let controller = new AbortController();
+    const controller = new AbortController();
 
     async function startStream() {
       while (isMounted) {
@@ -277,7 +277,7 @@ export const NotificationBell: React.FC = () => {
   const handleNotificationClick = (item: NotificationItem) => {
     // Mark as read
     if (item.status !== 'READ') {
-      const fakeEvent = { stopPropagation: () => {} } as React.MouseEvent;
+      const fakeEvent = { stopPropagation: () => { /* no-op */ } } as React.MouseEvent;
       handleMarkAsRead(item.id, fakeEvent);
     }
 

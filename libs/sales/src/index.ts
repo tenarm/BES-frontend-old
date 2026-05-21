@@ -1,7 +1,6 @@
+import { ComponentRegistry } from '@bes/shared-ui';
 export * from './lib/sales';
 export * from './lib/quotation-form';
-
-import { ComponentRegistry } from '@bes/shared-ui';
 
 export function initSalesModule() {
   console.log('Initializing Sales Module...');

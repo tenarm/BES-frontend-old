@@ -3,7 +3,9 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "apps/showcase/src",
   "projectType": "application",
-  "tags": [],
+  "tags": [
+    "scope:showcase"
+  ],
   "// targets": "to see all targets run: nx show project showcase --web",
   "targets": {}
 }

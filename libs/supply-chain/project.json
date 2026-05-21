@@ -3,7 +3,9 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/supply-chain/src",
   "projectType": "library",
-  "tags": [],
+  "tags": [
+    "scope:supply-chain"
+  ],
   "// targets": "to see all targets run: nx show project supply-chain --web",
   "targets": {}
 }
