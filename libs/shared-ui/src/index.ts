@@ -7,6 +7,7 @@ export { ComponentRegistry } from './lib/registry';
 export * from './lib/button/button';
 export * from './lib/input/input';
 export * from './lib/card/card';
+export * from './lib/UpgradeGateOverlay';
 export * from './lib/badge/badge';
 export * from './lib/alert/alert';
 export * from './lib/drawer/drawer';

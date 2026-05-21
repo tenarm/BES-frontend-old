@@ -1,49 +1,70 @@
 import React from 'react';
 import { Alert } from '@bes/shared-ui';
-import { ShowcaseSection, ShowcaseDemo, PropsTable } from './ShowcaseSection';
+import { ShowcaseSection, ShowcaseDemo, PropsTable, PageHeader, CodeSnippet } from './ShowcaseSection';
 
 export const AlertShowcase = () => {
   return (
     <div>
-      <h1 style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--ui-gray-900)', marginBottom: '16px' }}>Alert</h1>
-      <p style={{ fontSize: '1.1rem', color: 'var(--ui-gray-600)', marginBottom: '40px', maxWidth: '800px' }}>
-        Alerts communicate important messages to users.
-      </p>
+      <PageHeader
+        title="Alert"
+        description="Alerts display important, contextual messages to users — such as confirmations, warnings, and errors — without interrupting their workflow."
+        badge="Shared UI"
+      />
 
-      <ShowcaseSection title="Variants">
-        <ShowcaseDemo>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%' }}>
-            <Alert variant="info" title="Information">
-              This is an informational alert to let you know about something.
+      <ShowcaseSection
+        title="Variants"
+        description="Each variant uses semantic color coding to communicate the intent of the message."
+      >
+        <ShowcaseDemo title="All Variants">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
+            <Alert variant="info" title="Informational">
+              Your session will expire in 30 minutes. Save your work to avoid losing progress.
             </Alert>
-            <Alert variant="success" title="Success">
-              The operation completed successfully.
+            <Alert variant="success" title="Changes Saved">
+              The journal entry has been posted and ledger balances have been updated successfully.
             </Alert>
-            <Alert variant="warning" title="Warning">
-              Please be careful, this action might have side effects.
+            <Alert variant="warning" title="Approaching Credit Limit">
+              This customer has used 90% of their approved credit limit. Proceed with caution.
             </Alert>
-            <Alert variant="error" title="Error">
-              An error occurred while processing your request.
+            <Alert variant="error" title="Validation Failed">
+              Debit total ($12,500) does not match credit total ($12,000). Double-entry rule violated.
             </Alert>
           </div>
         </ShowcaseDemo>
       </ShowcaseSection>
 
-      <ShowcaseSection title="Without Title">
+      <ShowcaseSection title="Without Title" description="Alerts can be used without a title for brief, inline messages.">
         <ShowcaseDemo>
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '16px', width: '100%' }}>
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '12px', width: '100%' }}>
             <Alert variant="info">
-              This alert has no title, just content.
+              A new software update is available. Refresh the page to apply the latest changes.
+            </Alert>
+            <Alert variant="warning">
+              Module sync is running in the background. Performance may be slightly reduced.
             </Alert>
           </div>
         </ShowcaseDemo>
+      </ShowcaseSection>
+
+      <ShowcaseSection title="Usage">
+        <CodeSnippet code={`import { Alert } from '@bes/shared-ui';
+
+// Info with title
+<Alert variant="info" title="FYI">
+  Your session will expire in 30 minutes.
+</Alert>
+
+// Error without title
+<Alert variant="error">
+  Debit / credit totals do not match.
+</Alert>`} />
       </ShowcaseSection>
 
       <ShowcaseSection title="Props Reference">
         <PropsTable props={[
-          { name: 'variant', type: "'info' | 'success' | 'warning' | 'error'", default: "'info'", description: 'The visual style and icon of the alert.' },
-          { name: 'title', type: 'string', description: 'The title displayed in bold.' },
-          { name: 'children', type: 'ReactNode', description: 'The content of the alert.' }
+          { name: 'variant', type: "'info' | 'success' | 'warning' | 'error'", required: true, description: 'The semantic variant of the alert.' },
+          { name: 'title', type: 'string', description: 'Optional bold title displayed above the content.' },
+          { name: 'children', type: 'ReactNode', required: true, description: 'The body content of the alert.' },
         ]} />
       </ShowcaseSection>
     </div>

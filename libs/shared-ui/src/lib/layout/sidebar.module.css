@@ -104,3 +104,31 @@
 .subItem.active {
   background-color: var(--ui-primary-light);
 }
+
+/* Locked Premium Sidebar Styling */
+.lockedItem {
+  color: var(--ui-gray-400) !important;
+  cursor: pointer;
+  transition: all var(--ui-transition-normal) ease;
+}
+
+.lockedItem:hover {
+  background-color: rgba(22, 40, 103, 0.02) !important;
+  color: var(--ui-gray-600) !important;
+}
+
+.lockIcon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: #f59e0b; /* Amber warning lock color */
+  margin-left: 8px;
+  animation: pulseLock 3s infinite ease-in-out;
+}
+
+@keyframes pulseLock {
+  0% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+  100% { opacity: 0.6; transform: scale(1); }
+}
+

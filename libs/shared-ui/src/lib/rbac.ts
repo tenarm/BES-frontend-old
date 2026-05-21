@@ -26,3 +26,22 @@ export function checkPermission(
 
   return !!permissions[module]?.[resource]?.[action];
 }
+
+// Global License Checker hook registration to prevent monorepo circular imports
+let isModuleLicensedFn: (moduleName: string) => boolean = () => true;
+
+/**
+ * Registers the global licensing evaluation callback.
+ * Typically invoked by the main Shell application on startup.
+ */
+export function setLicenseChecker(checker: (moduleName: string) => boolean) {
+  isModuleLicensedFn = checker;
+}
+
+/**
+ * React hook to verify if a specific extension module is licensed.
+ */
+export function useFeatureLicense(moduleName: string): boolean {
+  return isModuleLicensedFn(moduleName.toLowerCase());
+}
+

@@ -45,3 +45,10 @@ export type { PendingActionProps } from './pending-action';
 // Hooks
 export { useActivityStream } from './use-activity-stream';
 export type { UseActivityStreamOptions } from './use-activity-stream';
+
+// Unified Real-Time Process Pipeline Exports
+
+export { useProcessStore } from './process-store';
+export { FloatingProcessPipeline } from './FloatingProcessPipeline';
+export { ProcessRegistryModal } from './ProcessRegistryModal';
+

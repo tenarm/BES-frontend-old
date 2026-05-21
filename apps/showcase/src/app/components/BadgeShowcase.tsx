@@ -1,31 +1,54 @@
 import React from 'react';
 import { Badge } from '@bes/shared-ui';
-import { ShowcaseSection, ShowcaseDemo, PropsTable } from './ShowcaseSection';
+import { ShowcaseSection, ShowcaseDemo, PropsTable, PageHeader, CodeSnippet } from './ShowcaseSection';
 
 export const BadgeShowcase = () => {
   return (
     <div>
-      <h1 style={{ fontSize: '2.5rem', fontWeight: 700, color: 'var(--ui-gray-900)', marginBottom: '16px' }}>Badge</h1>
-      <p style={{ fontSize: '1.1rem', color: 'var(--ui-gray-600)', marginBottom: '40px', maxWidth: '800px' }}>
-        Badges are used to highlight an item's status for quick recognition.
-      </p>
+      <PageHeader
+        title="Badge"
+        description="Badges are compact labels used to highlight an item's status, category, or count for quick visual recognition."
+        badge="Shared UI"
+      />
 
-      <ShowcaseSection title="Variants">
-        <ShowcaseDemo title="Default, Primary, Success, Warning, Error, Info, Outline">
-          <Badge variant="default">Default</Badge>
-          <Badge variant="primary">Primary</Badge>
-          <Badge variant="success">Success</Badge>
-          <Badge variant="warning">Warning</Badge>
-          <Badge variant="error">Error</Badge>
-          <Badge variant="info">Info</Badge>
-          <Badge variant="outline">Outline</Badge>
+      <ShowcaseSection
+        title="Variants"
+        description="Semantic color variants communicate the intent of the label at a glance."
+      >
+        <ShowcaseDemo title="All Variants — ERP status labels">
+          <Badge variant="default">Draft</Badge>
+          <Badge variant="primary">Processing</Badge>
+          <Badge variant="success">Paid</Badge>
+          <Badge variant="warning">Pending Review</Badge>
+          <Badge variant="error">Overdue</Badge>
+          <Badge variant="info">Scheduled</Badge>
+          <Badge variant="outline">Archived</Badge>
         </ShowcaseDemo>
+
+        <ShowcaseDemo title="In context — Invoice list">
+          <div style={{ display: 'flex', gap: '24px', fontSize: '14px', color: 'var(--ui-gray-700)', alignItems: 'center' }}>
+            <span>INV-001</span><Badge variant="success">Paid</Badge>
+            <span>INV-002</span><Badge variant="warning">Pending</Badge>
+            <span>INV-003</span><Badge variant="error">Overdue</Badge>
+            <span>INV-004</span><Badge variant="default">Draft</Badge>
+          </div>
+        </ShowcaseDemo>
+      </ShowcaseSection>
+
+      <ShowcaseSection title="Usage">
+        <CodeSnippet code={`import { Badge } from '@bes/shared-ui';
+
+// Status badge
+<Badge variant="success">Paid</Badge>
+
+// In a table cell
+<TD><Badge variant="warning">Pending</Badge></TD>`} />
       </ShowcaseSection>
 
       <ShowcaseSection title="Props Reference">
         <PropsTable props={[
           { name: 'variant', type: "'default' | 'primary' | 'success' | 'warning' | 'error' | 'info' | 'outline'", default: "'default'", description: 'The color variant of the badge.' },
-          { name: 'children', type: 'ReactNode', description: 'The content of the badge.' }
+          { name: 'children', type: 'ReactNode', required: true, description: 'The label text or content.' },
         ]} />
       </ShowcaseSection>
     </div>

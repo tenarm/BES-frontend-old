@@ -5,7 +5,12 @@ import {
   ComponentRegistry,
   ErrorBoundary,
   ShellLayout,
-  Sidebar
+  Sidebar,
+  UpgradeGateOverlay,
+  Drawer,
+  useProcessStore,
+  FloatingProcessPipeline,
+  ProcessRegistryModal
 } from '@bes/shared-ui';
 
 import { useAuthStore } from '../store/auth-store';
@@ -13,10 +18,14 @@ import { Dashboard } from './dashboard';
 import { useShell } from './use-shell';
 import { AppHeader } from './app-header';
 
+
+
+
 export function App() {
   const {
     isSidebarCollapsed,
     activeItem,
+    setActiveItem,
     expandedModules,
     modules,
     currentUser,
@@ -27,8 +36,24 @@ export function App() {
     toggleModule
   } = useShell();
 
+  const { isRightPanelOpen, setRightPanelOpen } = useProcessStore();
+
   const ActiveComponent = React.useMemo(() => {
     if (activeItem === 'Home') return <Dashboard />;
+
+    // Intercept rendering if the clicked module is unlicensed/locked
+    const matchedModule = modules.find(m => m.name === activeItem);
+    if (matchedModule?.isLocked) {
+      return (
+        <div style={{ position: 'relative', minHeight: '450px', height: '100%' }}>
+          <UpgradeGateOverlay 
+            moduleName={activeItem} 
+            requiredTier={activeItem === 'Manufacturing & Production' ? 'Premium' : 'Pro'}
+            onClose={() => setActiveItem('Home')} // Returns user home on close
+          />
+        </div>
+      );
+    }
 
     console.log("Active Component: ", ComponentRegistry, activeItem);
 
@@ -44,7 +69,8 @@ export function App() {
         <p>This module has been authorized but not yet implemented.</p>
       </div>
     );
-  }, [activeItem]);
+  }, [activeItem, modules, setActiveItem]);
+
 
   if (isLoading) {
     return <LoadingView />;
@@ -55,32 +81,40 @@ export function App() {
   }
 
   return (
-    <ShellLayout
-      header={
-        <AppHeader
-          toggleSidebar={toggleSidebar}
-          currentUser={currentUser}
-          logout={logout}
-        />
-      }
-      sidebar={
-        <Sidebar
-          items={modules}
-          isCollapsed={isSidebarCollapsed}
-          expandedItems={expandedModules}
-          onItemClick={toggleModule}
-          activeItem={activeItem}
-        />
-      }
-    >
-      <div className="main-content">
-        <ErrorBoundary>
-          <React.Suspense fallback={<ModuleLoadingView />}>
-            {ActiveComponent}
-          </React.Suspense>
-        </ErrorBoundary>
-      </div>
-    </ShellLayout>
+    <>
+      <ShellLayout
+        header={
+          <AppHeader
+            toggleSidebar={toggleSidebar}
+            currentUser={currentUser}
+            logout={logout}
+          />
+        }
+        sidebar={
+          <Sidebar
+            items={modules}
+            isCollapsed={isSidebarCollapsed}
+            expandedItems={expandedModules}
+            onItemClick={toggleModule}
+            activeItem={activeItem}
+          />
+        }
+      >
+        <div className="main-content">
+          <ErrorBoundary>
+            <React.Suspense fallback={<ModuleLoadingView />}>
+              {ActiveComponent}
+            </React.Suspense>
+          </ErrorBoundary>
+        </div>
+      </ShellLayout>
+
+      {/* Unified Process Transparency Monitors */}
+      <FloatingProcessPipeline currentUser={currentUser} />
+      <ProcessRegistryModal />
+
+
+    </>
   );
 }
 

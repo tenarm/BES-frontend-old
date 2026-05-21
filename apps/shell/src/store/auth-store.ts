@@ -14,6 +14,8 @@ interface AuthState {
   token: string | null;
   isAuthenticated: boolean;
   isLoading: boolean;
+  activeModules: string[];
+  clientName: string;
   login: (username: string, password: string) => Promise<void>;
   logout: () => void;
   initialize: () => Promise<void>;
@@ -27,6 +29,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   token: localStorage.getItem('bes_token'),
   isAuthenticated: !!localStorage.getItem('bes_token'),
   isLoading: false,
+  activeModules: [],
+  clientName: '',
   
   login: async (username, password) => {
     set({ isLoading: true });
@@ -43,17 +47,30 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       if (!loginRes.ok) throw new Error('Login failed');
       const { access_token } = await loginRes.json();
 
-      const userRes = await fetch(`${API_BASE}/auth/me`, {
+      // Fetch bootstrap metadata instead of auth/me to load licensed extensions
+      const bootstrapRes = await fetch(`${API_BASE}/bootstrap`, {
         headers: { Authorization: `Bearer ${access_token}` },
       });
 
-      if (!userRes.ok) throw new Error('Failed to fetch user info');
-      const userData = await userRes.json();
+      if (!bootstrapRes.ok) throw new Error('Failed to fetch bootstrap info');
+      const bootstrapData = await bootstrapRes.json();
+      const boot = bootstrapData.data;
+
+      // Map bootstrap data to User object
+      const mappedUser: User = {
+        id: boot.user_id,
+        username: boot.username,
+        full_name: boot.username, // Fallback since bootstrap returns username
+        is_superuser: boot.username === 'admin',
+        permissions: boot.permissions || {}
+      };
 
       localStorage.setItem('bes_token', access_token);
       set({ 
         token: access_token, 
-        currentUser: userData, 
+        currentUser: mappedUser, 
+        activeModules: boot.active_modules || [],
+        clientName: boot.client_name || '',
         isAuthenticated: true,
         isLoading: false 
       });
@@ -65,7 +82,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   logout: () => {
     localStorage.removeItem('bes_token');
-    set({ token: null, currentUser: null, isAuthenticated: false });
+    set({ token: null, currentUser: null, isAuthenticated: false, activeModules: [], clientName: '' });
   },
 
   initialize: async () => {
@@ -74,7 +91,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
     set({ isLoading: true });
     try {
-      const res = await fetch(`${API_BASE}/auth/me`, {
+      const res = await fetch(`${API_BASE}/bootstrap`, {
         headers: { Authorization: `Bearer ${token}` },
       });
 
@@ -83,8 +100,25 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         return;
       }
 
-      const userData = await res.json();
-      set({ currentUser: userData, isAuthenticated: true, isLoading: false });
+      const bootstrapData = await res.json();
+      const boot = bootstrapData.data;
+
+      // Map bootstrap data to User object
+      const mappedUser: User = {
+        id: boot.user_id,
+        username: boot.username,
+        full_name: boot.username,
+        is_superuser: boot.username === 'admin',
+        permissions: boot.permissions || {}
+      };
+
+      set({ 
+        currentUser: mappedUser, 
+        activeModules: boot.active_modules || [],
+        clientName: boot.client_name || '',
+        isAuthenticated: true, 
+        isLoading: false 
+      });
     } catch (error) {
       get().logout();
       set({ isLoading: false });
@@ -99,3 +133,4 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     return checkPermission(user.permissions, required);
   }
 }));
+

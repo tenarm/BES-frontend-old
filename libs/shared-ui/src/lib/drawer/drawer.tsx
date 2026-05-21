@@ -8,9 +8,10 @@ interface DrawerProps {
   title: string;
   children: React.ReactNode;
   footer?: React.ReactNode;
+  style?: React.CSSProperties;
 }
 
-export const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, title, children, footer }) => {
+export const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, title, children, footer, style }) => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {
@@ -20,7 +21,7 @@ export const Drawer: React.FC<DrawerProps> = ({ isOpen, onClose, title, children
   if (!isMounted) return null;
 
   return ReactDOM.createPortal(
-    <div className={`${styles.overlay} ${isOpen ? styles.open : ''}`} onClick={onClose}>
+    <div className={`${styles.overlay} ${isOpen ? styles.open : ''}`} style={style} onClick={onClose}>
       <div className={styles.drawer} onClick={(e) => e.stopPropagation()}>
         <div className={styles.header}>
           <h2 className={styles.title}>{title}</h2>
