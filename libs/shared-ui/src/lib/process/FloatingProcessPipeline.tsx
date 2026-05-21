@@ -24,7 +24,7 @@ export function FloatingProcessPipeline({ currentUser }: FloatingProcessPipeline
 
   const steps = getResolvedSteps();
   const completedCount = steps.filter((s) => s.status === 'completed').length;
-  const progressPercent = Math.round((completedCount / steps.length) * 100);
+  const progressPercent = steps.length > 0 ? Math.round((completedCount / steps.length) * 100) : 0;
 
   const hasApprovalRights = (role?: string) => {
     if (!role) return true;

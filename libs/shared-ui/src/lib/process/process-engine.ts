@@ -23,6 +23,9 @@ export function resolveProcessState(
   definition: ProcessDefinition,
   events: ProcessEvent[]
 ): ResolvedStep[] {
+  // Guard: definition or its steps array may be missing (e.g. partial API response)
+  if (!definition?.steps?.length) return [];
+
   const eventMap = new Map<string, ProcessEvent>(
     events.map((e) => [e.eventKey, e])
   );
@@ -49,6 +52,7 @@ export function resolveProcessState(
 }
 
 export function getProgressSummary(steps: ResolvedStep[]) {
+  if (!steps?.length) return { completed: 0, total: 0, percent: 0 };
   const completed = steps.filter((s) => s.status === 'completed').length;
   return { completed, total: steps.length, percent: Math.round((completed / steps.length) * 100) };
 }
