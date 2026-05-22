@@ -10,7 +10,8 @@ import {
   Drawer,
   useProcessStore,
   FloatingProcessPipeline,
-  ProcessRegistryModal
+  ProcessRegistryModal,
+  AICapsule
 } from '@bes/shared-ui';
 
 import { useAuthStore } from '../store/auth-store';
@@ -36,6 +37,7 @@ export function App() {
     toggleModule
   } = useShell();
 
+  const activeModules = useAuthStore((s) => s.activeModules);
   const { isRightPanelOpen, setRightPanelOpen } = useProcessStore();
 
   const ActiveComponent = React.useMemo(() => {
@@ -113,7 +115,7 @@ export function App() {
       <FloatingProcessPipeline currentUser={currentUser} />
       <ProcessRegistryModal />
 
-
+      {activeModules.includes('ai') && <AICapsule />}
     </>
   );
 }

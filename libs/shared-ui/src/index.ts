@@ -29,3 +29,8 @@ export * from './lib/notifications/NotificationBell';
 export * from './lib/error-boundary';
 export * from './lib/constants';
 export * from './lib/rbac';
+
+// AI Copilot Placeholder
+export * from './lib/ai/AICapsule';
+export * from './lib/ai/AIFloatingWindow';
+
