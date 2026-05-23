@@ -9,11 +9,15 @@ export * from './lib/input/input';
 export * from './lib/card/card';
 export * from './lib/UpgradeGateOverlay';
 export * from './lib/badge/badge';
+export * from './lib/badge/PremiumLockIndicator';
 export * from './lib/alert/alert';
+export { Alert as FeedbackAlert } from './lib/alert/alert';
 export * from './lib/drawer/drawer';
+export { Drawer as SlideOutDrawer } from './lib/drawer/drawer';
 export * from './lib/avatar/avatar';
 export * from './lib/skeleton/skeleton';
 export * from './lib/table/table';
+export * from './lib/tabs/tabs';
 // Process Transparency (Timeline, ProcessPipeline, PendingAction)
 export * from './lib/process';
 

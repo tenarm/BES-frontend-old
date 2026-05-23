@@ -16,6 +16,7 @@ import {
   Box,
   BookOpen,
   Lock,
+  Folder,
 } from 'lucide-react';
 import { ShellLayout, Sidebar } from '@bes/shared-ui';
 
@@ -32,6 +33,7 @@ import { ProcessShowcase } from './components/ProcessShowcase';
 import { TableShowcase } from './components/TableShowcase';
 import { SkeletonShowcase } from './components/SkeletonShowcase';
 import { UpgradeGateShowcase } from './components/UpgradeGateShowcase';
+import { TabsShowcase } from './components/TabsShowcase';
 
 // ─── Nav Items ────────────────────────────────────────────────────────────────
 
@@ -46,6 +48,7 @@ const COMPONENT_ITEMS = [
   'Drawer',
   'Table',
   'Skeleton',
+  'Tabs',
 ];
 
 const PATTERN_ITEMS = [
@@ -67,6 +70,7 @@ const HomeShowcase = ({ onNavigate }: { onNavigate: (item: string) => void }) =>
     { name: 'Drawer', icon: <PanelRight size={20} />, desc: 'Slide-in panels for forms and details', color: '#14b8a6' },
     { name: 'Table', icon: <Table2 size={20} />, desc: 'Data tables with badges and selection', color: '#f97316' },
     { name: 'Skeleton', icon: <Box size={20} />, desc: 'Loading placeholder animations', color: '#64748b' },
+    { name: 'Tabs', icon: <Folder size={20} />, desc: 'Compound tabs layout components', color: '#8b5cf6' },
     { name: 'Process', icon: <Cpu size={20} />, desc: 'Pipelines, timelines, audit trails', color: '#4f46e5' },
     { name: 'Upgrade Gate', icon: <Lock size={20} />, desc: 'Subscription gating overlay', color: '#dc2626' },
   ];
@@ -238,6 +242,7 @@ export function App() {
       case 'Drawer': return <DrawerShowcase />;
       case 'Table': return <TableShowcase />;
       case 'Skeleton': return <SkeletonShowcase />;
+      case 'Tabs': return <TabsShowcase />;
       case 'Process': return <ProcessShowcase />;
       case 'Upgrade Gate': return <UpgradeGateShowcase />;
       default: return (

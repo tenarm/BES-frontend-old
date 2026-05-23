@@ -1,13 +1,12 @@
-import React from 'react';
-import { Badge } from '@bes/shared-ui';
+import { Badge, PremiumLockIndicator } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable, PageHeader, CodeSnippet } from './ShowcaseSection';
 
 export const BadgeShowcase = () => {
   return (
     <div>
       <PageHeader
-        title="Badge"
-        description="Badges are compact labels used to highlight an item's status, category, or count for quick visual recognition."
+        title="Badge & Lock Indicator"
+        description="Badges highlight category status, while lock indicators identify features requiring active premium subscription elevation."
         badge="Shared UI"
       />
 
@@ -33,22 +32,50 @@ export const BadgeShowcase = () => {
             <span>INV-004</span><Badge variant="default">Draft</Badge>
           </div>
         </ShowcaseDemo>
+
+        <ShowcaseDemo title="Premium Lock Indicators">
+          <div style={{ display: 'flex', gap: '24px', fontSize: '14px', color: 'var(--ui-gray-700)', alignItems: 'center' }}>
+            <span>Profile & Settings</span>
+            <span style={{ display: 'inline-flex', alignItems: 'center' }}>
+              Fiscal Calendars <PremiumLockIndicator />
+            </span>
+            <span style={{ display: 'inline-flex', alignItems: 'center' }}>
+              Intercompany Sharing <PremiumLockIndicator size={16} tooltip="Enterprise plan required" />
+            </span>
+          </div>
+        </ShowcaseDemo>
       </ShowcaseSection>
 
+
       <ShowcaseSection title="Usage">
-        <CodeSnippet code={`import { Badge } from '@bes/shared-ui';
+        <CodeSnippet code={`import { Badge, PremiumLockIndicator } from '@bes/shared-ui';
 
 // Status badge
 <Badge variant="success">Paid</Badge>
 
-// In a table cell
-<TD><Badge variant="warning">Pending</Badge></TD>`} />
+// Locked Premium Tab / Action Indicator
+<Tab>
+  Fiscal Calendars <PremiumLockIndicator />
+</Tab>
+
+// Custom Tooltip & Size
+<Button disabled>
+  Post Ledger <PremiumLockIndicator size={16} tooltip="Requires Premium Plan" />
+</Button>`} />
       </ShowcaseSection>
 
-      <ShowcaseSection title="Props Reference">
+      <ShowcaseSection title="Props Reference (Badge)">
         <PropsTable props={[
           { name: 'variant', type: "'default' | 'primary' | 'success' | 'warning' | 'error' | 'info' | 'outline'", default: "'default'", description: 'The color variant of the badge.' },
           { name: 'children', type: 'ReactNode', required: true, description: 'The label text or content.' },
+        ]} />
+      </ShowcaseSection>
+
+      <ShowcaseSection title="Props Reference (PremiumLockIndicator)">
+        <PropsTable props={[
+          { name: 'size', type: 'number', default: '14', description: 'Size of the lock icon in pixels.' },
+          { name: 'tooltip', type: 'string', default: "'Premium Upgrade Required'", description: 'Tooltip message shown on hover.' },
+          { name: 'className', type: 'string', default: 'undefined', description: 'Additional CSS classes.' },
         ]} />
       </ShowcaseSection>
     </div>
