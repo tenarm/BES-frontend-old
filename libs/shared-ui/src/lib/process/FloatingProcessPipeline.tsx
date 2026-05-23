@@ -48,7 +48,23 @@ export function FloatingProcessPipeline({ currentUser }: FloatingProcessPipeline
   };
 
   const handleStepAction = (stepId: string, requiredRole?: string) => {
-    console.warn(`No handler registered for step action: ${stepId}`);
+    // CFO closing approval gate
+    if (stepId === 'cfo_final_approval') {
+      triggerApprovalModal(stepId, 'Modal_PeriodCloseApproval');
+    }
+    // Operational CRM assets handover gate
+    else if (stepId === 'transfer_crm_assets') {
+      triggerApprovalModal(stepId, 'Modal_UserOffboardApproval');
+    }
+    // Final lockout confirmation step
+    else if (stepId === 'finalize_termination') {
+      useProcessStore.getState().addEvent('USER_DEACTIVATED', 'Administrator', {
+        timestamp: new Date().toISOString()
+      });
+    }
+    else {
+      console.warn(`No handler registered for step action: ${stepId}`);
+    }
   };
 
   const handleSimulatedError = () => {

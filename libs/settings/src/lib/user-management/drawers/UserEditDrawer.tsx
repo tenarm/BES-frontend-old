@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useUserStore } from '../../state/user-store';
 import { useCompanyStore } from '../../state/company-store';
 // eslint-disable-next-line @nx/enforce-module-boundaries
-import { useAuthStore } from '../../../../../apps/shell/src/store/auth-store';
+import { useAuthStore } from '../../../../../../apps/shell/src/store/auth-store';
 import { SlideOutDrawer, Input, Button, FeedbackAlert, PremiumLockIndicator } from '@bes/shared-ui';
 import { ChevronDown, ChevronUp } from 'lucide-react';
 import styles from '../user-management.module.css';
@@ -257,7 +257,7 @@ export const UserEditDrawer: React.FC = () => {
               Direct Permission Overrides
               {!licensedFeatures.custom_rbac && <PremiumLockIndicator />}
             </span>
-            <span>{isAccordionOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            <span>{isAccordionOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}</span>
           </div>
           {isAccordionOpen && licensedFeatures.custom_rbac && (
             <div className={styles.accordionContent}>

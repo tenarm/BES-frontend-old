@@ -4,9 +4,9 @@ import { MODULE_ICONS } from './app-config';
 import { MODULE_NAMES, capitalize, setLicenseChecker, useProcessStore } from '@bes/shared-ui';
 import { Package } from 'lucide-react';
 
-const DISPLAY_TO_KEY: Record<string, string> = {
-  'Settings': 'settings'
-};
+const DISPLAY_TO_KEY: Record<string, string> = Object.fromEntries(
+  Object.entries(MODULE_NAMES).map(([key, val]) => [val, key])
+);
 
 export function useShell() {
   const [isSidebarCollapsed, setIsSidebarCollapsed] = React.useState(false);

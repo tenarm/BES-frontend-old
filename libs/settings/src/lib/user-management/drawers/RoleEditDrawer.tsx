@@ -204,7 +204,7 @@ export const RoleEditDrawer: React.FC = () => {
         <div className={styles.accordion}>
           <div className={styles.accordionHeader} onClick={() => setIsAccordionOpen(!isAccordionOpen)}>
             <span>Settings Module Permissions (🔒 Basic Gated)</span>
-            <span>{isAccordionOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}
+            <span>{isAccordionOpen ? <ChevronUp size={16} /> : <ChevronDown size={16} />}</span>
           </div>
           {isAccordionOpen && (
             <div className={styles.accordionContent}>

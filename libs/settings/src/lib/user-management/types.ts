@@ -9,10 +9,11 @@ export interface User {
   role_id: string | null;
   allowed_subsidiary_ids: string[];
   version_id: number;
+  custom_permissions?: Record<string, any> | null;
 }
 
 export interface UserInviteRequest {
-  email: str;
+  email: string;
   role_id: string;
 }
 
