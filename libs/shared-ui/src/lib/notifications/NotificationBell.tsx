@@ -139,6 +139,8 @@ export const NotificationBell: React.FC = () => {
               }
             }
           }
+          // Successful stream closure backoff to prevent tight reconnect loops (Rule 7)
+          await new Promise(resolve => setTimeout(resolve, 5000));
         } catch (err: any) {
           if (err.name === 'AbortError') break;
           setIsConnected(false);
