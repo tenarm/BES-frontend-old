@@ -1,5 +1,6 @@
 import React from 'react';
 import { useProcessStore } from './process-store';
+import { ComponentRegistry } from '../registry';
 import styles from './FloatingProcessPipeline.module.css';
 
 interface FloatingProcessPipelineProps {
@@ -48,22 +49,39 @@ export function FloatingProcessPipeline({ currentUser }: FloatingProcessPipeline
   };
 
   const handleStepAction = (stepId: string, requiredRole?: string) => {
-    // CFO closing approval gate
-    if (stepId === 'cfo_final_approval') {
-      triggerApprovalModal(stepId, 'Modal_PeriodCloseApproval');
-    }
-    // Operational CRM assets handover gate
-    else if (stepId === 'transfer_crm_assets') {
-      triggerApprovalModal(stepId, 'Modal_UserOffboardApproval');
-    }
-    // Final lockout confirmation step
-    else if (stepId === 'finalize_termination') {
-      useProcessStore.getState().addEvent('USER_DEACTIVATED', 'Administrator', {
-        timestamp: new Date().toISOString()
-      });
-    }
+    const modalKey = `Modal_${stepId}`;
+    const step = steps.find(s => s.id === stepId);
+
+    // 1. Dynamic Modal check: check if an approval modal is registered under Modal_<stepId>
+    if (ComponentRegistry.get(modalKey)) {
+      triggerApprovalModal(stepId, modalKey);
+    } 
+    // 2. Direct API check: if step defines an API action call, trigger it
+    else if (step?.action) {
+      const token = localStorage.getItem('bes_token');
+      const apiEndpoint = step.action.apiEndpoint.replace('{id}', activeProcess.entityId || '');
+      
+      fetch(apiEndpoint, {
+        method: step.action.method || 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`
+        },
+        body: step.action.payload ? JSON.stringify(step.action.payload) : undefined
+      }).then(async (res) => {
+        if (res.ok) {
+          useProcessStore.getState().addEvent(step.statusEvent, currentUser?.full_name || 'System');
+        } else {
+          console.error('Process pipeline step action failed:', await res.text());
+        }
+      }).catch(err => console.error('Process pipeline step action network error:', err));
+    } 
+    // 3. Fallback: Directly dispatch completion statusEvent to advance the step
+    else if (step) {
+      useProcessStore.getState().addEvent(step.statusEvent, currentUser?.full_name || 'Administrator');
+    } 
     else {
-      console.warn(`No handler registered for step action: ${stepId}`);
+      console.warn(`No handler, modal, or action registered for step: ${stepId}`);
     }
   };
 

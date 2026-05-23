@@ -28,9 +28,19 @@ export function initSettingsModule() {
       default: m.PeriodCloseApprovalModal
     }))
   );
+  ComponentRegistry.registerLazy('Modal_cfo_final_approval', () =>
+    import('./lib/company-setup/PeriodCloseApprovalModal').then(m => ({
+      default: m.PeriodCloseApprovalModal
+    }))
+  );
 
   // Register the User Offboard Operational Handover modal
   ComponentRegistry.registerLazy('Modal_UserOffboardApproval', () =>
+    import('./lib/user-management/modals/UserOffboardApprovalModal').then(m => ({
+      default: m.UserOffboardApprovalModal
+    }))
+  );
+  ComponentRegistry.registerLazy('Modal_transfer_crm_assets', () =>
     import('./lib/user-management/modals/UserOffboardApprovalModal').then(m => ({
       default: m.UserOffboardApprovalModal
     }))
