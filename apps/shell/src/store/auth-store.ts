@@ -65,11 +65,42 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         permissions: boot.permissions || {}
       };
 
+      const activeMods = boot.active_modules || [];
+      // Dynamically initialize settings module based on bootstrap
+      if (activeMods.includes('settings')) {
+        const { initSettingsModule } = await import('@bes/settings');
+        initSettingsModule();
+      }
+
+      /*
+      // To add other modules back in the future, uncomment these:
+      if (activeMods.includes('finance')) {
+        const { initFinanceModule } = await import('@bes/finance');
+        initFinanceModule();
+      }
+      if (activeMods.includes('sales')) {
+        const { initSalesModule } = await import('@bes/sales');
+        initSalesModule();
+      }
+      if (activeMods.includes('inventory')) {
+        const { initInventoryModule } = await import('@bes/inventory');
+        initInventoryModule();
+      }
+      if (activeMods.includes('hr')) {
+        const { initHrModule } = await import('@bes/hr');
+        initHrModule();
+      }
+      if (activeMods.includes('supply_chain')) {
+        const { initSupplyChainModule } = await import('@bes/supply-chain');
+        initSupplyChainModule();
+      }
+      */
+
       localStorage.setItem('bes_token', access_token);
       set({ 
         token: access_token, 
         currentUser: mappedUser, 
-        activeModules: boot.active_modules || [],
+        activeModules: activeMods,
         clientName: boot.client_name || '',
         isAuthenticated: true,
         isLoading: false 
@@ -112,9 +143,40 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         permissions: boot.permissions || {}
       };
 
+      const activeMods = boot.active_modules || [];
+      // Dynamically initialize settings module based on bootstrap
+      if (activeMods.includes('settings')) {
+        const { initSettingsModule } = await import('@bes/settings');
+        initSettingsModule();
+      }
+
+      /*
+      // To add other modules back in the future, uncomment these:
+      if (activeMods.includes('finance')) {
+        const { initFinanceModule } = await import('@bes/finance');
+        initFinanceModule();
+      }
+      if (activeMods.includes('sales')) {
+        const { initSalesModule } = await import('@bes/sales');
+        initSalesModule();
+      }
+      if (activeMods.includes('inventory')) {
+        const { initInventoryModule } = await import('@bes/inventory');
+        initInventoryModule();
+      }
+      if (activeMods.includes('hr')) {
+        const { initHrModule } = await import('@bes/hr');
+        initHrModule();
+      }
+      if (activeMods.includes('supply_chain')) {
+        const { initSupplyChainModule } = await import('@bes/supply-chain');
+        initSupplyChainModule();
+      }
+      */
+
       set({ 
         currentUser: mappedUser, 
-        activeModules: boot.active_modules || [],
+        activeModules: activeMods,
         clientName: boot.client_name || '',
         isAuthenticated: true, 
         isLoading: false 

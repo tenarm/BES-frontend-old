@@ -5,13 +5,7 @@ import { MODULE_NAMES, capitalize, setLicenseChecker, useProcessStore } from '@b
 import { Package } from 'lucide-react';
 
 const DISPLAY_TO_KEY: Record<string, string> = {
-  'Finance': 'finance',
-  'Human Resources & Payroll': 'hr',
-  'Inventory & Warehouse': 'inventory',
-  'Sales & Distribution': 'sales',
-  'CRM': 'crm',
-  'Supply Chain Management': 'supply_chain',
-  'Settings & Administration': 'settings'
+  'Settings': 'settings'
 };
 
 export function useShell() {
@@ -55,13 +49,7 @@ export function useShell() {
 
     // Standard list of modules in product catalog presentation order
     const allModulesList = [
-      { key: 'settings', name: 'Settings & Administration' },
-      { key: 'finance', name: 'Finance' },
-      { key: 'sales', name: 'Sales & Distribution' },
-      { key: 'inventory', name: 'Inventory & Warehouse' },
-      { key: 'hr', name: 'Human Resources & Payroll' },
-      { key: 'crm', name: 'CRM' },
-      { key: 'supply_chain', name: 'Supply Chain Management' }
+      { key: 'settings', name: 'Settings' }
     ];
 
     allModulesList.forEach(({ key, name }) => {
@@ -90,21 +78,31 @@ export function useShell() {
   }, [currentUser, isAuthenticated, activeModules]);
 
   const toggleModule = (name: string) => {
-    const matchedModule = modules.find(m => m.name === name);
-    if (matchedModule?.isLocked) {
+    // Find if the clicked item is a top-level module or a sub-item
+    let targetModule = modules.find(m => m.name === name);
+    let parentModule = targetModule;
+    
+    if (!targetModule) {
+      // It's a sub-item! Find its parent module
+      parentModule = modules.find(m => m.subItems?.includes(name));
+    }
+
+    if (parentModule?.isLocked) {
       // Gated click intercepts navigation to trigger the Upgrade card
-      setActiveItem(name);
+      setActiveItem(parentModule.name);
       return;
     }
 
     setActiveItem(name);
 
-    // Load module-related process JSON files as the last resource and cache them
-    const moduleKey = DISPLAY_TO_KEY[name];
-    if (moduleKey) {
-      useProcessStore.getState().loadModuleProcesses(moduleKey).catch((e) => {
-        console.warn(`Failed to preload process definitions for module ${moduleKey}`, e);
-      });
+    // Load module-related process JSON files
+    if (parentModule) {
+      const moduleKey = DISPLAY_TO_KEY[parentModule.name];
+      if (moduleKey) {
+        useProcessStore.getState().loadModuleProcesses(moduleKey).catch((e) => {
+          console.warn(`Failed to preload process definitions for module ${moduleKey}`, e);
+        });
+      }
     }
 
     const isTopLevel = modules.some(m => m.name === name && m.subItems && m.subItems.length > 0);
