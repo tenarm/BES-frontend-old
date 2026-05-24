@@ -72,15 +72,15 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         initSettingsModule();
       }
 
+      if (activeMods.includes('sales')) {
+        const { initSalesModule } = await import('@bes/sales');
+        initSalesModule();
+      }
       /*
       // To add other modules back in the future, uncomment these:
       if (activeMods.includes('finance')) {
         const { initFinanceModule } = await import('@bes/finance');
         initFinanceModule();
-      }
-      if (activeMods.includes('sales')) {
-        const { initSalesModule } = await import('@bes/sales');
-        initSalesModule();
       }
       if (activeMods.includes('inventory')) {
         const { initInventoryModule } = await import('@bes/inventory');
@@ -150,15 +150,15 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         initSettingsModule();
       }
 
+      if (activeMods.includes('sales')) {
+        const { initSalesModule } = await import('@bes/sales');
+        initSalesModule();
+      }
       /*
       // To add other modules back in the future, uncomment these:
       if (activeMods.includes('finance')) {
         const { initFinanceModule } = await import('@bes/finance');
         initFinanceModule();
-      }
-      if (activeMods.includes('sales')) {
-        const { initSalesModule } = await import('@bes/sales');
-        initSalesModule();
       }
       if (activeMods.includes('inventory')) {
         const { initInventoryModule } = await import('@bes/inventory');

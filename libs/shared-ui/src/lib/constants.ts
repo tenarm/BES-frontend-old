@@ -1,10 +1,14 @@
 // Map module keys to Display Names
 export const MODULE_NAMES: Record<string, string> = {
   home: 'Home',
+  sales: 'Sales',
   settings: 'Settings'
 };
 
 export const RESOURCE_NAMES: Record<string, string> = {
+  // Sales
+  customer_master: 'Customer Master',
+
   // Settings
   company_setup: 'Company / Entity Setup',
   user_management: 'User Management & RBAC',

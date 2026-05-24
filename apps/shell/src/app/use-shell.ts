@@ -49,6 +49,7 @@ export function useShell() {
 
     // Standard list of modules in product catalog presentation order
     const allModulesList = [
+      { key: 'sales', name: 'Sales' },
       { key: 'settings', name: 'Settings' }
     ];
 
