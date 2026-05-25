@@ -14,6 +14,7 @@ export * from './lib/alert/alert';
 export { Alert as FeedbackAlert } from './lib/alert/alert';
 export * from './lib/drawer/drawer';
 export { Drawer as SlideOutDrawer } from './lib/drawer/drawer';
+export * from './lib/modal/modal';
 export * from './lib/avatar/avatar';
 export * from './lib/skeleton/skeleton';
 export * from './lib/table/table';

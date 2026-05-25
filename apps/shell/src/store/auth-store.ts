@@ -24,6 +24,38 @@ interface AuthState {
 
 const API_BASE = '/api/v1';
 
+const initializeModules = async (activeMods: string[]) => {
+  // Dynamically initialize settings module based on bootstrap
+  if (activeMods.includes('settings')) {
+    const { initSettingsModule } = await import('@bes/settings');
+    initSettingsModule();
+  }
+
+  if (activeMods.includes('sales')) {
+    const { initSalesModule } = await import('@bes/sales');
+    initSalesModule();
+  }
+  /*
+  // To add other modules back in the future, uncomment these:
+  if (activeMods.includes('finance')) {
+    const { initFinanceModule } = await import('@bes/finance');
+    initFinanceModule();
+  }
+  if (activeMods.includes('inventory')) {
+    const { initInventoryModule } = await import('@bes/inventory');
+    initInventoryModule();
+  }
+  if (activeMods.includes('hr')) {
+    const { initHrModule } = await import('@bes/hr');
+    initHrModule();
+  }
+  if (activeMods.includes('supply_chain')) {
+    const { initSupplyChainModule } = await import('@bes/supply-chain');
+    initSupplyChainModule();
+  }
+  */
+};
+
 export const useAuthStore = create<AuthState>((set, get) => ({
   currentUser: null,
   token: localStorage.getItem('bes_token'),
@@ -65,11 +97,14 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         permissions: boot.permissions || {}
       };
 
+      const activeMods = boot.active_modules || [];
+      await initializeModules(activeMods);
+
       localStorage.setItem('bes_token', access_token);
       set({ 
         token: access_token, 
         currentUser: mappedUser, 
-        activeModules: boot.active_modules || [],
+        activeModules: activeMods,
         clientName: boot.client_name || '',
         isAuthenticated: true,
         isLoading: false 
@@ -112,9 +147,12 @@ export const useAuthStore = create<AuthState>((set, get) => ({
         permissions: boot.permissions || {}
       };
 
+      const activeMods = boot.active_modules || [];
+      await initializeModules(activeMods);
+
       set({ 
         currentUser: mappedUser, 
-        activeModules: boot.active_modules || [],
+        activeModules: activeMods,
         clientName: boot.client_name || '',
         isAuthenticated: true, 
         isLoading: false 
