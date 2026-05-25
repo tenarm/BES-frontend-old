@@ -1,4 +1,4 @@
-import { ComponentRegistry } from '@bes/shared-ui';
+import { ComponentRegistry, RESOURCE_NAMES } from '@bes/shared-ui';
 export * from './lib/sales';
 export * from './lib/quotation-form';
 
@@ -13,6 +13,18 @@ export function initSalesModule() {
   
   ComponentRegistry.registerLazy('Form_SalesQuotation', () => 
     import('./lib/quotation-form').then(m => ({ default: m.QuotationForm }))
+  );
+
+  ComponentRegistry.registerLazy(`Route_${RESOURCE_NAMES.customer_master}`, () => 
+    import('./lib/customer-master/CustomerMaster').then(m => ({ default: m.CustomerMaster }))
+  );
+
+  ComponentRegistry.registerLazy('Modal_CreditOverrideApproval', () => 
+    import('./lib/credit-override-modal/CreditOverrideModal').then(m => ({ default: m.CreditOverrideModal }))
+  );
+
+  ComponentRegistry.registerLazy('Modal_manager_override', () => 
+    import('./lib/credit-override-modal/CreditOverrideModal').then(m => ({ default: m.CreditOverrideModal }))
   );
 }
 
