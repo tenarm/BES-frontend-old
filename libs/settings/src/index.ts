@@ -11,6 +11,11 @@ export function initSettingsModule() {
   ComponentRegistry.registerLazy('Route_Settings', () =>
     import('./lib/settings-home').then(m => ({ default: m.SettingsHomePage }))
   );
+
+  // Map sub-menu Route key matching RESOURCE_NAMES.company_setup
+  ComponentRegistry.registerLazy('Route_Company / Entity Setup', () =>
+    import('./lib/settings-home').then(m => ({ default: m.SettingsHomePage }))
+  );
 }
 
 // Re-export for direct usage if needed

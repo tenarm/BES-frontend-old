@@ -92,7 +92,7 @@ export const AIFloatingWindow: React.FC<AIFloatingWindowProps> = ({ onClose }) =
         top: `${position.y}px`,
         width: '380px',
         height: '500px',
-        zIndex: 9999,
+        zIndex: 9985, // Positioned beneath dynamic approval modals (9999) and process pipeline (9990), above drawers (9980)
         background: 'rgba(255, 255, 255, 0.82)',
         backdropFilter: 'blur(20px) saturate(190%)',
         WebkitBackdropFilter: 'blur(20px) saturate(190%)',

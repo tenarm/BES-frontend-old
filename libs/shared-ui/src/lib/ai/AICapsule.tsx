@@ -15,7 +15,7 @@ export const AICapsule: React.FC = () => {
           bottom: '1.5rem',
           left: '50%',
           transform: 'translateX(-50%)',
-          zIndex: 9998, // Placed just below the AIFloatingWindow (9999)
+          zIndex: 9984, // Placed just below the AIFloatingWindow (9985) to prevent overlay collisions
           background: 'rgba(255, 255, 255, 0.75)',
           backdropFilter: 'blur(16px)',
           WebkitBackdropFilter: 'blur(16px)',
