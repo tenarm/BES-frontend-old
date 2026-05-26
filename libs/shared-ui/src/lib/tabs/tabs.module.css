@@ -6,40 +6,43 @@
 
 .tabList {
   display: flex;
-  border-bottom: 1px solid var(--ui-border, #e2e8f0);
-  gap: var(--ui-spacing-sm, 8px);
-  margin-bottom: var(--ui-spacing-lg, 16px);
+  border-bottom: 1px solid var(--ui-border);
+  gap: var(--ui-spacing-sm);
+  margin-bottom: var(--ui-spacing-lg);
 }
 
 .tab {
   background: none;
   border: none;
   border-bottom: 2px solid transparent;
-  padding: var(--ui-spacing-sm, 8px) var(--ui-spacing-lg, 16px);
+  padding: var(--ui-spacing-sm) var(--ui-spacing-md);
   font-family: var(--ui-font-sans, inherit);
-  font-size: var(--ui-text-sm, 13px);
-  font-weight: var(--ui-weight-medium, 500);
-  color: var(--ui-gray-500, #64748b);
+  font-size: var(--ui-text-sm);
+  font-weight: var(--ui-weight-medium);
+  color: var(--ui-gray-500);
   cursor: pointer;
-  transition: all var(--ui-transition-fast, 100ms) ease-in-out;
+  transition: all var(--ui-transition-fast) ease-in-out;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--ui-spacing-2xs, 4px);
+  gap: var(--ui-spacing-2xs);
+  border-top-left-radius: var(--ui-radius-sm);
+  border-top-right-radius: var(--ui-radius-sm);
 }
 
 .tab:hover:not(.disabled) {
-  color: var(--ui-primary, #162867);
-  border-bottom-color: var(--ui-gray-300, #cbd5e1);
+  color: var(--ui-gray-900);
+  background-color: var(--ui-gray-100);
 }
 
 .tab.selected {
-  color: var(--ui-primary, #162867);
-  border-bottom-color: var(--ui-primary, #162867);
+  color: var(--ui-primary);
+  border-bottom-color: var(--ui-primary);
+  font-weight: var(--ui-weight-semibold);
 }
 
 .tab.disabled {
-  color: var(--ui-gray-300, #cbd5e1);
+  color: var(--ui-gray-300);
   cursor: not-allowed;
 }
 
@@ -48,7 +51,7 @@
 }
 
 .tabPanel {
-  animation: fadeIn var(--ui-transition-normal, 200ms) ease-in-out;
+  animation: fadeIn var(--ui-transition-normal) ease-in-out;
 }
 
 @keyframes fadeIn {

@@ -4,17 +4,18 @@
   height: 100vh;
   width: 100vw;
   background-color: var(--ui-surface-main);
+  overflow: hidden;
 }
 
 .header {
-  height: 64px;
+  height: 56px; /* Slightly more compact & elegant */
   background-color: var(--ui-surface-header);
   border-bottom: 1px solid var(--ui-border);
   flex-shrink: 0;
   display: flex;
   align-items: center;
   padding: 0 var(--ui-spacing-lg);
-  z-index: 10;
+  z-index: 9984; /* Layering guideline compliance */
 }
 
 .body {
@@ -34,5 +35,25 @@
 .main {
   flex: 1;
   overflow-y: auto;
-  padding: var(--ui-spacing-lg) var(--ui-spacing-xl);
+  padding: var(--ui-spacing-xl) var(--ui-spacing-2xl);
+  background-color: var(--ui-surface-main);
+}
+
+/* Elegant minimal scrollbar */
+.main::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+.main::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.main::-webkit-scrollbar-thumb {
+  background: rgba(55, 53, 47, 0.1);
+  border-radius: 4px;
+}
+
+.main::-webkit-scrollbar-thumb:hover {
+  background: rgba(55, 53, 47, 0.2);
 }

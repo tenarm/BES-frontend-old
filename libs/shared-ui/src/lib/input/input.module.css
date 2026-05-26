@@ -1,16 +1,16 @@
 .wrapper {
   display: flex;
   flex-direction: column;
-  gap: var(--ui-spacing-3xs);
+  gap: var(--ui-spacing-2xs);
 }
 
 .label {
   font-family: var(--ui-font-sans);
   font-size: var(--ui-text-2xs);
-  font-weight: var(--ui-weight-semibold);
-  color: var(--ui-gray-600);
-  text-transform: uppercase;
-  letter-spacing: 0.025em;
+  font-weight: var(--ui-weight-medium);
+  color: var(--ui-gray-500);
+  letter-spacing: normal;
+  text-transform: none;
 }
 
 .inputContainer {
@@ -26,11 +26,12 @@
   font-size: var(--ui-text-sm);
   color: var(--ui-gray-900);
   background-color: var(--ui-white);
-  border: 1px solid var(--ui-gray-300);
+  border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-sm);
   padding: 0 var(--ui-spacing-md);
   transition: all var(--ui-transition-fast);
   outline: none;
+  box-shadow: inset 0 1px 2px rgba(15, 15, 15, 0.02);
 }
 
 .input.hasAction {
@@ -56,7 +57,8 @@
   right: 4px;
   top: 4px;
   bottom: 4px;
-  width: 2rem;
+  width: 1.75rem;
+  height: 1.75rem;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -80,17 +82,18 @@
 }
 
 .input:hover:not(:disabled) {
-  border-color: var(--ui-gray-400);
+  border-color: rgba(55, 53, 47, 0.2);
 }
 
 .input:focus {
   border-color: var(--ui-primary);
-  box-shadow: 0 0 0 3px var(--ui-primary-light);
+  box-shadow: 0 0 0 2px var(--ui-primary-light);
 }
 
 .input:disabled {
-  background-color: var(--ui-gray-100);
-  color: var(--ui-gray-500);
+  background-color: var(--ui-gray-50);
+  color: var(--ui-gray-400);
+  border-color: var(--ui-border);
   cursor: not-allowed;
 }
 
@@ -100,16 +103,16 @@
 
 .error:focus {
   border-color: var(--ui-error);
-  box-shadow: 0 0 0 3px var(--ui-error-bg);
+  box-shadow: 0 0 0 2px var(--ui-error-bg);
 }
 
 .helperText {
   font-family: var(--ui-font-sans);
   font-size: var(--ui-text-xs);
   color: var(--ui-gray-500);
+  margin-top: 1px;
 }
 
 .errorText {
   color: var(--ui-error);
 }
-

@@ -1,8 +1,8 @@
 .tableContainer {
   width: 100%;
   overflow-x: auto;
-  border: 1px solid var(--ui-gray-200);
-  border-radius: var(--ui-radius-lg);
+  border: 1px solid var(--ui-border);
+  border-radius: var(--ui-radius-md);
   box-shadow: var(--ui-shadow-sm);
   background-color: var(--ui-white);
 }
@@ -17,22 +17,27 @@
 
 .thead, .table thead {
   background-color: var(--ui-gray-50);
-  border-bottom: 1px solid var(--ui-gray-200);
+  border-bottom: 1px solid var(--ui-border);
 }
 
 .th, .table th {
-  padding: var(--ui-spacing-md) var(--ui-spacing-xl);
-  font-weight: var(--ui-weight-bold);
+  padding: var(--ui-spacing-sm) var(--ui-spacing-lg);
+  font-weight: var(--ui-weight-medium);
   color: var(--ui-gray-500);
-  text-transform: uppercase;
-  font-size: var(--ui-text-2xs);
-  letter-spacing: 0.075em;
+  text-transform: none;
+  font-size: var(--ui-text-xs);
+  letter-spacing: normal;
   white-space: nowrap;
+  user-select: none;
 }
 
 .tr, .table tr {
-  border-bottom: 1px solid var(--ui-gray-100);
-  transition: all var(--ui-transition-normal);
+  border-bottom: 1px solid rgba(55, 53, 47, 0.04);
+  transition: background-color var(--ui-transition-fast);
+}
+
+.tr:last-child, .table tr:last-child {
+  border-bottom: none;
 }
 
 .tr.clickable, .table tr.clickable {
@@ -40,12 +45,12 @@
 }
 
 .tr:hover, .table tr:hover {
-  background-color: rgba(22, 40, 103, 0.02);
+  background-color: rgba(55, 53, 47, 0.02);
 }
 
 .td, .table td {
-  padding: var(--ui-spacing-md) var(--ui-spacing-xl);
-  color: var(--ui-gray-800);
+  padding: var(--ui-spacing-md) var(--ui-spacing-lg);
+  color: var(--ui-gray-900);
   vertical-align: middle;
 }
 
@@ -53,4 +58,3 @@
 .indent {
   display: inline-block;
 }
-

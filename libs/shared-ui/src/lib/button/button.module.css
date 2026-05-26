@@ -5,12 +5,13 @@
   font-family: var(--ui-font-sans);
   font-weight: var(--ui-weight-medium);
   font-size: var(--ui-text-sm);
-  border-radius: var(--ui-radius-md);
+  border-radius: var(--ui-radius-sm);
   cursor: pointer;
   transition: all var(--ui-transition-fast);
   border: 1px solid transparent;
   outline: none;
   gap: var(--ui-spacing-xs);
+  user-select: none;
 }
 
 .btn:focus-visible {
@@ -18,8 +19,13 @@
 }
 
 .btn:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
+  transform: none !important;
+}
+
+.btn:active:not(:disabled) {
+  transform: scale(0.97);
 }
 
 /* Variants */
@@ -31,34 +37,30 @@
 
 .primary:hover:not(:disabled) {
   background-color: var(--ui-primary-hover);
-  transform: translateY(-1px);
-  box-shadow: var(--ui-shadow-md);
-}
-
-.primary:active:not(:disabled) {
-  background-color: var(--ui-primary-active);
-  transform: translateY(0);
+  box-shadow: 0 4px 8px rgba(91, 95, 199, 0.15);
 }
 
 .secondary {
   background-color: var(--ui-white);
-  color: var(--ui-primary);
-  border-color: var(--ui-primary);
+  color: var(--ui-gray-900);
+  border: 1px solid var(--ui-border);
+  box-shadow: var(--ui-shadow-sm);
 }
 
 .secondary:hover:not(:disabled) {
-  background-color: var(--ui-primary-light);
+  background-color: var(--ui-gray-50);
+  border-color: var(--ui-gray-300);
 }
 
 .outline {
   background-color: transparent;
   color: var(--ui-gray-800);
-  border-color: var(--ui-gray-300);
+  border: 1px solid var(--ui-border);
 }
 
 .outline:hover:not(:disabled) {
-  background-color: var(--ui-gray-50);
-  border-color: var(--ui-gray-400);
+  background-color: var(--ui-gray-100);
+  border-color: var(--ui-gray-300);
 }
 
 .ghost {
@@ -68,13 +70,14 @@
 
 .ghost:hover:not(:disabled) {
   background-color: var(--ui-gray-100);
+  color: var(--ui-gray-900);
 }
 
 /* Sizes */
 .sm {
-  height: calc(var(--ui-height-button) * 0.8);
+  height: 1.75rem;
   padding: 0 var(--ui-spacing-sm);
-  font-size: var(--ui-text-2xs);
+  font-size: var(--ui-text-xs);
 }
 
 .md {
@@ -84,13 +87,14 @@
 }
 
 .lg {
-  height: calc(var(--ui-height-button) * 1.25);
+  height: 2.5rem;
   padding: 0 var(--ui-spacing-lg);
   font-size: var(--ui-text-base);
 }
 
 .spinner {
   animation: spin 1s linear infinite;
+  color: currentColor;
 }
 
 @keyframes spin {

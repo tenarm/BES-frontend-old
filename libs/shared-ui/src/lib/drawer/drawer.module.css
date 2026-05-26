@@ -4,12 +4,12 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.3);
-  backdrop-filter: blur(2px);
-  z-index: 1000;
+  background: rgba(15, 15, 15, 0.15);
+  backdrop-filter: blur(4px);
+  z-index: 9980; /* Enforced layering */
   opacity: 0;
   visibility: hidden;
-  transition: opacity 0.25s ease;
+  transition: opacity 0.25s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .overlay.open {
@@ -20,15 +20,16 @@
 .drawer {
   position: absolute;
   top: 0;
-  right: -450px;
+  right: -480px;
   width: 100%;
-  max-width: 450px;
+  max-width: 480px;
   height: 100%;
   background: var(--ui-white);
-  box-shadow: -10px 0 30px rgba(0, 0, 0, 0.1);
+  box-shadow: -8px 0 24px rgba(15, 15, 15, 0.05);
   display: flex;
   flex-direction: column;
-  transition: right 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: right 0.28s cubic-bezier(0.16, 1, 0.3, 1);
+  border-left: 1px solid var(--ui-border);
 }
 
 .open .drawer {
@@ -36,7 +37,7 @@
 }
 
 .header {
-  padding: var(--ui-spacing-lg);
+  padding: var(--ui-spacing-lg) var(--ui-spacing-xl);
   border-bottom: 1px solid var(--ui-border);
   display: flex;
   justify-content: space-between;
@@ -45,9 +46,10 @@
 
 .title {
   margin: 0;
-  font-size: 1.25rem;
-  color: var(--ui-primary);
-  font-weight: 600;
+  font-size: var(--ui-text-lg);
+  color: var(--ui-gray-900);
+  font-weight: var(--ui-weight-semibold);
+  letter-spacing: -0.01em;
 }
 
 .closeButton {
@@ -55,27 +57,31 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: var(--ui-text-light);
+  color: var(--ui-gray-400);
   line-height: 1;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color 0.2s;
+  transition: color var(--ui-transition-fast);
+  width: 24px;
+  height: 24px;
+  border-radius: var(--ui-radius-sm);
 }
 
 .closeButton:hover {
-  color: var(--ui-danger);
+  color: var(--ui-gray-900);
+  background-color: var(--ui-gray-100);
 }
 
 .body {
   flex: 1;
-  padding: var(--ui-spacing-lg);
+  padding: var(--ui-spacing-xl);
   overflow-y: auto;
 }
 
 .footer {
-  padding: var(--ui-spacing-lg);
+  padding: var(--ui-spacing-lg) var(--ui-spacing-xl);
   border-top: 1px solid var(--ui-border);
   display: flex;
   justify-content: flex-end;

@@ -1,41 +1,56 @@
 .card {
   background-color: var(--ui-white);
-  border: 1px solid var(--ui-gray-200);
+  border: 1px solid var(--ui-border);
   border-radius: var(--ui-radius-md);
-  box-shadow: var(--ui-shadow-sm);
   display: flex;
   flex-direction: column;
   overflow: hidden;
   font-family: var(--ui-font-sans);
+  transition: border-color var(--ui-transition-fast), box-shadow var(--ui-transition-fast);
+}
+
+.card:hover {
+  border-color: rgba(55, 53, 47, 0.16);
+  box-shadow: var(--ui-shadow-sm);
 }
 
 .header {
-  padding: var(--ui-spacing-sm) var(--ui-spacing-md);
-  border-bottom: 1px solid var(--ui-gray-100);
+  padding: var(--ui-spacing-lg) var(--ui-spacing-lg) var(--ui-spacing-sm) var(--ui-spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--ui-spacing-3xs);
+}
+
+.headerTitle {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
 }
 
 .title {
   margin: 0;
-  font-size: var(--ui-text-sm);
-  font-weight: var(--ui-weight-bold);
+  font-size: var(--ui-text-base);
+  font-weight: var(--ui-weight-semibold);
   color: var(--ui-gray-900);
+  letter-spacing: -0.01em;
 }
 
 .description {
-  margin: var(--ui-spacing-3xs) 0 0 0;
-  font-size: var(--ui-text-2xs);
+  margin: 0;
+  font-size: var(--ui-text-xs);
   color: var(--ui-gray-500);
+  line-height: 1.4;
 }
 
 .body {
-  padding: var(--ui-spacing-md);
+  padding: var(--ui-spacing-lg);
   flex: 1;
 }
 
 .footer {
-  padding: var(--ui-spacing-sm) var(--ui-spacing-md);
+  padding: var(--ui-spacing-md) var(--ui-spacing-lg);
   background-color: var(--ui-gray-50);
-  border-top: 1px solid var(--ui-gray-100);
+  border-top: 1px solid var(--ui-border);
   display: flex;
   align-items: center;
 }
