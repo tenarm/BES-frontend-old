@@ -14,5 +14,10 @@ export function initSalesModule() {
   ComponentRegistry.registerLazy('Form_SalesQuotation', () => 
     import('./lib/quotation-form').then(m => ({ default: m.QuotationForm }))
   );
+
+  // Register Customer Master Route
+  ComponentRegistry.registerLazy('Route_Customer Master', () => 
+    import('./lib/customer-master/customer-master').then(m => ({ default: m.CustomerMasterPage }))
+  );
 }
 

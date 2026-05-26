@@ -2,7 +2,9 @@
   width: 100%;
   overflow-x: auto;
   border: 1px solid var(--ui-gray-200);
-  border-radius: var(--ui-radius-md);
+  border-radius: var(--ui-radius-lg);
+  box-shadow: var(--ui-shadow-sm);
+  background-color: var(--ui-white);
 }
 
 .table {
@@ -13,37 +15,37 @@
   text-align: left;
 }
 
-.thead {
+.thead, .table thead {
+  background-color: var(--ui-gray-50);
   border-bottom: 1px solid var(--ui-gray-200);
 }
 
-.th {
-  padding: var(--ui-spacing-sm) var(--ui-spacing-md);
+.th, .table th {
+  padding: var(--ui-spacing-md) var(--ui-spacing-xl);
   font-weight: var(--ui-weight-bold);
-  color: var(--ui-gray-600);
+  color: var(--ui-gray-500);
   text-transform: uppercase;
-  font-size: var(--ui-text-3xs);
-  letter-spacing: 0.05em;
+  font-size: var(--ui-text-2xs);
+  letter-spacing: 0.075em;
   white-space: nowrap;
 }
 
-.tr {
+.tr, .table tr {
   border-bottom: 1px solid var(--ui-gray-100);
-  transition: background-color var(--ui-transition-fast);
+  transition: all var(--ui-transition-normal);
 }
 
-.tr.clickable {
+.tr.clickable, .table tr.clickable {
   cursor: pointer;
 }
 
-.tr:hover {
-  background-color: var(--ui-gray-50);
+.tr:hover, .table tr:hover {
+  background-color: rgba(22, 40, 103, 0.02);
 }
 
-.td {
-  padding: var(--ui-spacing-xs) var(--ui-spacing-md);
+.td, .table td {
+  padding: var(--ui-spacing-md) var(--ui-spacing-xl);
   color: var(--ui-gray-800);
-  height: var(--ui-height-row);
   vertical-align: middle;
 }
 
@@ -51,3 +53,4 @@
 .indent {
   display: inline-block;
 }
+

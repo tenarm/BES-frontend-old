@@ -1,70 +1,38 @@
 import React, { useState, useEffect } from 'react';
+import { Building, Calendar, Percent, Globe, CheckCircle2, AlertTriangle, RefreshCw } from 'lucide-react';
 import { 
-  Building, Calendar, Percent, ShieldCheck, MapPin, 
-  ArrowRight, Globe, Lock, CheckCircle2, AlertTriangle, RefreshCw
-} from 'lucide-react';
-import { 
-  Button, Input, Card, Badge, Drawer, Modal, Skeleton, Table, 
-  TabGroup, TabList, Tab, TabPanels, TabPanel,
-  UpgradeGateOverlay, PremiumLockIndicator
+   Button, Card, Badge, TabGroup, TabList, Tab, TabPanels, TabPanel, UpgradeGateOverlay 
 } from '@bes/shared-ui';
 
-interface CompanyProfileData {
-  id?: string;
-  legal_name: string;
-  dba_name: string;
-  tax_identifier: string;
-  email: string;
-  phone: string;
-  website: string;
-  default_language: string;
-  logo_url: string;
-  version_id: number;
-}
-
-interface SubsidiaryData {
-  id?: string;
-  name: string;
-  parent_id?: string;
-  base_currency: string;
-  tax_identifier: string;
-  address_billing: string;
-  address_shipping: string;
-  is_active: boolean;
-  version_id: number;
-}
-
-interface FiscalCalendarData {
-  id?: string;
-  name: string;
-  start_date: string;
-  end_date: string;
-  status: string;
-  version_id: number;
-}
-
-interface PostingPeriodData {
-  id: string;
-  calendar_id: string;
-  name: string;
-  start_date: string;
-  end_date: string;
-  is_locked: boolean;
-  version_id: number;
-}
-
-interface TaxProfileData {
-  id?: string;
-  name: string;
-  jurisdiction: string;
-  tax_rate: number;
-  is_active: boolean;
-  version_id: number;
-}
+import { CompanyProfileData, SubsidiaryData, FiscalCalendarData, TaxProfileData } from './types';
+import { CompanyProfileTab } from './components/company-profile-tab';
+import { SubsidiariesTab } from './components/subsidiaries-tab';
+import { SubsidiaryDrawer } from './components/subsidiary-drawer';
+import { FiscalCalendarsTab } from './components/fiscal-calendars-tab';
+import { CalendarDrawer } from './components/calendar-drawer';
+import { TaxProfilesTab } from './components/tax-profiles-tab';
+import { TaxDrawer } from './components/tax-drawer';
 
 export const SettingsHomePage: React.FC = () => {
-  // --- Simulation States (Rule 2.3 Subscription Trails) ---
-  const [activeTier, setActiveTier] = useState<'Basic' | 'Pro' | 'Premium'>('Premium');
+  // --- Plan Tier Gating (Rule 2.3) ---
+  const [activeTier, setActiveTier] = useState<'Basic' | 'Pro' | 'Premium'>(() => {
+    const rawPlan = localStorage.getItem('bes_plan') || 'premium';
+    return (rawPlan.charAt(0).toUpperCase() + rawPlan.slice(1)) as 'Basic' | 'Pro' | 'Premium';
+  });
+
+  useEffect(() => {
+    const handleStorageChange = () => {
+      const raw = localStorage.getItem('bes_plan') || 'premium';
+      setActiveTier((raw.charAt(0).toUpperCase() + raw.slice(1)) as 'Basic' | 'Pro' | 'Premium');
+    };
+    window.addEventListener('storage', handleStorageChange);
+    window.addEventListener('bes_plan_changed', handleStorageChange);
+    return () => {
+      window.removeEventListener('storage', handleStorageChange);
+      window.removeEventListener('bes_plan_changed', handleStorageChange);
+    };
+  }, []);
+
   const [showUpgradeGate, setShowUpgradeGate] = useState<string | null>(null);
 
   // --- Common States ---
@@ -77,7 +45,6 @@ export const SettingsHomePage: React.FC = () => {
   });
   const [subsidiaries, setSubsidiaries] = useState<SubsidiaryData[]>([]);
   const [calendars, setCalendars] = useState<FiscalCalendarData[]>([]);
-  const [periods, setPeriods] = useState<PostingPeriodData[]>([]);
   const [taxProfiles, setTaxProfiles] = useState<TaxProfileData[]>([]);
 
   // --- Active Selection / Drawer States ---
@@ -132,7 +99,7 @@ export const SettingsHomePage: React.FC = () => {
         const res = await taxRes.json();
         setTaxProfiles(res.data);
       }
-    } catch (err) {
+    } catch {
       showToast('error', 'Failed to retrieve configuration data from server.');
     } finally {
       setLoading(false);
@@ -183,7 +150,7 @@ export const SettingsHomePage: React.FC = () => {
         setProfile(body.data);
         showToast('success', 'Company profile successfully updated.');
       }
-    } catch (err) {
+    } catch {
       showToast('error', 'Network error updating company profile.');
     }
   };
@@ -233,7 +200,7 @@ export const SettingsHomePage: React.FC = () => {
         setDrawerOpen(null);
         fetchAllData();
       }
-    } catch (err) {
+    } catch {
       showToast('error', 'Network request failed.');
     }
   };
@@ -257,8 +224,31 @@ export const SettingsHomePage: React.FC = () => {
         setDrawerOpen(null);
         fetchAllData();
       }
-    } catch (err) {
+    } catch {
       showToast('error', 'Request execution failed.');
+    }
+  };
+
+  // --- Save Tax Profile ---
+  const handleSaveTax = async (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!selectedTax) return;
+    try {
+      const res = await fetch('/api/v1/settings/tax-profiles', {
+        method: 'POST',
+        headers,
+        body: JSON.stringify(selectedTax)
+      });
+      if (res.ok) {
+        showToast('success', 'Tax Profile successfully registered.');
+        setDrawerOpen(null);
+        fetchAllData();
+      } else {
+        const body = await res.json();
+        showToast('error', body.detail || 'Failed to save Tax Profile.');
+      }
+    } catch {
+      showToast('error', 'Network failure.');
     }
   };
 
@@ -274,10 +264,9 @@ export const SettingsHomePage: React.FC = () => {
         showToast('error', body.detail || 'Lock operation rejected by transaction guard.');
       } else {
         showToast('success', `Posting period successfully ${!currentLock ? 'LOCKED' : 'UNLOCKED'}.`);
-        // Refresh local details
         fetchAllData();
       }
-    } catch (err) {
+    } catch {
       showToast('error', 'Failed lock toggle action.');
     }
   };
@@ -305,9 +294,11 @@ export const SettingsHomePage: React.FC = () => {
             marginTop: '4px' 
           }}>Manage legal entities, corporate branches, fiscal calendars, and regional tax profiles.</p>
         </div>
-        <Button variant="secondary" onClick={fetchAllData} size="sm">
-          <RefreshCw size={14} style={{ marginRight: 6 }} /> Refresh
-        </Button>
+        <div style={{ display: 'flex', gap: 12, alignItems: 'center' }}>
+          <Button variant="secondary" onClick={fetchAllData} size="sm">
+            <RefreshCw size={14} style={{ marginRight: 6 }} /> Refresh
+          </Button>
+        </div>
       </header>
 
       {/* Floating Toast Notification */}
@@ -337,7 +328,7 @@ export const SettingsHomePage: React.FC = () => {
       {/* Tab Panels */}
       {loading ? (
         <Card style={{ padding: '40px', textAlign: 'center' }}>
-          <Skeleton count={4} height={40} style={{ marginBottom: 12 }} />
+          <RefreshCw className="animate-spin" style={{ margin: '0 auto', color: 'var(--ui-primary)' }} />
         </Card>
       ) : (
         <TabGroup defaultIndex={0}>
@@ -349,371 +340,96 @@ export const SettingsHomePage: React.FC = () => {
           </TabList>
 
           <TabPanels style={{ marginTop: '20px' }}>
-            
             {/* Tab 1: Company Profile */}
             <TabPanel>
-              <Card>
-                <form onSubmit={handleSaveProfile} style={{ display: 'flex', flexDirection: 'column', gap: '20px' }}>
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 600, margin: 0, color: 'var(--ui-gray-800)' }}>Legal Organization Information</h3>
-                  <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '20px' }}>
-                    <Input 
-                      label="Company Legal Name" 
-                      value={profile.legal_name}
-                      onChange={(e) => setProfile({ ...profile, legal_name: e.target.value })}
-                      required
-                    />
-                    <Input 
-                      label="DBA / Trade Name" 
-                      value={profile.dba_name}
-                      onChange={(e) => setProfile({ ...profile, dba_name: e.target.value })}
-                    />
-                    <Input 
-                      label="Corporate Tax Identifier" 
-                      value={profile.tax_identifier}
-                      onChange={(e) => setProfile({ ...profile, tax_identifier: e.target.value })}
-                      error={fieldErrors.tax_identifier}
-                    />
-                    <Input 
-                      label="Contact Email" 
-                      value={profile.email}
-                      onChange={(e) => setProfile({ ...profile, email: e.target.value })}
-                    />
-                    <Input 
-                      label="Contact Phone" 
-                      value={profile.phone}
-                      onChange={(e) => setProfile({ ...profile, phone: e.target.value })}
-                    />
-                    <Input 
-                      label="Corporate Website" 
-                      value={profile.website}
-                      onChange={(e) => setProfile({ ...profile, website: e.target.value })}
-                    />
-                  </div>
-                  <div style={{ display: 'flex', justifyContent: 'flex-end', marginTop: 12 }}>
-                    <Button variant="primary" type="submit">Save Profile Settings</Button>
-                  </div>
-                </form>
-              </Card>
+              <CompanyProfileTab 
+                profile={profile} 
+                onChange={setProfile} 
+                fieldErrors={fieldErrors} 
+                onSave={handleSaveProfile} 
+              />
             </TabPanel>
 
             {/* Tab 2: Subsidiaries */}
             <TabPanel>
-              <Card>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 600, margin: 0 }}>Registered Operating Branches</h3>
-                  <Button 
-                    variant="primary" 
-                    onClick={() => {
-                      if (activeTier === 'Basic' && subsidiaries.length >= 1) {
-                        setShowUpgradeGate('Multi-Subsidiary Hierarchies');
-                      } else {
-                        setSelectedSubsidiary({ name: '', base_currency: 'USD', tax_identifier: '', address_billing: '', address_shipping: '', is_active: true, version_id: 1 });
-                        setDrawerOpen('subsidiary');
-                      }
-                    }}
-                  >
-                    Add Subsidiary {activeTier === 'Basic' && <PremiumLockIndicator size={12} style={{ marginLeft: 6 }} />}
-                  </Button>
-                </div>
-                
-                <Table>
-                  <thead>
-                    <tr>
-                      <th>Subsidiary Name</th>
-                      <th>Tax ID</th>
-                      <th>Base Currency</th>
-                      <th>Billing Address</th>
-                      <th>Status</th>
-                      <th style={{ textAlign: 'right' }}>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {subsidiaries.length === 0 ? (
-                      <tr>
-                        <td colSpan={6} style={{ textAlign: 'center', padding: '40px', color: 'var(--ui-gray-500)' }}>
-                          No operating branches registered. Click "Add Subsidiary" to bootstrap your tree.
-                        </td>
-                      </tr>
-                    ) : (
-                      subsidiaries.map((sub) => (
-                        <tr key={sub.id}>
-                          <td style={{ fontWeight: 600 }}>{sub.name}</td>
-                          <td>{sub.tax_identifier || '-'}</td>
-                          <td><Badge variant="info">{sub.base_currency}</Badge></td>
-                          <td style={{ maxWidth: 200, overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap' }}>{sub.address_billing}</td>
-                          <td>
-                            <Badge variant={sub.is_active ? 'success' : 'warning'}>
-                              {sub.is_active ? 'Active' : 'Inactive'}
-                            </Badge>
-                          </td>
-                          <td style={{ textAlign: 'right' }}>
-                            <Button 
-                              variant="secondary" 
-                              size="sm"
-                              onClick={() => {
-                                setSelectedSubsidiary(sub);
-                                setDrawerOpen('subsidiary');
-                              }}
-                            >
-                              Edit Profile
-                            </Button>
-                          </td>
-                        </tr>
-                      ))
-                    )}
-                  </tbody>
-                </Table>
-              </Card>
+              <SubsidiariesTab 
+                subsidiaries={subsidiaries} 
+                activeTier={activeTier} 
+                onAdd={() => {
+                  if (activeTier === 'Basic' && subsidiaries.length >= 1) {
+                    setShowUpgradeGate('Multi-Subsidiary Hierarchies');
+                  } else {
+                    setSelectedSubsidiary({ name: '', base_currency: 'USD', tax_identifier: '', address_billing: '', address_shipping: '', is_active: true, version_id: 1 });
+                    setDrawerOpen('subsidiary');
+                  }
+                }}
+                onEdit={(sub) => {
+                  setSelectedSubsidiary(sub);
+                  setDrawerOpen('subsidiary');
+                }}
+              />
             </TabPanel>
 
             {/* Tab 3: Fiscal Calendars */}
             <TabPanel>
-              <Card>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 600, margin: 0 }}>Accounting Calendars</h3>
-                  <Button 
-                    variant="primary"
-                    onClick={() => {
-                      if (activeTier === 'Basic' && calendars.length >= 1) {
-                        setShowUpgradeGate('Multiple Accounting Years & Locks');
-                      } else {
-                        setSelectedCalendar({ name: '', start_date: '', end_date: '', status: 'OPEN', version_id: 1 });
-                        setDrawerOpen('calendar');
-                      }
-                    }}
-                  >
-                    Generate Fiscal Year {activeTier === 'Basic' && <PremiumLockIndicator size={12} style={{ marginLeft: 6 }} />}
-                  </Button>
-                </div>
-
-                {calendars.length === 0 ? (
-                  <div style={{ textAlign: 'center', padding: '48px 0', color: 'var(--ui-gray-500)' }}>
-                    No fiscal calendars configured. Generate your first accounting year to initialize posting periods.
-                  </div>
-                ) : (
-                  calendars.map((cal) => (
-                    <div key={cal.id} style={{ marginBottom: 30, border: '1px solid var(--ui-gray-200)', borderRadius: 12, padding: 20 }}>
-                      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 16 }}>
-                        <div>
-                          <h4 style={{ margin: 0, fontSize: '1rem', fontWeight: 700 }}>{cal.name}</h4>
-                          <span style={{ fontSize: '0.8rem', color: 'var(--ui-gray-500)' }}>Range: {cal.start_date} to {cal.end_date}</span>
-                        </div>
-                        <Badge variant={cal.status === 'OPEN' ? 'success' : 'danger'}>{cal.status}</Badge>
-                      </div>
-
-                      {/* Display Associated Month Periods inside inner container */}
-                      <PostingPeriodsList calendarId={cal.id!} headers={headers} activeTier={activeTier} onToggleLock={handleToggleLockPeriod} />
-                    </div>
-                  ))
-                )}
-              </Card>
+              <FiscalCalendarsTab 
+                calendars={calendars} 
+                activeTier={activeTier} 
+                onAdd={() => {
+                  if (activeTier === 'Basic' && calendars.length >= 1) {
+                    setShowUpgradeGate('Multiple Accounting Years & Locks');
+                  } else {
+                    setSelectedCalendar({ name: '', start_date: '', end_date: '', status: 'OPEN', version_id: 1 });
+                    setDrawerOpen('calendar');
+                  }
+                }}
+                headers={headers}
+                onToggleLock={handleToggleLockPeriod}
+              />
             </TabPanel>
 
             {/* Tab 4: Tax Profiles */}
             <TabPanel>
-              <Card>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 20 }}>
-                  <h3 style={{ fontSize: '1.1rem', fontWeight: 600, margin: 0 }}>Regional Tax Jurisdictions</h3>
-                  <Button 
-                    variant="primary"
-                    onClick={() => {
-                      setSelectedTax({ name: '', jurisdiction: '', tax_rate: 0, is_active: true, version_id: 1 });
-                      setDrawerOpen('tax');
-                    }}
-                  >
-                    Add Tax Profile
-                  </Button>
-                </div>
-
-                <Table>
-                  <thead>
-                    <tr>
-                      <th>Tax Name</th>
-                      <th>Jurisdiction</th>
-                      <th>Tax Rate (%)</th>
-                      <th>Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {taxProfiles.length === 0 ? (
-                      <tr>
-                        <td colSpan={4} style={{ textAlign: 'center', padding: '40px', color: 'var(--ui-gray-500)' }}>
-                          No regional tax profiles registered.
-                        </td>
-                      </tr>
-                    ) : (
-                      taxProfiles.map((tax) => (
-                        <tr key={tax.id}>
-                          <td style={{ fontWeight: 600 }}>{tax.name}</td>
-                          <td>{tax.jurisdiction}</td>
-                          <td><Badge variant="success">{(tax.tax_rate * 100).toFixed(2)}%</Badge></td>
-                          <td>
-                            <Badge variant={tax.is_active ? 'success' : 'warning'}>
-                              {tax.is_active ? 'Active' : 'Inactive'}
-                            </Badge>
-                          </td>
-                        </tr>
-                      ))
-                    )}
-                  </tbody>
-                </Table>
-              </Card>
+              <TaxProfilesTab 
+                taxProfiles={taxProfiles} 
+                onAdd={() => {
+                  setSelectedTax({ name: '', jurisdiction: '', tax_rate: 0, is_active: true, version_id: 1 });
+                  setDrawerOpen('tax');
+                }}
+              />
             </TabPanel>
           </TabPanels>
         </TabGroup>
       )}
 
-      {/* --- DRAWERS (Miller's Law and persistent split screen layouts) --- */}
+      {/* --- Drawers --- */}
 
-      {/* Subsidiary Drawer */}
-      <Drawer
-        isOpen={drawerOpen === 'subsidiary'}
-        onClose={() => setDrawerOpen(null)}
-        title={selectedSubsidiary?.id ? "Edit Subsidiary branch Profile" : "Add Subsidiary legal branch"}
-        footer={
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end', width: '100%' }}>
-            <Button variant="secondary" onClick={() => setDrawerOpen(null)}>Cancel</Button>
-            <Button variant="primary" onClick={handleSaveSubsidiary}>Save Subsidiary branch</Button>
-          </div>
-        }
-      >
-        {selectedSubsidiary && (
-          <form style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <Input 
-              label="Legal Name" 
-              value={selectedSubsidiary.name} 
-              onChange={(e) => setSelectedSubsidiary({ ...selectedSubsidiary, name: e.target.value })}
-              required
-            />
-            <Input 
-              label="Base Currency" 
-              value={selectedSubsidiary.base_currency} 
-              onChange={(e) => setSelectedSubsidiary({ ...selectedSubsidiary, base_currency: e.target.value })}
-              placeholder="e.g. USD, EUR"
-              required
-            />
-            <Input 
-              label="Tax Registration Identifier" 
-              value={selectedSubsidiary.tax_identifier} 
-              onChange={(e) => setSelectedSubsidiary({ ...selectedSubsidiary, tax_identifier: e.target.value })}
-              error={fieldErrors.tax_identifier}
-            />
-            <Input 
-              label="Billing Address" 
-              value={selectedSubsidiary.address_billing} 
-              onChange={(e) => setSelectedSubsidiary({ ...selectedSubsidiary, address_billing: e.target.value })}
-              multiline
-            />
-            <Input 
-              label="Shipping Address" 
-              value={selectedSubsidiary.address_shipping} 
-              onChange={(e) => setSelectedSubsidiary({ ...selectedSubsidiary, address_shipping: e.target.value })}
-              multiline
-            />
-          </form>
-        )}
-      </Drawer>
+      <SubsidiaryDrawer 
+        isOpen={drawerOpen === 'subsidiary'} 
+        onClose={() => setDrawerOpen(null)} 
+        selectedSubsidiary={selectedSubsidiary}
+        setSelectedSubsidiary={setSelectedSubsidiary}
+        fieldErrors={fieldErrors}
+        onSave={handleSaveSubsidiary}
+      />
 
-      {/* Calendar Drawer */}
-      <Drawer
-        isOpen={drawerOpen === 'calendar'}
-        onClose={() => setDrawerOpen(null)}
-        title="Generate Accounting Year"
-        footer={
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end', width: '100%' }}>
-            <Button variant="secondary" onClick={() => setDrawerOpen(null)}>Cancel</Button>
-            <Button variant="primary" onClick={handleSaveCalendar}>Generate Calendar Year</Button>
-          </div>
-        }
-      >
-        {selectedCalendar && (
-          <form style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <Input 
-              label="Calendar Name (e.g. FY 2026)" 
-              value={selectedCalendar.name}
-              onChange={(e) => setSelectedCalendar({ ...selectedCalendar, name: e.target.value })}
-              required
-            />
-            <Input 
-              label="Start Date (YYYY-MM-DD)" 
-              value={selectedCalendar.start_date}
-              onChange={(e) => setSelectedCalendar({ ...selectedCalendar, start_date: e.target.value })}
-              placeholder="e.g. 2026-01-01"
-              required
-            />
-            <Input 
-              label="End Date (YYYY-MM-DD)" 
-              value={selectedCalendar.end_date}
-              onChange={(e) => setSelectedCalendar({ ...selectedCalendar, end_date: e.target.value })}
-              placeholder="e.g. 2026-12-31"
-              required
-            />
-          </form>
-        )}
-      </Drawer>
+      <CalendarDrawer 
+        isOpen={drawerOpen === 'calendar'} 
+        onClose={() => setDrawerOpen(null)} 
+        selectedCalendar={selectedCalendar}
+        setSelectedCalendar={setSelectedCalendar}
+        onSave={handleSaveCalendar}
+      />
 
-      {/* Tax Drawer */}
-      <Drawer
-        isOpen={drawerOpen === 'tax'}
-        onClose={() => setDrawerOpen(null)}
-        title="Register Tax Jurisdiction"
-        footer={
-          <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end', width: '100%' }}>
-            <Button variant="secondary" onClick={() => setDrawerOpen(null)}>Cancel</Button>
-            <Button 
-              variant="primary" 
-              onClick={async (e) => {
-                e.preventDefault();
-                if (!selectedTax) return;
-                try {
-                  const res = await fetch('/api/v1/settings/tax-profiles', {
-                    method: 'POST',
-                    headers,
-                    body: JSON.stringify(selectedTax)
-                  });
-                  if (res.ok) {
-                    showToast('success', 'Tax Profile successfully registered.');
-                    setDrawerOpen(null);
-                    fetchAllData();
-                  } else {
-                    const body = await res.json();
-                    showToast('error', body.detail || 'Failed to save Tax Profile.');
-                  }
-                } catch {
-                  showToast('error', 'Network failure.');
-                }
-              }}
-            >
-              Save Profile
-            </Button>
-          </div>
-        }
-      >
-        {selectedTax && (
-          <form style={{ display: 'flex', flexDirection: 'column', gap: 20 }}>
-            <Input 
-              label="Tax Agency / Profile Name" 
-              value={selectedTax.name}
-              onChange={(e) => setSelectedTax({ ...selectedTax, name: e.target.value })}
-              required
-            />
-            <Input 
-              label="Jurisdiction / Region" 
-              value={selectedTax.jurisdiction}
-              onChange={(e) => setSelectedTax({ ...selectedTax, jurisdiction: e.target.value })}
-              required
-            />
-            <Input 
-              label="Tax Rate (Decimal fraction, e.g. 0.18 for 18%)" 
-              value={selectedTax.tax_rate.toString()}
-              onChange={(e) => setSelectedTax({ ...selectedTax, tax_rate: parseFloat(e.target.value) || 0 })}
-              required
-            />
-          </form>
-        )}
-      </Drawer>
+      <TaxDrawer 
+        isOpen={drawerOpen === 'tax'} 
+        onClose={() => setDrawerOpen(null)} 
+        selectedTax={selectedTax}
+        setSelectedTax={setSelectedTax}
+        onSave={handleSaveTax}
+      />
 
-      {/* --- Premium Upgrade Overlay (Rule 2.3 trials gate) --- */}
+      {/* --- Premium Upgrade Overlay --- */}
       {showUpgradeGate && (
         <UpgradeGateOverlay 
           moduleName={showUpgradeGate}
@@ -721,89 +437,6 @@ export const SettingsHomePage: React.FC = () => {
           onClose={() => setShowUpgradeGate(null)}
         />
       )}
-    </div>
-  );
-};
-
-// --- Child Posting Periods component list ---
-interface PeriodsProps {
-  calendarId: string;
-  headers: any;
-  activeTier: string;
-  onToggleLock: (id: string, current: boolean) => void;
-}
-
-const PostingPeriodsList: React.FC<PeriodsProps> = ({ calendarId, headers, activeTier, onToggleLock }) => {
-  const [periods, setPeriods] = useState<PostingPeriodData[]>([]);
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    const fetchPeriods = async () => {
-      try {
-        const res = await fetch('/api/v1/settings/fiscal-calendars', { headers });
-        if (res.ok) {
-          // Typically we would query periods by calendar_id, but since we retrieve lists of calendars:
-          // In our simplified setup calendar lists generate periods inline. Let's query mock periods
-          // OR filter them. We'll simulate fetching periods for this calendar:
-          const r = await fetch('/api/v1/settings/fiscal-calendars', { headers });
-          // In a real API we would fetch `/api/v1/settings/fiscal-calendars/{id}/periods`
-          // Let's call a mock fetch or simulateperiods:
-          const periodsMock = Array.from({ length: 12 }).map((_, index) => ({
-            id: `${calendarId}-period-${index + 1}`,
-            calendar_id: calendarId,
-            name: `Period ${(index + 1).toString().padStart(2, '0')}`,
-            start_date: `2026-${(index + 1).toString().padStart(2, '0')}-01`,
-            end_date: `2026-${(index + 1).toString().padStart(2, '0')}-28`,
-            is_locked: false,
-            version_id: 1
-          }));
-          setPeriods(periodsMock as any);
-        }
-      } catch {
-        // fail-silent
-      } finally {
-        setLoading(false);
-      }
-    };
-    fetchPeriods();
-  }, [calendarId]);
-
-  if (loading) return <Skeleton count={2} height={20} />;
-
-  return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: 12 }}>
-      {periods.map((p) => (
-        <div key={p.id} style={{
-          background: 'var(--ui-gray-50)',
-          border: '1px solid var(--ui-gray-200)',
-          borderRadius: 8,
-          padding: 12,
-          display: 'flex',
-          justifyContent: 'space-between',
-          alignItems: 'center'
-        }}>
-          <div>
-            <span style={{ fontSize: '0.8rem', fontWeight: 600, display: 'block' }}>{p.name}</span>
-            <span style={{ fontSize: '0.7rem', color: 'var(--ui-gray-400)' }}>{p.start_date}</span>
-          </div>
-          
-          <button
-            onClick={() => onToggleLock(p.id, p.is_locked)}
-            style={{
-              padding: '4px 8px',
-              borderRadius: 6,
-              border: 'none',
-              background: p.is_locked ? '#fee2e2' : '#d1fae5',
-              color: p.is_locked ? '#991b1b' : '#065f46',
-              fontSize: '0.75rem',
-              fontWeight: 700,
-              cursor: 'pointer'
-            }}
-          >
-            {p.is_locked ? 'Locked' : 'Active'}
-          </button>
-        </div>
-      ))}
     </div>
   );
 };

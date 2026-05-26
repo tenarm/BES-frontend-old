@@ -16,10 +16,12 @@ interface AuthState {
   isLoading: boolean;
   activeModules: string[];
   clientName: string;
+  clientPlan: 'Basic' | 'Pro' | 'Premium';
   login: (username: string, password: string) => Promise<void>;
   logout: () => void;
   initialize: () => Promise<void>;
   hasPermission: (required: string) => boolean;
+  setClientPlan: (plan: 'Basic' | 'Pro' | 'Premium') => void;
 }
 
 const API_BASE = '/api/v1';
@@ -63,6 +65,7 @@ export const useAuthStore = create<AuthState>((set, get) => ({
   isLoading: false,
   activeModules: [],
   clientName: '',
+  clientPlan: 'Premium',
   
   login: async (username, password) => {
     set({ isLoading: true });
@@ -100,12 +103,17 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       const activeMods = boot.active_modules || [];
       await initializeModules(activeMods);
 
+      const bootPlanRaw = boot.plan || 'premium';
+      const clientPlan = (bootPlanRaw.charAt(0).toUpperCase() + bootPlanRaw.slice(1)) as 'Basic' | 'Pro' | 'Premium';
+
       localStorage.setItem('bes_token', access_token);
+      localStorage.setItem('bes_plan', bootPlanRaw);
       set({ 
         token: access_token, 
         currentUser: mappedUser, 
         activeModules: activeMods,
         clientName: boot.client_name || '',
+        clientPlan,
         isAuthenticated: true,
         isLoading: false 
       });
@@ -117,7 +125,8 @@ export const useAuthStore = create<AuthState>((set, get) => ({
 
   logout: () => {
     localStorage.removeItem('bes_token');
-    set({ token: null, currentUser: null, isAuthenticated: false, activeModules: [], clientName: '' });
+    localStorage.removeItem('bes_plan');
+    set({ token: null, currentUser: null, isAuthenticated: false, activeModules: [], clientName: '', clientPlan: 'Premium' });
   },
 
   initialize: async () => {
@@ -150,10 +159,16 @@ export const useAuthStore = create<AuthState>((set, get) => ({
       const activeMods = boot.active_modules || [];
       await initializeModules(activeMods);
 
+      const bootPlanRaw = boot.plan || 'premium';
+      const clientPlan = (bootPlanRaw.charAt(0).toUpperCase() + bootPlanRaw.slice(1)) as 'Basic' | 'Pro' | 'Premium';
+
+      localStorage.setItem('bes_plan', bootPlanRaw);
+
       set({ 
         currentUser: mappedUser, 
         activeModules: activeMods,
         clientName: boot.client_name || '',
+        clientPlan,
         isAuthenticated: true, 
         isLoading: false 
       });
@@ -169,6 +184,12 @@ export const useAuthStore = create<AuthState>((set, get) => ({
     if (user.is_superuser) return true;
     
     return checkPermission(user.permissions, required);
+  },
+
+  setClientPlan: (plan) => {
+    localStorage.setItem('bes_plan', plan.toLowerCase());
+    set({ clientPlan: plan });
+    window.dispatchEvent(new Event('bes_plan_changed'));
   }
 }));
 
