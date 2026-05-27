@@ -104,6 +104,7 @@ export const CustomerDrawer: React.FC<CustomerDrawerProps> = ({
       onClose={onClose}
       title={selectedCustomer?.id ? `Edit Customer: ${selectedCustomer.name}` : 'Onboard New Customer'}
       maxWidth="620px"
+      noScroll={true}
       footer={
         <div style={{ display: 'flex', gap: 12, justifyContent: 'flex-end', width: '100%' }}>
           <Button variant="secondary" onClick={onClose}>Cancel</Button>
@@ -111,7 +112,7 @@ export const CustomerDrawer: React.FC<CustomerDrawerProps> = ({
         </div>
       }
     >
-      <TabGroup selectedIndex={activeTab} onChange={setActiveTab}>
+      <TabGroup fillHeight selectedIndex={activeTab} onChange={setActiveTab}>
         <TabList>
           <Tab>General</Tab>
           <Tab>Commercials</Tab>

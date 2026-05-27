@@ -50,6 +50,8 @@ export function useShell() {
     // Standard list of modules in product catalog presentation order
     const allModulesList = [
       { key: 'sales', name: 'Sales' },
+      { key: 'supply_chain', name: 'Supply Chain' },
+      { key: 'inventory', name: 'Inventory' },
       { key: 'settings', name: 'Settings' }
     ];
 
@@ -80,7 +82,7 @@ export function useShell() {
 
   const toggleModule = (name: string) => {
     // Find if the clicked item is a top-level module or a sub-item
-    let targetModule = modules.find(m => m.name === name);
+    const targetModule = modules.find(m => m.name === name);
     let parentModule = targetModule;
     
     if (!targetModule) {

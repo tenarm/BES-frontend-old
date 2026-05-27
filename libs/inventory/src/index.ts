@@ -11,7 +11,13 @@ export function initInventoryModule() {
   ComponentRegistry.registerLazy('Route_Inventory', () =>
     import('./lib/inventory-home').then(m => ({ default: m.InventoryHomePage }))
   );
+
+  // Register Item Master sub-menu Route key matching RESOURCE_NAMES.item_master
+  ComponentRegistry.registerLazy('Route_Item Master', () =>
+    import('./lib/item-master/item-master').then(m => ({ default: m.ItemMasterPage }))
+  );
 }
 
 // Re-export for direct usage if needed
 export { InventoryHomePage } from './lib/inventory-home';
+export { ItemMasterPage } from './lib/item-master/item-master';

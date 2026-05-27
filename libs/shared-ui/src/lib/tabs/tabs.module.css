@@ -4,11 +4,37 @@
   width: 100%;
 }
 
+.tabGroup.fillHeight {
+  height: 100%;
+  flex: 1;
+  min-height: 0;
+}
+
+.tabGroup.fillHeight .tabPanels {
+  flex: 1;
+  overflow-y: auto;
+  min-height: 0;
+  padding-bottom: var(--ui-spacing-lg, 16px);
+}
+
+.tabGroup.fillHeight .tabPanel {
+  height: 100%;
+}
+
 .tabList {
   display: flex;
   border-bottom: 1px solid var(--ui-border, #e2e8f0);
   gap: var(--ui-spacing-sm, 8px);
   margin-bottom: var(--ui-spacing-lg, 16px);
+  overflow-x: auto;
+  white-space: nowrap;
+  scrollbar-width: none; /* Hide scrollbar Firefox */
+  -ms-overflow-style: none; /* Hide scrollbar IE/Edge */
+  flex-shrink: 0;
+}
+
+.tabList::-webkit-scrollbar {
+  display: none; /* Hide scrollbar Chrome/Safari */
 }
 
 .tab {
@@ -26,6 +52,7 @@
   align-items: center;
   justify-content: center;
   gap: var(--ui-spacing-2xs, 4px);
+  flex-shrink: 0;
 }
 
 .tab:hover:not(.disabled) {

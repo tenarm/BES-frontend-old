@@ -2,12 +2,20 @@
 export const MODULE_NAMES: Record<string, string> = {
   home: 'Home',
   sales: 'Sales',
-  settings: 'Settings'
+  settings: 'Settings',
+  supply_chain: 'Supply Chain',
+  inventory: 'Inventory'
 };
 
 export const RESOURCE_NAMES: Record<string, string> = {
   // Sales
   customer_master: 'Customer Master',
+
+  // Supply Chain
+  supplier_master: 'Supplier Master',
+
+  // Inventory
+  item_master: 'Item Master',
 
   // Settings
   company_setup: 'Company / Entity Setup',

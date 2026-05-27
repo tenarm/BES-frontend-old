@@ -1,3 +1,4 @@
+/* eslint-disable playwright/no-standalone-expect */
 import { describe, it, expect } from 'vitest';
 import { useAuthStore } from './auth-store';
 

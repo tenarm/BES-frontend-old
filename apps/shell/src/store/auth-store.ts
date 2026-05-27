@@ -37,23 +37,24 @@ const initializeModules = async (activeMods: string[]) => {
     const { initSalesModule } = await import('@bes/sales');
     initSalesModule();
   }
+
+  if (activeMods.includes('supply_chain')) {
+    const { initSupplyChainModule } = await import('@bes/supply-chain');
+    initSupplyChainModule();
+  }
+  if (activeMods.includes('inventory')) {
+    const { initInventoryModule } = await import('@bes/inventory');
+    initInventoryModule();
+  }
   /*
   // To add other modules back in the future, uncomment these:
   if (activeMods.includes('finance')) {
     const { initFinanceModule } = await import('@bes/finance');
     initFinanceModule();
   }
-  if (activeMods.includes('inventory')) {
-    const { initInventoryModule } = await import('@bes/inventory');
-    initInventoryModule();
-  }
   if (activeMods.includes('hr')) {
     const { initHrModule } = await import('@bes/hr');
     initHrModule();
-  }
-  if (activeMods.includes('supply_chain')) {
-    const { initSupplyChainModule } = await import('@bes/supply-chain');
-    initSupplyChainModule();
   }
   */
 };

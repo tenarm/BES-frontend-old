@@ -14,9 +14,10 @@ export interface TabGroupProps {
   selectedIndex?: number;
   onChange?: (index: number) => void;
   className?: string;
+  fillHeight?: boolean;
 }
 
-export function TabGroup({ children, defaultIndex = 0, selectedIndex, onChange, className }: TabGroupProps) {
+export function TabGroup({ children, defaultIndex = 0, selectedIndex, onChange, className, fillHeight = false }: TabGroupProps) {
   const [localIndex, setLocalIndex] = useState(defaultIndex);
   const isControlled = selectedIndex !== undefined;
   const activeIndex = isControlled ? selectedIndex : localIndex;
@@ -32,7 +33,7 @@ export function TabGroup({ children, defaultIndex = 0, selectedIndex, onChange, 
 
   return (
     <TabContext.Provider value={{ selectedIndex: activeIndex, setSelectedIndex }}>
-      <div className={`${styles.tabGroup} ${className || ''}`}>{children}</div>
+      <div className={`${styles.tabGroup} ${fillHeight ? styles.fillHeight : ''} ${className || ''}`}>{children}</div>
     </TabContext.Provider>
   );
 }
