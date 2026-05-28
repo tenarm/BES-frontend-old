@@ -2,8 +2,8 @@
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--ui-warning, #f59e0b); /* Amber warning lock color */
-  margin-left: var(--ui-spacing-2xs, 4px);
+  color: var(--wp-warning, #d97706);
+  margin-left: var(--wp-spacing-xs, 4px);
   vertical-align: middle;
   animation: pulseLock 3s infinite ease-in-out;
 }
@@ -16,6 +16,6 @@
   50% {
     transform: scale(1.15);
     opacity: 1;
-    filter: drop-shadow(0 0 2px rgba(245, 158, 11, 0.4));
+    filter: drop-shadow(0 0 2px rgba(217, 119, 6, 0.4));
   }
 }

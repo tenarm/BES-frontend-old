@@ -2,12 +2,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: var(--ui-radius-full);
-  color: var(--ui-white);
+  border-radius: var(--wp-radius-full);
+  color: #ffffff;
   font-weight: 600;
   user-select: none;
   cursor: pointer;
-  transition: transform var(--ui-transition-fast);
+  transition: transform var(--wp-motion-exit);
 }
 
 .avatar:hover {
@@ -17,17 +17,17 @@
 .sm {
   width: 28px;
   height: 28px;
-  font-size: var(--ui-text-xs);
+  font-size: var(--wp-text-xs);
 }
 
 .md {
   width: 36px;
   height: 36px;
-  font-size: var(--ui-text-sm);
+  font-size: var(--wp-text-sm);
 }
 
 .lg {
   width: 48px;
   height: 48px;
-  font-size: var(--ui-text-base);
+  font-size: var(--wp-text-base);
 }

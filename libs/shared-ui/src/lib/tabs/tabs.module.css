@@ -14,7 +14,7 @@
   flex: 1;
   overflow-y: auto;
   min-height: 0;
-  padding-bottom: var(--ui-spacing-lg, 16px);
+  padding-bottom: var(--wp-spacing-lg, 16px);
 }
 
 .tabGroup.fillHeight .tabPanel {
@@ -23,9 +23,9 @@
 
 .tabList {
   display: flex;
-  border-bottom: 1px solid var(--ui-border, #e2e8f0);
-  gap: var(--ui-spacing-sm, 8px);
-  margin-bottom: var(--ui-spacing-lg, 16px);
+  border-bottom: 1px solid var(--wp-border, #e7e5e4);
+  gap: var(--wp-spacing-md, 8px);
+  margin-bottom: var(--wp-spacing-lg, 16px);
   overflow-x: auto;
   white-space: nowrap;
   scrollbar-width: none; /* Hide scrollbar Firefox */
@@ -41,32 +41,32 @@
   background: none;
   border: none;
   border-bottom: 2px solid transparent;
-  padding: var(--ui-spacing-sm, 8px) var(--ui-spacing-lg, 16px);
-  font-family: var(--ui-font-sans, inherit);
-  font-size: var(--ui-text-sm, 13px);
-  font-weight: var(--ui-weight-medium, 500);
-  color: var(--ui-gray-500, #64748b);
+  padding: var(--wp-spacing-md, 8px) var(--wp-spacing-lg, 16px);
+  font-family: var(--wp-font-body, inherit);
+  font-size: var(--wp-text-sm, 13px);
+  font-weight: var(--wp-weight-medium, 500);
+  color: var(--wp-stone-500, #78716c);
   cursor: pointer;
-  transition: all var(--ui-transition-fast, 100ms) ease-in-out;
+  transition: all var(--wp-motion-exit, 100ms) ease-in-out;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: var(--ui-spacing-2xs, 4px);
+  gap: var(--wp-spacing-xs, 4px);
   flex-shrink: 0;
 }
 
 .tab:hover:not(.disabled) {
-  color: var(--ui-primary, #162867);
-  border-bottom-color: var(--ui-gray-300, #cbd5e1);
+  color: var(--wp-primary, #1a1a2e);
+  border-bottom-color: var(--wp-stone-300, #d6d3d1);
 }
 
 .tab.selected {
-  color: var(--ui-primary, #162867);
-  border-bottom-color: var(--ui-primary, #162867);
+  color: var(--wp-primary, #1a1a2e);
+  border-bottom-color: var(--wp-accent, #e07a5f);
 }
 
 .tab.disabled {
-  color: var(--ui-gray-300, #cbd5e1);
+  color: var(--wp-stone-300, #d6d3d1);
   cursor: not-allowed;
 }
 
@@ -75,7 +75,7 @@
 }
 
 .tabPanel {
-  animation: fadeIn var(--ui-transition-normal, 200ms) ease-in-out;
+  animation: fadeIn var(--wp-motion-enter, 200ms) ease-in-out;
 }
 
 @keyframes fadeIn {

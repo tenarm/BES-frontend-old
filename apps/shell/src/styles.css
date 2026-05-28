@@ -2,9 +2,9 @@
 
 body {
   margin: 0;
-  font-family: var(--ui-font-sans);
-  background-color: var(--ui-surface-main);
-  color: var(--ui-gray-900);
+  font-family: var(--wp-font-body);
+  background-color: var(--wp-surface-base);
+  color: var(--wp-stone-900);
   overflow: hidden;
 }
 
@@ -13,10 +13,10 @@ body {
 .logo {
   display: flex;
   align-items: center;
-  gap: var(--ui-spacing-sm);
+  gap: var(--wp-spacing-md);
   font-weight: 700;
-  font-size: var(--ui-text-lg);
-  color: var(--ui-primary);
+  font-size: var(--wp-text-lg);
+  color: var(--wp-primary);
   letter-spacing: -0.01em;
 }
 
@@ -31,13 +31,13 @@ body {
 .main-content {
   display: flex;
   flex-direction: column;
-  gap: var(--ui-spacing-lg);
+  gap: var(--wp-spacing-xl);
 }
 
 .content-header h2 {
-  font-size: var(--ui-text-2xl);
+  font-size: var(--wp-text-2xl);
   font-weight: 600;
-  color: var(--ui-gray-900);
+  color: var(--wp-stone-900);
   margin: 0;
 }
 
@@ -45,25 +45,25 @@ body {
 .dashboard-grid {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: var(--ui-spacing-lg);
+  gap: var(--wp-spacing-xl);
 }
 
 .role-selector {
-  margin-right: var(--ui-spacing-md);
+  margin-right: var(--wp-spacing-lg);
   padding: 6px 12px;
-  border-radius: var(--ui-radius-md);
-  border: 1px solid var(--ui-gray-200);
-  background-color: var(--ui-surface-main);
-  color: var(--ui-gray-800);
+  border-radius: var(--wp-radius-md);
+  border: 1px solid var(--wp-stone-200);
+  background-color: var(--wp-surface-base);
+  color: var(--wp-stone-800);
   font-family: inherit;
-  font-size: var(--ui-text-sm);
+  font-size: var(--wp-text-sm);
   font-weight: 500;
   cursor: pointer;
   outline: none;
-  transition: all var(--ui-transition-fast);
+  transition: all var(--wp-motion-exit);
 }
 
 .role-selector:hover {
-  border-color: var(--ui-primary);
-  background-color: var(--ui-gray-50);
+  border-color: var(--wp-primary);
+  background-color: var(--wp-stone-50);
 }

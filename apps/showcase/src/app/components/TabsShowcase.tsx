@@ -1,5 +1,5 @@
 import React from 'react';
-import { TabGroup, TabList, Tab, TabPanels, TabPanel, PremiumLockIndicator } from '@bes/shared-ui';
+import { TabGroup, TabList, Tab, TabPanels, TabPanel, PremiumLockIndicator } from '@tenarm/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable, PageHeader, CodeSnippet } from './ShowcaseSection';
 
 export const TabsShowcase = () => {
@@ -84,7 +84,7 @@ export const TabsShowcase = () => {
       </ShowcaseSection>
 
       <ShowcaseSection title="Usage">
-        <CodeSnippet code={`import { TabGroup, TabList, Tab, TabPanels, TabPanel, PremiumLockIndicator } from '@bes/shared-ui';
+        <CodeSnippet code={`import { TabGroup, TabList, Tab, TabPanels, TabPanel, PremiumLockIndicator } from '@tenarm/shared-ui';
 
 <TabGroup defaultIndex={0} onChange={(idx) => console.log('Tab changed:', idx)}>
   <TabList>

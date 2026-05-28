@@ -4,13 +4,13 @@
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(15, 23, 42, 0.65);
+  background: rgba(28, 25, 23, 0.65);
   backdrop-filter: blur(8px);
-  z-index: 9999;
+  z-index: var(--wp-z-modal, 9999);
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: var(--ui-spacing-lg);
+  padding: var(--wp-spacing-lg);
   opacity: 0;
   visibility: hidden;
   transition: opacity 0.2s ease, visibility 0.2s ease;
@@ -22,13 +22,13 @@
 }
 
 .modal {
-  background: var(--ui-white);
-  border-radius: var(--ui-radius-lg);
-  box-shadow: var(--ui-shadow-lg), 0 0 0 1px rgba(0, 0, 0, 0.05);
+  background: #ffffff;
+  border-radius: var(--wp-radius-lg);
+  box-shadow: var(--wp-shadow-lg), 0 0 0 1px rgba(0, 0, 0, 0.05);
   width: 100%;
   display: flex;
   flex-direction: column;
-  max-height: calc(100% - var(--ui-spacing-xl) * 2);
+  max-height: calc(100% - var(--wp-spacing-xl) * 2);
   transform: scale(0.95);
   transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
 }
@@ -38,8 +38,8 @@
 }
 
 .header {
-  padding: var(--ui-spacing-lg);
-  border-bottom: 1px solid var(--ui-border);
+  padding: var(--wp-spacing-lg);
+  border-bottom: 1px solid var(--wp-border);
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -47,9 +47,9 @@
 
 .title {
   margin: 0;
-  font-size: var(--ui-text-lg);
-  color: var(--ui-gray-900);
-  font-weight: var(--ui-weight-semibold);
+  font-size: var(--wp-text-lg);
+  color: var(--wp-stone-900);
+  font-weight: var(--wp-weight-semibold);
 }
 
 .closeButton {
@@ -57,35 +57,35 @@
   border: none;
   font-size: 1.5rem;
   cursor: pointer;
-  color: var(--ui-gray-400);
+  color: var(--wp-stone-400);
   line-height: 1;
   padding: 0;
   display: flex;
   align-items: center;
   justify-content: center;
-  transition: color var(--ui-transition-fast);
+  transition: color var(--wp-motion-exit);
 }
 
 .closeButton:hover {
-  color: var(--ui-error);
+  color: var(--wp-error);
 }
 
 .body {
   flex: 1;
-  padding: var(--ui-spacing-lg);
+  padding: var(--wp-spacing-lg);
   overflow-y: auto;
-  color: var(--ui-gray-600);
-  font-size: var(--ui-text-sm);
-  line-height: var(--ui-leading-normal);
+  color: var(--wp-stone-600);
+  font-size: var(--wp-text-sm);
+  line-height: var(--wp-leading-normal);
 }
 
 .footer {
-  padding: var(--ui-spacing-lg);
-  border-top: 1px solid var(--ui-border);
+  padding: var(--wp-spacing-lg);
+  border-top: 1px solid var(--wp-border);
   display: flex;
   justify-content: flex-end;
-  gap: var(--ui-spacing-md);
-  background: var(--ui-gray-50);
-  border-bottom-left-radius: var(--ui-radius-lg);
-  border-bottom-right-radius: var(--ui-radius-lg);
+  gap: var(--wp-spacing-lg);
+  background: var(--wp-stone-50);
+  border-bottom-left-radius: var(--wp-radius-lg);
+  border-bottom-right-radius: var(--wp-radius-lg);
 }

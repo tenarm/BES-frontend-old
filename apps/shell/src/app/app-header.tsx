@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, Search, Settings, Hexagon } from 'lucide-react';
-import { Button, Input, Avatar, Header, NotificationBell } from '@bes/shared-ui';
+import { Button, Input, Avatar, Header, NotificationBell } from '@tenarm/shared-ui';
 
 interface AppHeaderProps {
   toggleSidebar: () => void;
@@ -17,7 +17,7 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ toggleSidebar, currentUser
             <Menu size={24} />
           </Button>
           <div className="logo">
-            <Hexagon className="logo-icon" size={24} color="var(--ui-primary)" fill="var(--ui-primary)" fillOpacity={0.2} />
+            <Hexagon className="logo-icon" size={24} color="var(--wp-primary)" fill="var(--wp-primary)" fillOpacity={0.2} />
             <span className="logo-text">BES Factory</span>
           </div>
         </>
@@ -33,13 +33,13 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ toggleSidebar, currentUser
         <>
           <NotificationBell />
           <div style={{ textAlign: 'right', marginRight: 12, marginLeft: 12 }}>
-            <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--ui-gray-900)' }}>{currentUser?.full_name}</div>
-            <div style={{ fontSize: '0.75rem', color: 'var(--ui-gray-500)' }}>@{currentUser?.username}</div>
+            <div style={{ fontSize: '0.85rem', fontWeight: 600, color: 'var(--wp-stone-900)' }}>{currentUser?.full_name}</div>
+            <div style={{ fontSize: '0.75rem', color: 'var(--wp-stone-500)' }}>@{currentUser?.username}</div>
           </div>
           <Button variant="ghost" size="sm" onClick={logout} title="Sign Out">
             <Settings size={20} />
           </Button>
-          <Avatar initials={currentUser?.username?.charAt(0).toUpperCase() || "U"} color="var(--ui-primary)" />
+          <Avatar initials={currentUser?.username?.charAt(0).toUpperCase() || "U"} color="var(--wp-primary)" />
         </>
       }
     />

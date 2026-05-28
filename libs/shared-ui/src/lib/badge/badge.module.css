@@ -1,49 +1,49 @@
 .badge {
   display: inline-flex;
   align-items: center;
-  font-family: var(--ui-font-sans);
-  font-size: var(--ui-text-3xs);
-  font-weight: var(--ui-weight-bold);
+  font-family: var(--wp-font-body);
+  font-size: var(--wp-text-xs);
+  font-weight: var(--wp-weight-bold);
   line-height: 1;
-  padding: var(--ui-spacing-3xs) var(--ui-spacing-xs);
-  border-radius: var(--ui-radius-full);
+  padding: var(--wp-spacing-xs) var(--wp-spacing-sm);
+  border-radius: var(--wp-radius-full);
   white-space: nowrap;
   text-transform: uppercase;
   letter-spacing: 0.025em;
 }
 
 .default {
-  background-color: var(--ui-gray-100);
-  color: var(--ui-gray-800);
+  background-color: var(--wp-stone-100);
+  color: var(--wp-stone-800);
 }
 
 .primary {
-  background-color: var(--ui-primary-light);
-  color: var(--ui-primary);
+  background-color: var(--wp-primary-light);
+  color: var(--wp-primary);
 }
 
 .success {
-  background-color: var(--ui-success-bg);
-  color: var(--ui-success);
+  background-color: var(--wp-success-light);
+  color: var(--wp-success);
 }
 
 .warning {
-  background-color: var(--ui-warning-bg);
-  color: var(--ui-warning);
+  background-color: var(--wp-warning-light);
+  color: var(--wp-warning);
 }
 
 .error {
-  background-color: var(--ui-error-bg);
-  color: var(--ui-error);
+  background-color: var(--wp-error-light);
+  color: var(--wp-error);
 }
 
 .info {
-  background-color: var(--ui-info-bg);
-  color: var(--ui-info);
+  background-color: var(--wp-info-light);
+  color: var(--wp-info);
 }
 
 .outline {
   background-color: transparent;
-  border: 1px solid var(--ui-gray-300);
-  color: var(--ui-gray-800);
+  border: 1px solid var(--wp-stone-300);
+  color: var(--wp-stone-800);
 }

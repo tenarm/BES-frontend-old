@@ -1,5 +1,5 @@
 import React from 'react';
-import { Avatar } from '@bes/shared-ui';
+import { Avatar } from '@tenarm/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable, PageHeader, CodeSnippet } from './ShowcaseSection';
 
 export const AvatarShowcase = () => {
@@ -54,7 +54,7 @@ export const AvatarShowcase = () => {
       </ShowcaseSection>
 
       <ShowcaseSection title="Usage">
-        <CodeSnippet code={`import { Avatar } from '@bes/shared-ui';
+        <CodeSnippet code={`import { Avatar } from '@tenarm/shared-ui';
 
 // Default
 <Avatar initials="JD" />

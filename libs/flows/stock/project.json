@@ -1,0 +1,7 @@
+{
+  "name": "flows-stock",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/flows/stock/src",
+  "projectType": "library",
+  "tags": ["scope:flows", "type:lib"]
+}

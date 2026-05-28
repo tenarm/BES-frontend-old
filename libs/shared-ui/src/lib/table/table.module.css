@@ -1,38 +1,38 @@
 .tableContainer {
   width: 100%;
   overflow-x: auto;
-  border: 1px solid var(--ui-gray-200);
-  border-radius: var(--ui-radius-lg);
-  box-shadow: var(--ui-shadow-sm);
-  background-color: var(--ui-white);
+  border: 1px solid var(--wp-stone-200);
+  border-radius: var(--wp-radius-lg);
+  box-shadow: var(--wp-shadow-sm);
+  background-color: var(--wp-surface-card);
 }
 
 .table {
   width: 100%;
   border-collapse: collapse;
-  font-family: var(--ui-font-sans);
-  font-size: var(--ui-text-sm);
+  font-family: var(--wp-font-body);
+  font-size: var(--wp-text-sm);
   text-align: left;
 }
 
 .thead, .table thead {
-  background-color: var(--ui-gray-50);
-  border-bottom: 1px solid var(--ui-gray-200);
+  background-color: var(--wp-stone-50);
+  border-bottom: 1px solid var(--wp-stone-200);
 }
 
 .th, .table th {
-  padding: var(--ui-spacing-md) var(--ui-spacing-xl);
-  font-weight: var(--ui-weight-bold);
-  color: var(--ui-gray-500);
+  padding: var(--wp-spacing-lg) var(--wp-spacing-xl);
+  font-weight: var(--wp-weight-bold);
+  color: var(--wp-stone-500);
   text-transform: uppercase;
-  font-size: var(--ui-text-2xs);
+  font-size: var(--wp-text-xs);
   letter-spacing: 0.075em;
   white-space: nowrap;
 }
 
 .tr, .table tr {
-  border-bottom: 1px solid var(--ui-gray-100);
-  transition: all var(--ui-transition-normal);
+  border-bottom: 1px solid var(--wp-stone-100);
+  transition: all var(--wp-motion-enter);
 }
 
 .tr.clickable, .table tr.clickable {
@@ -40,12 +40,12 @@
 }
 
 .tr:hover, .table tr:hover {
-  background-color: rgba(22, 40, 103, 0.02);
+  background-color: rgba(26, 26, 46, 0.02);
 }
 
 .td, .table td {
-  padding: var(--ui-spacing-md) var(--ui-spacing-xl);
-  color: var(--ui-gray-800);
+  padding: var(--wp-spacing-lg) var(--wp-spacing-xl);
+  color: var(--wp-stone-800);
   vertical-align: middle;
 }
 
@@ -53,4 +53,3 @@
 .indent {
   display: inline-block;
 }
-

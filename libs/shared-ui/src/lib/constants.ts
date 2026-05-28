@@ -1,32 +1,72 @@
-// Map module keys to Display Names
-export const MODULE_NAMES: Record<string, string> = {
-  home: 'Home',
-  sales: 'Sales',
+/** Flow identifiers and display names */
+export const FLOW_NAMES: Record<string, string> = {
+  sell: 'Sell',
+  buy: 'Buy',
+  stock: 'Stock',
+  money: 'Money',
+  people: 'People',
+  customers: 'Customers',
+  manufacture: 'Manufacture',
+  projects: 'Projects',
+  assets: 'Assets',
+  support: 'Support',
+};
+
+/** Data Hub entity display names */
+export const DATA_HUB_NAMES: Record<string, string> = {
+  customers: 'Customers',
+  suppliers: 'Suppliers',
+  products: 'Products',
+  accounts: 'Accounts',
+  employees: 'Employees',
+  contacts: 'Contacts',
+};
+
+/** System section items */
+export const SYSTEM_NAMES: Record<string, string> = {
   settings: 'Settings',
-  supply_chain: 'Supply Chain',
-  inventory: 'Inventory'
+  pipelines: 'Pipelines',
 };
 
-export const RESOURCE_NAMES: Record<string, string> = {
-  // Sales
-  customer_master: 'Customer Master',
+/** ComponentRegistry key builders */
+export const ROUTE_KEYS = {
+  flow: (flowId: string) =>
+    `Flow_${flowId.charAt(0).toUpperCase() + flowId.slice(1)}`,
+  dataHub: (entity: string) =>
+    `DataHub_${entity.charAt(0).toUpperCase() + entity.slice(1)}`,
+  setting: (name: string) =>
+    `Setting_${name.charAt(0).toUpperCase() + name.slice(1)}`,
+} as const;
 
-  // Supply Chain
-  supplier_master: 'Supplier Master',
-
-  // Inventory
-  item_master: 'Item Master',
-
-  // Settings
-  company_setup: 'Company / Entity Setup',
-  user_management: 'User Management & RBAC',
-  module_toggle: 'Module Enable / Disable',
-  workflow_config: 'Approval Workflow Configuration',
-  notification_rules: 'Notification & Alert Rules',
-  number_series: 'Number Series / Sequence Management',
-  email_templates: 'Email & Communication Templates',
-  audit_log: 'System Audit Log & Activity Trail'
+/** Flow icons (emoji) */
+export const FLOW_ICONS: Record<string, string> = {
+  sell: '💰',
+  buy: '🛒',
+  stock: '📦',
+  money: '💳',
+  people: '👥',
+  customers: '🤝',
+  manufacture: '🏭',
+  projects: '📋',
+  assets: '🏗️',
+  support: '🎧',
 };
 
-export const capitalize = (s: string) => RESOURCE_NAMES[s] || (s.charAt(0).toUpperCase() + s.slice(1));
+/** Flow tier requirements */
+export const FLOW_TIERS: Record<string, 'basic' | 'pro' | 'premium'> = {
+  sell: 'basic',
+  buy: 'basic',
+  stock: 'basic',
+  money: 'pro',
+  people: 'pro',
+  customers: 'pro',
+  manufacture: 'premium',
+  projects: 'premium',
+  assets: 'premium',
+  support: 'premium',
+};
 
+/** Utility */
+export function capitalize(s: string): string {
+  return s.charAt(0).toUpperCase() + s.slice(1);
+}

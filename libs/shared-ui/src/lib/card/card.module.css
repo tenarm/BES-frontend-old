@@ -1,41 +1,41 @@
 .card {
-  background-color: var(--ui-white);
-  border: 1px solid var(--ui-gray-200);
-  border-radius: var(--ui-radius-md);
-  box-shadow: var(--ui-shadow-sm);
+  background-color: var(--wp-surface-card);
+  border: 1px solid var(--wp-stone-200);
+  border-radius: var(--wp-radius-md);
+  box-shadow: var(--wp-shadow-sm);
   display: flex;
   flex-direction: column;
   overflow: hidden;
-  font-family: var(--ui-font-sans);
+  font-family: var(--wp-font-body);
 }
 
 .header {
-  padding: var(--ui-spacing-sm) var(--ui-spacing-md);
-  border-bottom: 1px solid var(--ui-gray-100);
+  padding: var(--wp-spacing-md) var(--wp-spacing-lg);
+  border-bottom: 1px solid var(--wp-stone-100);
 }
 
 .title {
   margin: 0;
-  font-size: var(--ui-text-sm);
-  font-weight: var(--ui-weight-bold);
-  color: var(--ui-gray-900);
+  font-size: var(--wp-text-sm);
+  font-weight: var(--wp-weight-bold);
+  color: var(--wp-stone-900);
 }
 
 .description {
-  margin: var(--ui-spacing-3xs) 0 0 0;
-  font-size: var(--ui-text-2xs);
-  color: var(--ui-gray-500);
+  margin: var(--wp-spacing-xs) 0 0 0;
+  font-size: var(--wp-text-xs);
+  color: var(--wp-stone-500);
 }
 
 .body {
-  padding: var(--ui-spacing-md);
+  padding: var(--wp-spacing-lg);
   flex: 1;
 }
 
 .footer {
-  padding: var(--ui-spacing-sm) var(--ui-spacing-md);
-  background-color: var(--ui-gray-50);
-  border-top: 1px solid var(--ui-gray-100);
+  padding: var(--wp-spacing-md) var(--wp-spacing-lg);
+  background-color: var(--wp-stone-50);
+  border-top: 1px solid var(--wp-stone-100);
   display: flex;
   align-items: center;
 }

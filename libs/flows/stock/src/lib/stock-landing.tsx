@@ -1,0 +1,8 @@
+export default function StockLanding() {
+  return (
+    <div style={{ padding: 'var(--wp-spacing-xl, 32px)' }}>
+      <h1 style={{ fontFamily: 'var(--wp-font-display)' }}>Stock Flow</h1>
+      <p style={{ color: 'var(--wp-stone-500)' }}>Coming soon — will be built during flow planning.</p>
+    </div>
+  );
+}

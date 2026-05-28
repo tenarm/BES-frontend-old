@@ -3,9 +3,7 @@
   "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/settings/src",
   "projectType": "library",
-  "tags": [
-    "scope:settings"
-  ],
+  "tags": [],
   "// targets": "to see all targets run: nx show project settings --web",
   "targets": {}
 }

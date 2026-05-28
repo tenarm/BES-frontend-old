@@ -1,4 +1,4 @@
-import { ComponentRegistry } from '@bes/shared-ui';
+import { ComponentRegistry } from '@tenarm/shared-ui';
 
 /**
  * Initialize the module and register its components.
@@ -10,16 +10,6 @@ export function initSettingsModule() {
   // Use registerLazy for better code-splitting and performance
   ComponentRegistry.registerLazy('Route_Settings', () =>
     import('./lib/settings-home').then(m => ({ default: m.SettingsHomePage }))
-  );
-
-  // Map sub-menu Route key matching RESOURCE_NAMES.company_setup
-  ComponentRegistry.registerLazy('Route_Company / Entity Setup', () =>
-    import('./lib/settings-home').then(m => ({ default: m.SettingsHomePage }))
-  );
-
-  // Map sub-menu Route key matching RESOURCE_NAMES.user_management
-  ComponentRegistry.registerLazy('Route_User Management & RBAC', () =>
-    import('./lib/user-management').then(m => ({ default: m.UserManagementPage }))
   );
 }
 

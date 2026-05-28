@@ -1,10 +1,10 @@
 .alert {
   display: flex;
-  padding: var(--spacing-md);
-  border-radius: var(--ui-radius-md);
-  font-family: var(--ui-font-sans);
+  padding: var(--wp-spacing-md);
+  border-radius: var(--wp-radius-md);
+  font-family: var(--wp-font-body);
   border: 1px solid transparent;
-  gap: var(--spacing-sm);
+  gap: var(--wp-spacing-sm);
 }
 
 .icon {
@@ -19,48 +19,48 @@
 
 .title {
   margin: 0 0 0.25rem 0;
-  font-size: var(--ui-text-sm);
+  font-size: var(--wp-text-sm);
   font-weight: 600;
 }
 
 .description {
   margin: 0;
-  font-size: var(--ui-text-sm);
+  font-size: var(--wp-text-sm);
   opacity: 0.9;
 }
 
 /* Variants */
 .info {
-  background-color: var(--ui-info-bg);
-  border-color: rgba(59, 130, 246, 0.2);
-  color: var(--ui-info);
+  background-color: var(--wp-info-light);
+  border-color: rgba(37, 99, 235, 0.2);
+  color: var(--wp-info);
 }
 .info .description {
   color: #1e3a8a;
 }
 
 .success {
-  background-color: var(--ui-success-bg);
-  border-color: rgba(16, 185, 129, 0.2);
-  color: var(--ui-success);
+  background-color: var(--wp-success-light);
+  border-color: rgba(5, 150, 105, 0.2);
+  color: var(--wp-success);
 }
 .success .description {
   color: #064e3b;
 }
 
 .warning {
-  background-color: var(--ui-warning-bg);
-  border-color: rgba(245, 158, 11, 0.2);
-  color: var(--ui-warning);
+  background-color: var(--wp-warning-light);
+  border-color: rgba(217, 119, 6, 0.2);
+  color: var(--wp-warning);
 }
 .warning .description {
   color: #78350f;
 }
 
 .error {
-  background-color: var(--ui-error-bg);
-  border-color: rgba(239, 68, 68, 0.2);
-  color: var(--ui-error);
+  background-color: var(--wp-error-light);
+  border-color: rgba(220, 38, 38, 0.2);
+  color: var(--wp-error);
 }
 .error .description {
   color: #7f1d1d;

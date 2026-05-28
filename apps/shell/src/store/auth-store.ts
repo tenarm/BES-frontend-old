@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { checkPermission, NestedPermissions } from '@bes/shared-ui';
+import { checkPermission, NestedPermissions } from '@tenarm/shared-ui';
 
 export interface User {
   id: string;
@@ -29,32 +29,38 @@ const API_BASE = '/api/v1';
 const initializeModules = async (activeMods: string[]) => {
   // Dynamically initialize settings module based on bootstrap
   if (activeMods.includes('settings')) {
-    const { initSettingsModule } = await import('@bes/settings');
+    const { initSettingsModule } = await import('../../../../libs/settings/src');
     initSettingsModule();
   }
 
   if (activeMods.includes('sales')) {
-    const { initSalesModule } = await import('@bes/sales');
-    initSalesModule();
+    const { initSellFlow } = await import('@tenarm/flows-sell');
+    initSellFlow();
+
+    const { initCustomersDataHub } = await import('@tenarm/data-hub-customers');
+    initCustomersDataHub();
+
+    const { initProductsDataHub } = await import('@tenarm/data-hub-products');
+    initProductsDataHub();
   }
 
   if (activeMods.includes('supply_chain')) {
-    const { initSupplyChainModule } = await import('@bes/supply-chain');
-    initSupplyChainModule();
+    const { initBuyFlow } = await import('@tenarm/flows-buy');
+    initBuyFlow();
   }
   if (activeMods.includes('inventory')) {
-    const { initInventoryModule } = await import('@bes/inventory');
-    initInventoryModule();
+    const { initStockFlow } = await import('@tenarm/flows-stock');
+    initStockFlow();
   }
   /*
   // To add other modules back in the future, uncomment these:
   if (activeMods.includes('finance')) {
-    const { initFinanceModule } = await import('@bes/finance');
-    initFinanceModule();
+    const { initMoneyFlow } = await import('@tenarm/flows-money');
+    initMoneyFlow();
   }
   if (activeMods.includes('hr')) {
-    const { initHrModule } = await import('@bes/hr');
-    initHrModule();
+    const { initPeopleFlow } = await import('@tenarm/flows-people');
+    initPeopleFlow();
   }
   */
 };

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Skeleton } from '@bes/shared-ui';
+import { Skeleton } from '@tenarm/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable, PageHeader, CodeSnippet } from './ShowcaseSection';
 
 // ─── Sub-components ───────────────────────────────────────────────────────────
@@ -322,7 +322,7 @@ export const SkeletonShowcase: React.FC = () => {
 
       <PageHeader
         title="Skeleton"
-        badge="@bes/shared-ui"
+        badge="@tenarm/shared-ui"
         description="Skeleton is a placeholder component used to represent content while data is loading. It prevents layout shift and gives users an instant sense of what is coming."
       />
 

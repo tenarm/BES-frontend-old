@@ -12,7 +12,7 @@
 }
 
 .left {
-  gap: var(--ui-spacing-md);
+  gap: var(--wp-spacing-lg);
   min-width: 200px;
 }
 
@@ -23,7 +23,7 @@
 }
 
 .right {
-  gap: var(--ui-spacing-sm);
+  gap: var(--wp-spacing-md);
   min-width: 200px;
   justify-content: flex-end;
 }

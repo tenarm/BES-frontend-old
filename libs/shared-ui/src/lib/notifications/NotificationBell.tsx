@@ -265,15 +265,15 @@ export const NotificationBell: React.FC = () => {
   const getIcon = (title: string) => {
     const t = title.toLowerCase();
     if (t.includes('order') || t.includes('sales')) {
-      return <ShoppingCart size={16} color="var(--ui-primary)" />;
+      return <ShoppingCart size={16} color="var(--wp-primary)" />;
     }
     if (t.includes('alert') || t.includes('warning') || t.includes('error')) {
-      return <AlertTriangle size={16} color="var(--ui-error)" />;
+      return <AlertTriangle size={16} color="var(--wp-error)" />;
     }
     if (t.includes('success') || t.includes('approve')) {
-      return <Check size={16} color="var(--ui-success)" />;
+      return <Check size={16} color="var(--wp-success)" />;
     }
-    return <Info size={16} color="var(--ui-info)" />;
+    return <Info size={16} color="var(--wp-info)" />;
   };
 
   const handleNotificationClick = (item: NotificationItem) => {
@@ -318,7 +318,7 @@ export const NotificationBell: React.FC = () => {
               <div className={styles.emptyState}>
                 <Bell size={32} />
                 <p>All caught up!</p>
-                <span style={{ fontSize: '0.75rem', color: 'var(--ui-gray-400)' }}>
+                <span style={{ fontSize: '0.75rem', color: 'var(--wp-stone-400)' }}>
                   No new notifications.
                 </span>
               </div>
@@ -344,10 +344,10 @@ export const NotificationBell: React.FC = () => {
                       style={{
                         background: 'transparent',
                         border: 'none',
-                        color: 'var(--ui-gray-400)',
+                        color: 'var(--wp-stone-400)',
                         cursor: 'pointer',
                         padding: '4px',
-                        borderRadius: 'var(--ui-radius-sm)',
+                        borderRadius: 'var(--wp-radius-sm)',
                         alignSelf: 'flex-start'
                       }}
                       title="Mark as read"

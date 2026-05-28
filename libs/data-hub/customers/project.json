@@ -1,0 +1,7 @@
+{
+  "name": "data-hub-customers",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/data-hub/customers/src",
+  "projectType": "library",
+  "tags": ["scope:data-hub", "type:lib"]
+}

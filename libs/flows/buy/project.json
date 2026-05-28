@@ -1,0 +1,7 @@
+{
+  "name": "flows-buy",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/flows/buy/src",
+  "projectType": "library",
+  "tags": ["scope:flows", "type:lib"]
+}

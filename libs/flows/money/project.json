@@ -1,0 +1,7 @@
+{
+  "name": "flows-money",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/flows/money/src",
+  "projectType": "library",
+  "tags": ["scope:flows", "type:lib"]
+}

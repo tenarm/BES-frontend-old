@@ -3,8 +3,16 @@
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: var(--ui-spacing-md) 0;
-  transition: width var(--ui-transition-normal);
+  padding: var(--wp-spacing-lg) 0;
+  transition: width var(--wp-motion-enter);
+  overflow-y: auto;
+  /* Hide scrollbar for clean look but keep functionality */
+  scrollbar-width: none; /* Firefox */
+  -ms-overflow-style: none;  /* IE and Edge */
+}
+
+.sidebar::-webkit-scrollbar {
+  display: none; /* Chrome, Safari and Opera */
 }
 
 .collapsed {
@@ -14,8 +22,8 @@
 .items {
   display: flex;
   flex-direction: column;
-  gap: var(--ui-spacing-xs);
-  padding: 0 var(--ui-spacing-sm);
+  gap: var(--wp-spacing-sm);
+  padding: 0 var(--wp-spacing-md);
 }
 
 .group {
@@ -27,21 +35,21 @@
   display: flex;
   align-items: center;
   padding: 10px 12px;
-  border-radius: var(--ui-radius-md);
+  border-radius: var(--wp-radius-md);
   cursor: pointer;
-  color: var(--ui-gray-600);
-  transition: all var(--ui-transition-fast);
+  color: var(--wp-stone-600);
+  transition: all var(--wp-motion-exit);
   user-select: none;
 }
 
 .item:hover {
-  background-color: var(--ui-gray-100);
-  color: var(--ui-gray-900);
+  background-color: var(--wp-stone-100);
+  color: var(--wp-stone-900);
 }
 
 .item.active {
-  background-color: var(--ui-primary-light);
-  color: var(--ui-primary);
+  background-color: var(--wp-accent-muted);
+  color: var(--wp-accent);
   font-weight: 600;
 }
 
@@ -57,7 +65,7 @@
 .name {
   flex: 1;
   margin-left: 12px;
-  font-size: var(--ui-text-sm);
+  font-size: var(--wp-text-sm);
   font-weight: 500;
   white-space: nowrap;
   overflow: hidden;
@@ -87,41 +95,41 @@
 
 .subItem {
   padding: 8px 12px;
-  border-radius: var(--ui-radius-sm);
-  font-size: var(--ui-text-xs);
-  color: var(--ui-gray-500);
+  border-radius: var(--wp-radius-sm);
+  font-size: var(--wp-text-xs);
+  color: var(--wp-stone-500);
   cursor: pointer;
-  transition: all var(--ui-transition-fast);
+  transition: all var(--wp-motion-exit);
 }
 
 .subItem:hover,
 .subItem.active {
-  background-color: var(--ui-gray-100);
-  color: var(--ui-primary);
+  background-color: var(--wp-stone-100);
+  color: var(--wp-accent);
   font-weight: 500;
 }
 
 .subItem.active {
-  background-color: var(--ui-primary-light);
+  background-color: var(--wp-accent-muted);
 }
 
 /* Locked Premium Sidebar Styling */
 .lockedItem {
-  color: var(--ui-gray-400) !important;
+  color: var(--wp-stone-400) !important;
   cursor: pointer;
-  transition: all var(--ui-transition-normal) ease;
+  transition: all var(--wp-motion-enter) ease;
 }
 
 .lockedItem:hover {
-  background-color: rgba(22, 40, 103, 0.02) !important;
-  color: var(--ui-gray-600) !important;
+  background-color: rgba(26, 26, 46, 0.02) !important;
+  color: var(--wp-stone-600) !important;
 }
 
 .lockIcon {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: #f59e0b; /* Amber warning lock color */
+  color: var(--wp-warning);
   margin-left: 8px;
   animation: pulseLock 3s infinite ease-in-out;
 }
@@ -132,3 +140,19 @@
   100% { opacity: 0.6; transform: scale(1); }
 }
 
+/* Sidebar Sections */
+.sectionHeader {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--wp-stone-400);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin: 16px 16px 4px 16px;
+  user-select: none;
+}
+
+.sectionDivider {
+  height: 1px;
+  background-color: var(--wp-stone-200);
+  margin: 8px 16px;
+}

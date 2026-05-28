@@ -1,5 +1,5 @@
 import React from 'react';
-import { Alert } from '@bes/shared-ui';
+import { Alert } from '@tenarm/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable, PageHeader, CodeSnippet } from './ShowcaseSection';
 
 export const AlertShowcase = () => {
@@ -47,7 +47,7 @@ export const AlertShowcase = () => {
       </ShowcaseSection>
 
       <ShowcaseSection title="Usage">
-        <CodeSnippet code={`import { Alert } from '@bes/shared-ui';
+        <CodeSnippet code={`import { Alert } from '@tenarm/shared-ui';
 
 // Info with title
 <Alert variant="info" title="FYI">

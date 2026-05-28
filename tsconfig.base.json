@@ -14,13 +14,17 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "paths": {
-      "@bes/shared-ui": ["./libs/shared-ui/src/index.ts"],
-      "@bes/sales": ["./libs/sales/src/index.ts"],
-      "@bes/inventory": ["./libs/inventory/src/index.ts"],
-      "@bes/hr": ["./libs/hr/src/index.ts"],
-      "@bes/supply-chain": ["./libs/supply-chain/src/index.ts"],
-      "@bes/settings": ["./libs/settings/src/index.ts"],
-      "@bes/finance": ["./libs/finance/src/index.ts"]
+      "@tenarm/shared-ui": ["./libs/shared-ui/src/index.ts"],
+      "@tenarm/flows-sell": ["./libs/flows/sell/src/index.ts"],
+      "@tenarm/flows-buy": ["./libs/flows/buy/src/index.ts"],
+      "@tenarm/flows-stock": ["./libs/flows/stock/src/index.ts"],
+      "@tenarm/flows-money": ["./libs/flows/money/src/index.ts"],
+      "@tenarm/data-hub-customers": ["./libs/data-hub/customers/src/index.ts"],
+      "@tenarm/data-hub-suppliers": ["./libs/data-hub/suppliers/src/index.ts"],
+      "@tenarm/data-hub-products": ["./libs/data-hub/products/src/index.ts"],
+      "@tenarm/data-hub-accounts": ["./libs/data-hub/accounts/src/index.ts"],
+      "@tenarm/dashboard": ["./libs/dashboard/src/index.ts"],
+      "@tenarm/settings": ["./libs/settings/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

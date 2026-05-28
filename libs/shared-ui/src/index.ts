@@ -19,8 +19,6 @@ export * from './lib/avatar/avatar';
 export * from './lib/skeleton/skeleton';
 export * from './lib/table/table';
 export * from './lib/tabs/tabs';
-// Process Transparency (Timeline, ProcessPipeline, PendingAction)
-export * from './lib/process';
 
 // Layout
 export * from './lib/layout/shell-layout';
@@ -34,8 +32,3 @@ export * from './lib/notifications/NotificationBell';
 export * from './lib/error-boundary';
 export * from './lib/constants';
 export * from './lib/rbac';
-
-// AI Copilot Placeholder
-export * from './lib/ai/AICapsule';
-export * from './lib/ai/AIFloatingWindow';
-

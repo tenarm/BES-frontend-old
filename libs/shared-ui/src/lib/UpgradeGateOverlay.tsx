@@ -40,7 +40,7 @@ export const UpgradeGateOverlay: React.FC<UpgradeGateOverlayProps> = ({
       <div style={{
         background: 'white',
         borderRadius: '20px',
-        border: '1px solid var(--ui-gray-200)',
+        border: '1px solid var(--wp-stone-200)',
         boxShadow: '0 20px 40px rgba(22, 40, 103, 0.08)',
         padding: '40px',
         maxWidth: '460px',
@@ -54,7 +54,7 @@ export const UpgradeGateOverlay: React.FC<UpgradeGateOverlayProps> = ({
           alignItems: 'center',
           gap: 6,
           background: 'linear-gradient(135deg, #e0e7ff 0%, #c7d2fe 100%)',
-          color: 'var(--ui-primary)',
+          color: 'var(--wp-primary)',
           padding: '6px 14px',
           borderRadius: '20px',
           fontSize: '0.75rem',
@@ -69,7 +69,7 @@ export const UpgradeGateOverlay: React.FC<UpgradeGateOverlayProps> = ({
           fontSize: '1.4rem', 
           fontWeight: 700, 
           margin: '0 0 12px 0', 
-          color: 'var(--ui-gray-900)' 
+          color: 'var(--wp-stone-900)' 
         }}>
           Unlock {moduleName}
         </h3>
@@ -77,7 +77,7 @@ export const UpgradeGateOverlay: React.FC<UpgradeGateOverlayProps> = ({
         {/* Plan Value Description */}
         <p style={{ 
           fontSize: '0.9rem', 
-          color: 'var(--ui-gray-500)', 
+          color: 'var(--wp-stone-500)', 
           margin: '0 0 28px 0', 
           lineHeight: 1.6,
           padding: '0 10px'
@@ -91,22 +91,22 @@ export const UpgradeGateOverlay: React.FC<UpgradeGateOverlayProps> = ({
           flexDirection: 'column',
           gap: 12,
           textAlign: 'left',
-          background: 'var(--ui-gray-50)',
+          background: 'var(--wp-stone-50)',
           borderRadius: '12px',
           padding: '18px 20px',
           marginBottom: '32px',
-          border: '1px solid var(--ui-gray-100)'
+          border: '1px solid var(--wp-stone-100)'
         }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: '0.85rem', color: 'var(--ui-gray-700)' }}>
-            <ShieldCheck size={16} color="var(--ui-primary)" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: '0.85rem', color: 'var(--wp-stone-700)' }}>
+            <ShieldCheck size={16} color="var(--wp-primary)" />
             <span>Full multi-tenant ledger & system security</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: '0.85rem', color: 'var(--ui-gray-700)' }}>
-            <Zap size={16} color="var(--ui-primary)" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: '0.85rem', color: 'var(--wp-stone-700)' }}>
+            <Zap size={16} color="var(--wp-primary)" />
             <span>Automated workflow triggers & sequences</span>
           </div>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: '0.85rem', color: 'var(--ui-gray-700)' }}>
-            <Sparkles size={16} color="var(--ui-primary)" />
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, fontSize: '0.85rem', color: 'var(--wp-stone-700)' }}>
+            <Sparkles size={16} color="var(--wp-primary)" />
             <span>Advanced business intelligence & reporting</span>
           </div>
         </div>
@@ -119,15 +119,15 @@ export const UpgradeGateOverlay: React.FC<UpgradeGateOverlayProps> = ({
               style={{
                 padding: '10px 18px',
                 borderRadius: '8px',
-                border: '1px solid var(--ui-gray-200)',
+                border: '1px solid var(--wp-stone-200)',
                 background: 'white',
-                color: 'var(--ui-gray-600)',
+                color: 'var(--wp-stone-600)',
                 fontSize: '0.85rem',
                 fontWeight: 600,
                 cursor: 'pointer',
                 transition: 'background 0.2s'
               }}
-              onMouseEnter={(e) => e.currentTarget.style.background = 'var(--ui-gray-50)'}
+              onMouseEnter={(e) => e.currentTarget.style.background = 'var(--wp-stone-50)'}
               onMouseLeave={(e) => e.currentTarget.style.background = 'white'}
             >
               Dismiss
@@ -138,7 +138,7 @@ export const UpgradeGateOverlay: React.FC<UpgradeGateOverlayProps> = ({
               padding: '10px 22px',
               borderRadius: '8px',
               border: 'none',
-              background: 'var(--ui-primary)',
+              background: 'var(--wp-primary)',
               color: 'white',
               fontSize: '0.85rem',
               fontWeight: 600,
