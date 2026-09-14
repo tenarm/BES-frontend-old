@@ -1,0 +1,9 @@
+{
+  "name": "modules-finance",
+  "$schema": "../../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/modules/finance/src",
+  "projectType": "library",
+  "tags": [],
+  "// targets": "to see all targets run: nx show project modules-finance --web",
+  "targets": {}
+}

@@ -4,8 +4,8 @@ test.describe('BES Shell E2E Setup Placeholder', () => {
   test('should load the sign-in page with correct branding title', async ({ page }) => {
     await page.goto('/');
 
-    // Verify BES Factory brand heading is visible
-    const brandHeading = page.locator('h2:has-text("BES Factory")');
+    // Verify Business Execution System brand heading is visible
+    const brandHeading = page.locator('h2:has-text("Business Execution System")');
     await expect(brandHeading).toBeVisible();
 
     // Verify Sign In controls are visible

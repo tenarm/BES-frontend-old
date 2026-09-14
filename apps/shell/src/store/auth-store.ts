@@ -1,5 +1,5 @@
 import { create } from 'zustand';
-import { checkPermission, NestedPermissions } from '@tenarm/shared-ui';
+import { checkPermission, NestedPermissions } from '@bes/shared-ui';
 
 export interface User {
   id: string;
@@ -34,32 +34,51 @@ const initializeModules = async (activeMods: string[]) => {
   }
 
   if (activeMods.includes('sales')) {
-    const { initSellFlow } = await import('@tenarm/flows-sell');
+    // Flow registration
+    const { initSellFlow } = await import('@bes/flows-sell');
     initSellFlow();
 
-    const { initCustomersDataHub } = await import('@tenarm/data-hub-customers');
+    // Module page registration (MODULES sidebar)
+    const { initSalesModule } = await import('@bes/modules-sales');
+    initSalesModule();
+
+    // Data Hub pages
+    const { initCustomersDataHub } = await import('@bes/data-hub-customers');
     initCustomersDataHub();
 
-    const { initProductsDataHub } = await import('@tenarm/data-hub-products');
+    const { initProductsDataHub } = await import('@bes/data-hub-products');
     initProductsDataHub();
   }
 
+  if (activeMods.includes('inventory')) {
+    // Module page registration (MODULES sidebar)
+    const { initInventoryModule } = await import('@bes/modules-inventory');
+    initInventoryModule();
+  }
+
+  if (activeMods.includes('finance')) {
+    // Module page registration (MODULES sidebar)
+    const { initFinanceModule } = await import('@bes/modules-finance');
+    initFinanceModule();
+  }
+
   if (activeMods.includes('supply_chain')) {
-    const { initBuyFlow } = await import('@tenarm/flows-buy');
+    const { initBuyFlow } = await import('@bes/flows-buy');
     initBuyFlow();
   }
-  if (activeMods.includes('inventory')) {
-    const { initStockFlow } = await import('@tenarm/flows-stock');
+  // Stock flow (inventory module's stock management workflow)
+  if (activeMods.includes('stock')) {
+    const { initStockFlow } = await import('@bes/flows-stock');
     initStockFlow();
   }
   /*
   // To add other modules back in the future, uncomment these:
   if (activeMods.includes('finance')) {
-    const { initMoneyFlow } = await import('@tenarm/flows-money');
+    const { initMoneyFlow } = await import('@bes/flows-money');
     initMoneyFlow();
   }
   if (activeMods.includes('hr')) {
-    const { initPeopleFlow } = await import('@tenarm/flows-people');
+    const { initPeopleFlow } = await import('@bes/flows-people');
     initPeopleFlow();
   }
   */

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Input, Button } from '@tenarm/shared-ui';
+import { Input, Button } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable, PageHeader, CodeSnippet } from './ShowcaseSection';
 
 export const InputShowcase = () => {
@@ -53,7 +53,7 @@ export const InputShowcase = () => {
       </ShowcaseSection>
 
       <ShowcaseSection title="Usage">
-        <CodeSnippet code={`import { Input } from '@tenarm/shared-ui';
+        <CodeSnippet code={`import { Input } from '@bes/shared-ui';
 
 // Basic
 <Input label="Company Name" placeholder="Acme Corp" />

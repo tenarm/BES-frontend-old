@@ -1,4 +1,4 @@
-# BES Factory Frontend
+# Business Execution System Frontend
 
 This is the React-based monorepo for the **BES (Business Execution System)** platform, built using [Nx](https://nx.dev).
 

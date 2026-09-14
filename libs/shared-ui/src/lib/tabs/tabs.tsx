@@ -41,11 +41,12 @@ export function TabGroup({ children, defaultIndex = 0, selectedIndex, onChange, 
 export interface TabListProps {
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-export function TabList({ children, className }: TabListProps) {
+export function TabList({ children, className, style }: TabListProps) {
   return (
-    <div className={`${styles.tabList} ${className || ''}`}>
+    <div className={`${styles.tabList} ${className || ''}`} style={style}>
       {React.Children.map(children, (child, index) => {
         if (React.isValidElement(child)) {
           return React.cloneElement(child, { index } as any);
@@ -61,9 +62,10 @@ export interface TabProps {
   className?: string;
   disabled?: boolean;
   index?: number;
+  style?: React.CSSProperties;
 }
 
-export function Tab({ children, className, disabled, index }: TabProps) {
+export function Tab({ children, className, disabled, index, style }: TabProps) {
   const context = useContext(TabContext);
   if (!context) throw new Error("Tab must be used within a TabGroup");
 
@@ -81,6 +83,7 @@ export function Tab({ children, className, disabled, index }: TabProps) {
       className={`${styles.tab} ${isSelected ? styles.selected : ''} ${disabled ? styles.disabled : ''} ${className || ''}`}
       onClick={handleClick}
       disabled={disabled}
+      style={style}
     >
       {children}
     </button>

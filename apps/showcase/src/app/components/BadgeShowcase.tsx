@@ -1,4 +1,4 @@
-import { Badge, PremiumLockIndicator } from '@tenarm/shared-ui';
+import { Badge, PremiumLockIndicator } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable, PageHeader, CodeSnippet } from './ShowcaseSection';
 
 export const BadgeShowcase = () => {
@@ -48,7 +48,7 @@ export const BadgeShowcase = () => {
 
 
       <ShowcaseSection title="Usage">
-        <CodeSnippet code={`import { Badge, PremiumLockIndicator } from '@tenarm/shared-ui';
+        <CodeSnippet code={`import { Badge, PremiumLockIndicator } from '@bes/shared-ui';
 
 // Status badge
 <Badge variant="success">Paid</Badge>

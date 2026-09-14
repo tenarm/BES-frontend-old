@@ -34,7 +34,7 @@ export const Sidebar: React.FC<SidebarProps> = ({
   }, {} as Record<string, SidebarItem[]>);
 
   // Define order of sections
-  const sectionOrder = ['default', 'WORKFLOWS', 'DATA HUB', 'SYSTEM'];
+  const sectionOrder = ['default', 'WORKFLOWS', 'MODULES', 'DATA HUB', 'SYSTEM'];
 
   return (
     <div className={`${styles.sidebar} ${isCollapsed ? styles.collapsed : ''}`}>

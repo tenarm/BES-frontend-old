@@ -18,7 +18,7 @@ import {
   Lock,
   Folder,
 } from 'lucide-react';
-import { ShellLayout, Sidebar } from '@tenarm/shared-ui';
+import { ShellLayout, Sidebar } from '@bes/shared-ui';
 
 // Showcases
 import { ButtonShowcase } from './components/ButtonShowcase';

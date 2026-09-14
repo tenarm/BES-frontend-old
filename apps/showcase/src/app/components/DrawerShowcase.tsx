@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Drawer, Button, Input, Badge } from '@tenarm/shared-ui';
+import { Drawer, Button, Input, Badge } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable, PageHeader, CodeSnippet } from './ShowcaseSection';
 
 export const DrawerShowcase = () => {
@@ -79,7 +79,7 @@ export const DrawerShowcase = () => {
       </ShowcaseSection>
 
       <ShowcaseSection title="Usage">
-        <CodeSnippet code={`import { Drawer, Button } from '@tenarm/shared-ui';
+        <CodeSnippet code={`import { Drawer, Button } from '@bes/shared-ui';
 
 const [isOpen, setIsOpen] = useState(false);
 

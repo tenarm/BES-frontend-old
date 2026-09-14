@@ -14,17 +14,20 @@
     "skipLibCheck": true,
     "skipDefaultLibCheck": true,
     "paths": {
-      "@tenarm/shared-ui": ["./libs/shared-ui/src/index.ts"],
-      "@tenarm/flows-sell": ["./libs/flows/sell/src/index.ts"],
-      "@tenarm/flows-buy": ["./libs/flows/buy/src/index.ts"],
-      "@tenarm/flows-stock": ["./libs/flows/stock/src/index.ts"],
-      "@tenarm/flows-money": ["./libs/flows/money/src/index.ts"],
-      "@tenarm/data-hub-customers": ["./libs/data-hub/customers/src/index.ts"],
-      "@tenarm/data-hub-suppliers": ["./libs/data-hub/suppliers/src/index.ts"],
-      "@tenarm/data-hub-products": ["./libs/data-hub/products/src/index.ts"],
-      "@tenarm/data-hub-accounts": ["./libs/data-hub/accounts/src/index.ts"],
-      "@tenarm/dashboard": ["./libs/dashboard/src/index.ts"],
-      "@tenarm/settings": ["./libs/settings/src/index.ts"]
+      "@bes/shared-ui": ["./libs/shared-ui/src/index.ts"],
+      "@bes/flows-sell": ["./libs/flows/sell/src/index.ts"],
+      "@bes/flows-buy": ["./libs/flows/buy/src/index.ts"],
+      "@bes/flows-stock": ["./libs/flows/stock/src/index.ts"],
+      "@bes/flows-money": ["./libs/flows/money/src/index.ts"],
+      "@bes/data-hub-customers": ["./libs/data-hub/customers/src/index.ts"],
+      "@bes/data-hub-suppliers": ["./libs/data-hub/suppliers/src/index.ts"],
+      "@bes/data-hub-products": ["./libs/data-hub/products/src/index.ts"],
+      "@bes/data-hub-accounts": ["./libs/data-hub/accounts/src/index.ts"],
+      "@bes/dashboard": ["./libs/dashboard/src/index.ts"],
+      "@bes/settings": ["./libs/settings/src/index.ts"],
+      "@bes/modules-sales": ["./libs/modules/sales/src/index.ts"],
+      "@bes/modules-inventory": ["./libs/modules/inventory/src/index.ts"],
+      "@bes/modules-finance": ["./libs/modules/finance/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

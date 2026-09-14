@@ -1,6 +1,6 @@
 import React from 'react';
-import { Timeline, ProcessPipeline, PendingAction } from '@tenarm/shared-ui';
-import type { ProcessDefinition, ProcessEvent, AuditEntry } from '@tenarm/shared-ui';
+import { Timeline, ProcessPipeline, PendingAction } from '@bes/shared-ui';
+import type { ProcessDefinition, ProcessEvent, AuditEntry } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable, PageHeader, CodeSnippet } from './ShowcaseSection';
 
 // ─── Dummy Data ───────────────────────────────────────────────────────────────

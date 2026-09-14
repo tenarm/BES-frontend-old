@@ -1,5 +1,5 @@
 import React from 'react';
-import { Card, CardHeader, CardTitle, CardDescription, CardBody, CardFooter, Button, Badge, Avatar } from '@tenarm/shared-ui';
+import { Card, CardHeader, CardTitle, CardDescription, CardBody, CardFooter, Button, Badge, Avatar } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable, PageHeader, CodeSnippet } from './ShowcaseSection';
 
 export const CardShowcase = () => {
@@ -70,7 +70,7 @@ export const CardShowcase = () => {
       </ShowcaseSection>
 
       <ShowcaseSection title="Usage">
-        <CodeSnippet code={`import { Card, CardHeader, CardTitle, CardDescription, CardBody, CardFooter } from '@tenarm/shared-ui';
+        <CodeSnippet code={`import { Card, CardHeader, CardTitle, CardDescription, CardBody, CardFooter } from '@bes/shared-ui';
 
 // Simple shorthand API
 <Card title="Sales Report" subtitle="May 2026" headerAction={<Button size="sm">Export</Button>}>

@@ -1,10 +1,10 @@
 import React from 'react';
-import { Button } from '@tenarm/shared-ui';
+import { Button } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable, PageHeader, CodeSnippet } from './ShowcaseSection';
 
 // ─── Code Examples ────────────────────────────────────────────────────────────
 
-const basicUsageSnippet = `import { Button } from '@tenarm/shared-ui';
+const basicUsageSnippet = `import { Button } from '@bes/shared-ui';
 
 // Primary (default)
 <Button onClick={handleSave}>Save Changes</Button>
@@ -28,7 +28,7 @@ export const ButtonShowcase = () => {
     <div>
       <PageHeader
         title="Button"
-        badge="@tenarm/shared-ui"
+        badge="@bes/shared-ui"
         description="Buttons allow users to take actions and make choices with a single tap. They come in multiple variants, sizes, and states to cover every use case in the application."
       />
 

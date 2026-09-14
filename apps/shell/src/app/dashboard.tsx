@@ -1,5 +1,5 @@
 import React from 'react';
-import { ComponentRegistry } from '@tenarm/shared-ui';
+import { ComponentRegistry } from '@bes/shared-ui';
 
 export function Dashboard() {
   const registeredWidgets = ComponentRegistry.getAll();
@@ -27,7 +27,7 @@ export function Dashboard() {
           borderRadius: '50%'
         }} />
         <span style={{ fontSize: '12px', fontWeight: 600, color: 'var(--wp-accent)', letterSpacing: '1.5px', textTransform: 'uppercase' as const }}>
-          TenArm Dashboard
+          Business Execution System Dashboard
         </span>
         <h1 style={{ margin: '8px 0 12px 0', fontSize: '28px', fontWeight: 800, letterSpacing: '-0.5px', fontFamily: 'var(--wp-font-display)' }}>
           Welcome Back

@@ -28,12 +28,21 @@ export const SYSTEM_NAMES: Record<string, string> = {
   pipelines: 'Pipelines',
 };
 
+/** Domain module display names (MODULES sidebar section) */
+export const MODULE_NAMES: Record<string, string> = {
+  sales:     'Sales',
+  inventory: 'Inventory',
+  finance:   'Finance',
+};
+
 /** ComponentRegistry key builders */
 export const ROUTE_KEYS = {
   flow: (flowId: string) =>
     `Flow_${flowId.charAt(0).toUpperCase() + flowId.slice(1)}`,
   dataHub: (entity: string) =>
     `DataHub_${entity.charAt(0).toUpperCase() + entity.slice(1)}`,
+  module: (name: string) =>
+    `Module_${name.charAt(0).toUpperCase() + name.slice(1)}`,
   setting: (name: string) =>
     `Setting_${name.charAt(0).toUpperCase() + name.slice(1)}`,
 } as const;

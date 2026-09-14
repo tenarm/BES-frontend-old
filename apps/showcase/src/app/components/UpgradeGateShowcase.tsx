@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { UpgradeGateOverlay } from '@tenarm/shared-ui';
+import { UpgradeGateOverlay } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable, PageHeader, CodeSnippet } from './ShowcaseSection';
 
 // ─── Tier badge helpers ───────────────────────────────────────────────────────
@@ -217,7 +217,7 @@ export const UpgradeGateShowcase: React.FC = () => (
   <div>
     <PageHeader
       title="UpgradeGateOverlay"
-      badge="@tenarm/shared-ui"
+      badge="@bes/shared-ui"
       description="UpgradeGateOverlay renders an absolute-positioned paywall over any position:relative container. Drop it directly inside the feature widget and toggle its visibility when the user's subscription tier is insufficient."
     />
 
@@ -234,7 +234,7 @@ export const UpgradeGateShowcase: React.FC = () => (
       </ShowcaseDemo>
 
       <CodeSnippet
-        code={`import { UpgradeGateOverlay } from '@tenarm/shared-ui';
+        code={`import { UpgradeGateOverlay } from '@bes/shared-ui';
 
 const AnalyticsWidget = () => {
   const [locked, setLocked] = useState(!user.isPro);
@@ -270,7 +270,7 @@ const AnalyticsWidget = () => {
       </ShowcaseDemo>
 
       <CodeSnippet
-        code={`import { UpgradeGateOverlay } from '@tenarm/shared-ui';
+        code={`import { UpgradeGateOverlay } from '@bes/shared-ui';
 
 const AIReportWidget = () => {
   const [locked, setLocked] = useState(!user.isPremium);

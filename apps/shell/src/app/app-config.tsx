@@ -14,11 +14,14 @@ import {
   Briefcase,
   Wrench,
   LifeBuoy,
+  ShoppingBag,
+  Boxes,
+  Banknote,
 } from 'lucide-react';
 
-import { FLOW_NAMES, DATA_HUB_NAMES, SYSTEM_NAMES, FLOW_ICONS, capitalize } from '@tenarm/shared-ui';
+import { FLOW_NAMES, DATA_HUB_NAMES, SYSTEM_NAMES, MODULE_NAMES, FLOW_ICONS, capitalize } from '@bes/shared-ui';
 
-/** Icon mapping for flows, data-hub, and system items */
+/** Icon mapping for flows, data-hub, module, and system items */
 export const SIDEBAR_ICONS: Record<string, React.ReactNode> = {
   // Top-level
   home: <Home size={20} />,
@@ -35,14 +38,19 @@ export const SIDEBAR_ICONS: Record<string, React.ReactNode> = {
   assets: <Wrench size={20} />,
   support: <LifeBuoy size={20} />,
 
+  // Modules (MODULES sidebar section)
+  module_sales:     <ShoppingBag size={20} />,
+  module_inventory: <Boxes size={20} />,
+  module_finance:   <Banknote size={20} />,
+
   // Data Hub (reuse same icons)
   suppliers: <Truck size={20} />,
-  products: <Package size={20} />,
-  accounts: <Briefcase size={20} />,
+  products:  <Package size={20} />,
+  accounts:  <Briefcase size={20} />,
   employees: <Users size={20} />,
 
   // System
   settings: <Settings size={20} />,
 };
 
-export { FLOW_NAMES, DATA_HUB_NAMES, SYSTEM_NAMES, FLOW_ICONS, capitalize };
+export { FLOW_NAMES, DATA_HUB_NAMES, SYSTEM_NAMES, MODULE_NAMES, FLOW_ICONS, capitalize };

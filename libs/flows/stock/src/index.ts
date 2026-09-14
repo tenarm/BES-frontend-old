@@ -1,4 +1,4 @@
-import { ComponentRegistry } from '@tenarm/shared-ui';
+import { ComponentRegistry } from '@bes/shared-ui';
 
 export function initStockFlow() {
   ComponentRegistry.registerLazy(

@@ -31,7 +31,7 @@ import {
   Tab,
   TabPanels,
   TabPanel
-} from '@tenarm/shared-ui';
+} from '@bes/shared-ui';
 
 
 interface Customer {

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Table, THead, TBody, TR, TH, TD, Badge, Avatar } from '@tenarm/shared-ui';
+import { Table, THead, TBody, TR, TH, TD, Badge, Avatar } from '@bes/shared-ui';
 import { ShowcaseSection, ShowcaseDemo, PropsTable, PageHeader, CodeSnippet } from './ShowcaseSection';
 
 const journalEntries = [
@@ -131,7 +131,7 @@ export const TableShowcase = () => {
       </ShowcaseSection>
 
       <ShowcaseSection title="Usage">
-        <CodeSnippet code={`import { Table, THead, TBody, TR, TH, TD, Badge } from '@tenarm/shared-ui';
+        <CodeSnippet code={`import { Table, THead, TBody, TR, TH, TD, Badge } from '@bes/shared-ui';
 
 <Table>
   <THead>

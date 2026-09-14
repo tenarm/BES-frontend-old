@@ -7,7 +7,7 @@ import {
   ShieldCheck, 
   BellRing
 } from 'lucide-react';
-import { Button, Skeleton } from '@tenarm/shared-ui';
+import { Button, Skeleton } from '@bes/shared-ui';
 import styles from './settings-home.module.css';
 
 export const SettingsHomePage: React.FC = () => {

@@ -4,11 +4,12 @@ import styles from './table.module.css';
 interface TableProps {
   children: React.ReactNode;
   className?: string;
+  style?: React.CSSProperties;
 }
 
-export const Table: React.FC<TableProps> = ({ children, className }) => (
+export const Table: React.FC<TableProps> = ({ children, className, style }) => (
   <div className={styles.tableContainer}>
-    <table className={`${styles.table} ${className || ''}`}>{children}</table>
+    <table className={`${styles.table} ${className || ''}`} style={style}>{children}</table>
   </div>
 );
 
@@ -34,6 +35,6 @@ export const TH: React.FC<{ children: React.ReactNode; style?: React.CSSProperti
   <th className={styles.th} style={style}>{children}</th>
 );
 
-export const TD: React.FC<{ children: React.ReactNode; style?: React.CSSProperties }> = ({ children, style }) => (
-  <td className={styles.td} style={style}>{children}</td>
+export const TD: React.FC<{ children: React.ReactNode; style?: React.CSSProperties; colSpan?: number; rowSpan?: number }> = ({ children, style, colSpan, rowSpan }) => (
+  <td className={styles.td} style={style} colSpan={colSpan} rowSpan={rowSpan}>{children}</td>
 );

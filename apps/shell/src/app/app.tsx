@@ -6,7 +6,7 @@ import {
   ShellLayout,
   Sidebar,
   UpgradeGateOverlay,
-} from '@tenarm/shared-ui';
+} from '@bes/shared-ui';
 
 import { useAuthStore } from '../store/auth-store';
 import { Dashboard } from './dashboard';
@@ -46,12 +46,14 @@ export function App() {
       );
     }
 
-    // Try flow-centric keys first, then data-hub
-    const flowKey = `Flow_${activeItem}`;
+    // Try flow-centric keys first, then module pages, then data-hub
+    const flowKey    = `Flow_${activeItem}`;
+    const moduleKey  = `Module_${activeItem}`;
     const dataHubKey = `DataHub_${activeItem}`;
-    const routeKey = `Route_${activeItem}`;
+    const routeKey   = `Route_${activeItem}`;
     
     const Component = ComponentRegistry.get(flowKey) 
+      || ComponentRegistry.get(moduleKey)
       || ComponentRegistry.get(dataHubKey)
       || ComponentRegistry.get(routeKey);
 
@@ -170,7 +172,7 @@ const LoginView = () => {
         <div style={{ marginBottom: 32 }}>
           <Hexagon size={48} color="var(--wp-primary)" fill="var(--wp-primary)" fillOpacity={0.15} />
           <h2 style={{ margin: '12px 0 4px', fontSize: '1.5rem', fontFamily: 'var(--wp-font-display)', color: 'var(--wp-stone-900)' }}>
-            TenArm
+            Business Execution System
           </h2>
           <p style={{ color: 'var(--wp-stone-500)', margin: 0, fontSize: '0.875rem' }}>
             Sign in to your workspace

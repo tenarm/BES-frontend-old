@@ -1,6 +1,6 @@
 import React from 'react';
 import { Menu, Search, Settings, Hexagon } from 'lucide-react';
-import { Button, Input, Avatar, Header, NotificationBell } from '@tenarm/shared-ui';
+import { Button, Input, Avatar, Header, NotificationBell } from '@bes/shared-ui';
 
 interface AppHeaderProps {
   toggleSidebar: () => void;
@@ -18,13 +18,13 @@ export const AppHeader: React.FC<AppHeaderProps> = ({ toggleSidebar, currentUser
           </Button>
           <div className="logo">
             <Hexagon className="logo-icon" size={24} color="var(--wp-primary)" fill="var(--wp-primary)" fillOpacity={0.2} />
-            <span className="logo-text">BES Factory</span>
+            <span className="logo-text">Business Execution System</span>
           </div>
         </>
       }
       center={
         <Input
-          placeholder="Search BES modules..."
+          placeholder="Search..."
           icon={<Search size={18} />}
           className="search-input"
         />

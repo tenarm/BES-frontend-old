@@ -1,7 +1,7 @@
 import React from 'react';
 import { useAuthStore } from '../store/auth-store';
 import { SIDEBAR_ICONS } from './app-config';
-import { FLOW_NAMES, FLOW_TIERS, DATA_HUB_NAMES, SYSTEM_NAMES, capitalize, setLicenseChecker } from '@tenarm/shared-ui';
+import { FLOW_NAMES, FLOW_TIERS, MODULE_NAMES, DATA_HUB_NAMES, SYSTEM_NAMES, capitalize, setLicenseChecker } from '@bes/shared-ui';
 import { Package } from 'lucide-react';
 
 export function useShell() {
@@ -66,6 +66,19 @@ export function useShell() {
         subItems: [],
         isLocked,
         section: 'WORKFLOWS',
+      });
+    });
+
+    // MODULES section — domain module pages (Sales, Inventory, Finance)
+    // Locked if the corresponding backend module is not in the active modules list
+    Object.entries(MODULE_NAMES).forEach(([key, displayName]) => {
+      const isLicensed = activeModules.includes(key);
+      items.push({
+        name: displayName,
+        icon: SIDEBAR_ICONS[`module_${key}`] || React.createElement(Package, { size: 20 }),
+        subItems: [],
+        isLocked: !isLicensed,
+        section: 'MODULES',
       });
     });
 
